@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../spm_modules/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/ztree/jquery.ztree.core.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>舆情导控</title>
+</head>
+<body>
+<div id="forum-guidance-html">
+    <div class="left-classify" id="guidance-type-show">
+        <!--<ul class="guidance-show">
+            <li class="guidance-type-item">
+                <div class="title">微博</div>
+                <ul>
+                    <li class="context active" guidance-id="1">腾讯微博</li>
+                    <li class="context">新浪微博</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">贴吧</div>
+                <ul>
+                    <li class="context" guidance-id="1">百度贴吧</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">论坛</div>
+                <ul>
+                    <li class="context" guidance-id="1">南京论坛</li>
+                    <li class="context" guidance-id="1">北京论坛</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">新闻</div>
+                <ul>
+                    <li class="context" guidance-id="1">腾讯新闻</li>
+                    <li class="context" guidance-id="1">360新闻</li>
+                </ul>
+            </li>
+        </ul>-->
+    </div>
+    <div class="right-context">
+        <div class="top-nav">
+            <ul class="tabs tab-forum">
+                <li class="tab"><a class="active" guidance-way="1">导 控 回 帖</a></li>
+                <li class="tab"><a class="" guidance-way="2">导 控 发 帖</a></li>
+                <li class="tab"><a class="" guidance-way="3">帖 子 浏 览</a></li>
+            </ul>
+        </div>
+        <div class="bottom-context">
+            <form class="form-horizontal">
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">任务序号</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="任务序号">
+                    </div>
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">任务名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="任务名称">
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">帖子URL</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="帖子URL">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">执行语料
+                        <svg class="icon icon-red icon-cursor" id="add-corpus" aria-hidden="true">
+                            <use xlink:href="#icon-add"></use>
+                        </svg>
+                    </label>
+                    <div class="col-sm-10">
+                        <div class="al-ui segment">
+                            <div class="guidance-corpus-show">
+                                <span class="label label-primary corpus-icon icon-cursor icon-margin" configid="4">
+                                最近日本街头潮人中“チャイナ风（中国风）”开始流行起来了。盘扣，熊猫，双喜字，春丽头等被用到&nbsp;&nbsp;
+                                <span class="glyphicon  glyphicon-remove "></span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">执行次数</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="执行次数">
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">推送顺序</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 顺序执行
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 随机执行
+                        </label>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账号类型</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox1" value="option1" checked="true"> 系统账号
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 私有账号
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">开始时间</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="开始时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">执行速度</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="true"> 普通
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"> 快速
+                        </label>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">间隔时间</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="间隔时间">
+                    </div>
+                    <label class="col-sm-1 control-label">~~~~</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" placeholder="间隔时间">
+                    </div>
+                </div>-->
+            </form>
+            <div class="operation-btn">
+                <div class="position"></div>
+                <div>
+                    <button type="button" class="btn btn-primary">提 交</button>
+                    <button type="button" class="btn btn-success">重 置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="choose-corpus-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <div class="left-nav">
+                <div class="corpus-type">
+                    <div class=" corpus-show  al-ui segment private">
+                        <div class="title">私人语料树管理</div>
+                        <div class="content_wrap">
+                            <div class="zTreeDemoBackground left">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" corpus-show al-ui segment system">
+                        <div class="title">系统语料树管理</div>
+                        <div class="content_wrap">
+                            <div class="zTreeDemoBackground left">
+                                <ul id="public-corpus" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-context">
+                <div class="corpus-table">
+                    <table class="table table-condensed" id="corpus-context-table"></table>
+                </div>
+            </div>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success cancel-button">取消</button>
+            <button class="btn btn-primary" id="reserve-corpus-button">保存</button>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./forumguidance')
+</script>
+</body>
+</html>

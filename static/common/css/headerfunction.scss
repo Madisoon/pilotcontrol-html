@@ -1,0 +1,14 @@
+// 边框函数
+@mixin border-css($direction,$color,$width) {
+  border-#{$direction}: $width solid $color;
+}
+
+@mixin body-css {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  font-size: 14px !important;
+  font-family: 'Open Sans';
+}

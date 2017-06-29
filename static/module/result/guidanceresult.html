@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../spm_modules/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/ztree/jquery.ztree.core.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>舆情导控</title>
+</head>
+<body>
+<div id="guidance-result-html">
+    <div class="left-nav" id="guidance-type-show">
+
+    </div>
+    <div class="right-context">
+        <button type="button" class="btn btn-primary" id="add-order-form">新建订单</button>
+        <div class="guidance-table">
+            <table class="table table-condensed" id="form-table"></table>
+        </div>
+    </div>
+    <div id="order-form-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <form class="form-horizontal">
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">任务序号</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" placeholder="任务序号">
+                    </div>
+                </div>-->
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">任务名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="任务名称">
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">帖子URL</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="帖子URL">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">导控内容</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="1"
+                                   checked="true"> 自动内容
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="2"> 指定内容
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="3"
+                                   checked="true"> 混合内容
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="4"> 关闭内容
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group custom-corpus" style="display: none">
+                    <label class="col-sm-2 control-label">自定义语料</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group automatic-corpus">
+                    <label class="col-sm-2 control-label">执行语料
+                        <svg class="icon icon-red icon-cursor" id="add-corpus" aria-hidden="true">
+                            <use xlink:href="#icon-add"></use>
+                        </svg>
+                    </label>
+                    <div class="col-sm-10">
+                        <div class="al-ui segment">
+                            <div class="guidance-corpus-show">
+                                <span class="label label-primary corpus-icon icon-cursor icon-margin" configid="4">
+                                最近日本街头潮人中“チャイナ风（中国风）”开始流行起来了。盘扣，熊猫，双喜字，春丽头等被用到&nbsp;&nbsp;
+                                <span class="glyphicon  glyphicon-remove "></span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">执行次数</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control guidance-number" placeholder="执行次数（最低50条）">
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <label class="col-sm-2 control-label">推送顺序</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 顺序执行
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 随机执行
+                        </label>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账号类型</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox1" value="option1" checked="true"> 系统账号
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 私有账号
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">执行时间</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="执行时间（次/秒）">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">导控类型</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-type" value="1" data-number="5" checked="true">发帖<span
+                                class="context-integration">（5积分）</span>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-type" value="2" data-number="5"> 回帖<span
+                                class="context-integration">（5积分）</span>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="guidance-type" value="0" data-number="5"> 浏览帖子<span
+                                class="context-integration">（5积分）</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">所需积分</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control all-total-integration" placeholder="积分数" disabled="true">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success cancel-button">取消</button>
+            <button class="btn btn-primary" id="reserve-corpus-button">确认</button>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./guidanceresult')
+</script>
+</body>
+</html>

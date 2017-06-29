@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../static/common/js/iconfont.js"></script>
+    <script src="../spm_modules/layer/layer.js"></script>
+    <script src="../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>上元信-舆情导控</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            font-family: '微软雅黑';
+        }
+
+        #login-main-html {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            overflow-x: auto;
+        }
+
+        .login-html {
+            position: relative;
+            margin-top: 20px;
+            height: 560px;
+            min-width: 400px;
+            width: 400px;
+            margin-left: 35%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            overflow-x: auto;
+        }
+
+        .header {
+            position: relative;
+            height: 250px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .login-context {
+            position: relative;
+            height: 220px;
+            width: 100%;
+        }
+
+        .login-input {
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 40px;
+        }
+
+        .sys-logo .logo {
+            width: 110px;
+            height: 110px;
+            line-height: 110px;
+            color: #fff;
+            font-size: 35px;
+            background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+            border-radius: 3px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .sys-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            padding: 15px 0px;
+        }
+
+        .sys-describe {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .form-control {
+            height: 40px;
+            padding-left: 38px;
+
+        }
+
+        .icon {
+            position: absolute;
+            top: 12px;
+            left: 13px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .checkbox label {
+            color: #999;
+        }
+
+        #login-button {
+            width: 100%;
+            height: 40px;
+            font-weight: 600;
+        }
+
+        #c {
+            width: 100%;
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+        canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div>
+   <!-- <canvas id=c></canvas>-->
+    <canvas id="canvas-bottom"></canvas>
+    <canvas id="canvas-top"></canvas>
+</div>
+<div id="login-main-html">
+    <div class="login-html">
+        <div class="header">
+            <div class="sys-logo">
+                <div class="logo">
+                    信
+                </div>
+            </div>
+            <div class="sys-title">舆情导控系统</div>
+            <div class="sys-describe">百度贴吧，网易新闻，地方论坛</div>
+        </div>
+        <div class="login-context">
+            <div class="login-input">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <input class="form-control login-name" type="text" placeholder=" 账 号 ">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-friendfamous"></use>
+                        </svg>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control login-password" type="password" placeholder=" 密码 ">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-mima1"></use>
+                        </svg>
+                    </div>
+                </form>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> 记住密码
+                    </label>
+                </div>
+                <button data-ripple type="button" class="btn btn-primary" id="login-button">登&nbsp;&nbsp;陆</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	seajs.use('./login.js')
+</script>
+</body>
+</html>

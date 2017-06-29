@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../static/common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../static/common/js/iconfont.js"></script>
+    <script src="../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>上元信-舆情导控</title>
+    <style>
+        .person-setting-fixed {
+            position: fixed;
+            width: 315px;
+            height: 92%;
+            right: 0px;
+            top: 52px;
+            z-index: 10;
+            padding-top: 20px;
+            overflow: auto;
+            box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.2);
+            background: #ffffff;
+        }
+
+        .gn-title {
+            background: #E4E4E4;
+            font-size: 12px;
+            padding: 4px 0 4px 20px;
+        }
+
+        li a:hover {
+            background: rgba(0, 0, 0, 0.02);
+            text-decoration: none;
+        }
+
+        .list-w-title a {
+            display: block;
+            position: relative;
+            padding: 17px;
+            border-bottom: 1px solid #E5E5E5;
+            color: #7A8189;
+        }
+
+        .list-w-title .date {
+            position: absolute;
+            right: 20px;
+            font-size: 11px;
+            color: #76757B;
+            top: 23px;
+        }
+
+        .list-w-title h4 {
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .list-w-title p {
+            color: rgba(0, 0, 0, 0.4);
+        }
+        .feedback-and-voice {
+            position: fixed;
+            bottom: 45px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            z-index: 11;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #f44336;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+        .label {
+            display: inline;
+            padding: .3em .7em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+        .label-info {
+            background-color: #9c27b0 ;
+        }
+        .label-warning {
+            background-color: #2979ff;
+        }
+        .label-success {
+            background-color: #388e3c;
+        }
+        .label-danger {
+            background-color: #dd2c00;
+        }
+    </style>
+</head>
+<body>
+<div class="index-html">
+    <div class="person-setting-fixed" style="display: none">
+        <!--反馈与建议按钮-->
+        <div class="feedback-and-voice">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-caidan-copy"></use>
+            </svg>
+        </div>
+        <div class="title">
+        </div>
+        <div class="gn-title">公告</div>
+        <div class="notice">
+            <ul class="list-w-title">
+                <li>
+                    <a href="#">
+                        <span class="label label-danger">升级</span>
+                        <span class="date">2017-06-30&nbsp;&nbsp;ago</span>
+                        <h4>System</h4>
+                        <p>系统将于2016-50-60进行升级更新，带了些不便，请见谅！</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="label label-success">BUG</span>
+                        <span class="date">2017-06-35&nbsp;&nbsp;ago</span>
+                        <h4>丶caizi</h4>
+                        <p>亲爱的自己，永远不要轻易对别人许下承诺，许下的承诺就是欠下的债!</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="label label-info">通知</span>
+                        <span class="date">2017-06-20&nbsp;&nbsp;ago</span>
+                        <h4>blueCrop</h4>
+                        <p>一个充满着阳光浪漫甜美的字眼，描绘出河畔伊人的诗情画意。然而，问世间情为何物，直教生死相许。爱情这东西，是每个少男少女都想要拥有的在心和容颜都衰老的时候用来回忆的一段美好抑或心酸时光罢了。多少人沉浸于她，体会那一抹温柔，那一种深情，幸福，幸福，还是幸福?爱情是绝美的?</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="label label-warning">服务</span>
+                        <span class="date">2016-06-20&nbsp;&nbsp;ago</span>
+                        <h4>UtoRear</h4>
+                        <p>"别太理会人家背后怎么说你，因为那些比你强的人，根本懒得提起你。诋毁，本身就是一种仰望。"</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <nav class="pilotControl-html-header">
+        <div class="left-logo">
+            <div class="sys-name">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-xin1"></use>
+                </svg>&nbsp;上元信舆情导控
+            </div>
+        </div>
+        <div class="right-message">
+            <a class="opertion-icon left expand-html" href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-meun"></use>
+                </svg>
+            </a>
+            <div class="sys-message">
+                <div class="info-show">
+                    <span id="user-info">
+                        <img src="../static/img/header.jpg" class="user-photo">
+                    </span>
+                </div>
+            </div>
+            <a class="opertion-icon right " href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-notice"></use>
+                </svg>
+            </a>
+            <a class="opertion-icon right " href="#" id="system-info">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-caidan-copy"></use>
+                </svg>
+            </a>
+        </div>
+    </nav>
+    <div class="pilotControl-html-nav">
+        <div class="left-nav">
+            <ul class="parent-first-menu">
+                <li class="menu-item">
+                    <a href="../static/module/system/main.html" class="active" target="contextIframe">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-choicenessfill"></use>
+                        </svg>
+                        <span>&nbsp;&nbsp;首页</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="right-context">
+            <iframe id="iframe-show" src="../static/module/system/main.html" name="contextIframe" scrolling="yes"
+                    frameborder="0"
+                    style="width:100%; height:100%;"></iframe>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./index.js')
+</script>
+</body>
+</html>

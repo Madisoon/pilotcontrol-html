@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../spm_modules/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/ztree/jquery.ztree.core.min.js"></script>
+    <script src="../../../spm_modules/ztree/jquery.ztree.excheck.min.js"></script>
+    <script src="../../../spm_modules/ztree/jquery.ztree.exedit.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <style>
+        #area-tree-manage-html {
+            padding: 8px;
+            max-height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            display: flex;
+        }
+
+        .corpus-type {
+            width: 18%;
+        }
+
+        .corpus-context {
+            width: 80%;
+            margin-left: 2%;
+        }
+
+        #rMenu {
+            position: absolute;
+            visibility: hidden;
+            top: 0;
+            background-color: white;
+            padding: 2px;
+        }
+
+        #rMenu ul {
+            -webkit-padding-start: 0px;
+            width: 100px;
+            padding: 2px 4px;
+            box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+        }
+
+        #rMenu ul li {
+            text-align: center;
+            margin: 1px 0;
+            height: 27px;
+            line-height: 27px;
+            cursor: pointer;
+            list-style: none outside none;
+            border-bottom: 1px solid #f8f6f2;
+            font-size: 0.9rem;
+        }
+
+        #rMenu ul li:hover {
+            background: #2299ee;
+        }
+
+        .ztree li {
+            margin-top: 8px;
+        }
+
+        .ztree * {
+            font-family: '微软雅黑';
+            font-size: 1.1rem;
+        }
+
+        .ztree li a.curSelectedNode {
+            background-color: rgba(0, 0, 0, 0.4);
+            height: 19px;
+        }
+
+        .ztree li a:hover {
+            text-decoration: none !important;
+            background-color: rgba(0, 0, 0, 0.4) !important;
+        }
+
+        #area-tree-manage-html .title {
+            color: rgba(0, 0, 0, 0.4);
+            font-size: 1.1rem;
+            padding-left: 8px;
+        }
+
+        .corpus-show {
+            margin-top: 5px;
+        }
+
+        .corpus-table {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="area-tree-manage-html">
+    <div class="corpus-type">
+        <div class=" corpus-show  al-ui segment private">
+            <div class="title">私人语料树管理</div>
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="treeDemo" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+        <div class=" corpus-show al-ui segment system">
+            <div class="title">系统语料树管理</div>
+            <div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="public-corpus" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="corpus-context">
+        <button type="button" class="btn btn-primary" id="add-corpus">新增语料</button>
+        <button type="button" class="btn btn-success" id="delete-corpus">删除语料</button>
+        <div class="corpus-table">
+            <table class="table table-condensed" id="corpus-context-table"></table>
+        </div>
+    </div>
+    <div id="rMenu">
+        <ul>
+            <li id="update-name"><span class="glyphicon glyphicon-file"></span>&nbsp;&nbsp;修改名称</li>
+            <li id="add-tag"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;增加节点</li>
+            <li id="delete-tag"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;删除节点
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="addCorpusDialog" class="al-ui-dialog" style="display: none">
+    <form class="form-horizontal dialog-context" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">语料编号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control add-corpus-number" placeholder="语料编号">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">语料内容</label>
+            <div class="col-sm-10">
+                <textarea class="form-control add-corpus-context" rows="4" placeholder="语料的内容"></textarea>
+            </div>
+        </div>
+    </form>
+    <div class="absolute-dialog-action">
+        <button class="btn btn-success" id="cancel-button">取消</button>
+        <button class="btn btn-primary" id="reserve-button">保存</button>
+    </div>
+</div>
+<script>
+	seajs.use('./corpusmanage.js')
+</script>
+</body>
+</html>

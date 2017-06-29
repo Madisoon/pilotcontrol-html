@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <title>Title</title>
+</head>
+<body>
+<div id="forum-guidance-html">
+    <div class="left-classify" id="guidance-type-show">
+        <!--<ul class="guidance-show">
+            <li class="guidance-type-item">
+                <div class="title">微博</div>
+                <ul>
+                    <li class="context active" guidance-id="1">腾讯微博</li>
+                    <li class="context" guidance-id="2">新浪微博</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">贴吧</div>
+                <ul>
+                    <li class="context" guidance-id="3">百度贴吧</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">论坛</div>
+                <ul>
+                    <li class="context" guidance-id="4">南京论坛</li>
+                    <li class="context" guidance-id="5">北京论坛</li>
+                </ul>
+            </li>
+            <li class="guidance-type-item">
+                <div class="title">新闻</div>
+                <ul>
+                    <li class="context" guidance-id="6">腾讯新闻</li>
+                    <li class="context" guidance-id="7">360新闻</li>
+                </ul>
+            </li>
+        </ul>-->
+    </div>
+    <div class="right-context">
+        <div class="top-nav" style="display: none">
+            <ul class="tabs tab-forum">
+                <li class="tab"><a class="active" guidance-way="1">系 统 账 号</a></li>
+                <li class="tab"><a class="" guidance-way="0">私 人 账 号</a></li>
+            </ul>
+        </div>
+        <div class="bottom-context">
+            <div>
+                <button type="button" class="btn btn-primary" id="add-sys-number">新建账号</button>
+                <button type="button" class="btn btn-danger" id="delete-sys-number">删除账号</button>
+            </div>
+            <div class="table-context-show">
+                <table class="table table-condensed" id="number-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="add-number-dialog" class="al-ui-dialog" style="display: none">
+    <form class="form-horizontal dialog-context" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">账号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control number-name" placeholder="账号">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control number-password" placeholder="密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">昵称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control number-nick-name" placeholder="昵称">
+            </div>
+        </div>
+    </form>
+    <div class="absolute-dialog-action">
+        <button class="btn btn-success" id="cancel-button">取消</button>
+        <button class="btn btn-primary" id="reserve-button">保存</button>
+    </div>
+</div>
+<script>
+	seajs.use('./publicnumber')
+</script>
+</body>
+</html>

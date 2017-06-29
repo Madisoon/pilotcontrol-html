@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../spm_modules/animate/animate.css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+</head>
+<body>
+<div id="module-manage-html">
+    <div class="first-main-html">
+        <button type="button" class="btn btn-primary" id="add-first-module"><span
+                class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添 加 导 控 类 型
+        </button>
+        <ul class="list-group">
+
+        </ul>
+    </div>
+    <div class="second-main-html">
+        <button type="button" class="btn btn-success" id="add-second-module"><span
+                class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添 加 导 控 内 容
+        </button>
+        <div style="clear: both"></div>
+        <table class="table  table-bordered">
+            <thead>
+            <tr class="active">
+                <th>名称</th>
+                <th>导控方案</th>
+                <th>删除</th>
+                <th>修改</th>
+            </tr>
+            </thead>
+            <tbody class="module-info-show-table">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="add-first-module-ialog" class="al-ui-dialog" style="display: none">
+        <div class="context dialog-context">
+            <div class="module-context">
+                <input type="text" class="form-control module-name" placeholder="模块名称">
+                <div class="operationicon"><span
+                        class="glyphicon glyphicon-plus span-icon icon-cursor icon-blue fix"></span></div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+
+        <!--<button type="button" class="btn btn-primary center-button" id="post-module"><span
+                class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交
+        </button>-->
+        <div class="absolute-dialog-action">
+            <button type="button" class="btn btn-success" id="cancel-module">取消</button>
+            <button type="button" class="btn btn-primary" id="post-module">确认提交</button>
+        </div>
+    </div>
+    <div id="add-second-module-ialog" class="al-ui-dialog" style="display: none">
+        <div class="context dialog-context">
+            <div class="module-context">
+                <input type="text" class="form-control second-module-name" placeholder="模块名称">
+                <input type="text" class="form-control second-module-url second-input" placeholder="模块地址配置">
+                <div class="operationicon"><span
+                        class="glyphicon glyphicon-plus span-icon icon-cursor icon-blue second-fix"></span></div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+
+        <!--<button type="button" class="btn btn-primary center-button" id="post-second-module"><span
+                class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交
+        </button>-->
+        <div class="absolute-dialog-action">
+            <button type="button" class="btn btn-success" id="cancel-second-btn">取消</button>
+            <button type="button" class="btn btn-primary" id="post-second-module">确认提交</button>
+        </div>
+    </div>
+
+    <div id="update-first-module-dialog" class="al-ui-dialog" style="display: none">
+
+        <div class="form-group dialog-context">
+            <input type="text" class="form-control" id="update-first-name" placeholder="名称">
+        </div>
+        <!--<button type="button" class="btn btn-primary center-button" id="update-first-module"><span
+                class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交
+        </button>-->
+        <div class="absolute-dialog-action">
+            <button type="button" class="btn btn-success" id="cancel-first-module">取消</button>
+            <button type="button" class="btn btn-primary" id="update-first-module">确认提交</button>
+        </div>
+    </div>
+
+    <div id="update-second-module-dialog" class="al-ui-dialog" style="display: none">
+        <form class="form-horizontal dialog-context" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">二级模块名称：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="update-second-name" placeholder="二级模块名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">二级模块地址：</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="update-second-url" placeholder="二级模块地址">
+                </div>
+            </div>
+        </form>
+        <div class="absolute-dialog-action">
+            <button type="button" class="btn btn-success" id="cancel-second-module">取消</button>
+            <button type="button" class="btn btn-primary" id="update-second-module">确认提交</button>
+        </div>
+        <!--<button type="button" class="btn btn-primary center-button" id="update-second-module"><span
+                class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;提交
+        </button>-->
+    </div>
+
+</div>
+<div style="clear: both"></div>
+
+<script>
+	seajs.use('./guidanceconfig');
+</script>
+</body>
+</html>
