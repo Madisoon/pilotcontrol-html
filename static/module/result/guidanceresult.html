@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">帖子URL</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="帖子URL">
+                        <input type="text" class="form-control task-url" placeholder="帖子URL">
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,8 +57,7 @@
                             <input type="radio" name="guidance-context" class="guidance-context-class" value="2"> 指定内容
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="guidance-context" class="guidance-context-class" value="3"
-                                   checked="true"> 混合内容
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="3"> 混合内容
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="guidance-context" class="guidance-context-class" value="4"> 关闭内容
@@ -68,7 +67,7 @@
                 <div class="form-group custom-corpus" style="display: none">
                     <label class="col-sm-2 control-label">自定义语料</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea class="form-control custom-context" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="form-group automatic-corpus">
@@ -80,10 +79,7 @@
                     <div class="col-sm-10">
                         <div class="al-ui segment">
                             <div class="guidance-corpus-show">
-                                <span class="label label-primary corpus-icon icon-cursor icon-margin" configid="4">
-                                最近日本街头潮人中“チャイナ风（中国风）”开始流行起来了。盘扣，熊猫，双喜字，春丽头等被用到&nbsp;&nbsp;
-                                <span class="glyphicon  glyphicon-remove "></span>
-                            </span>
+
                             </div>
                         </div>
                     </div>
@@ -91,7 +87,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">执行次数</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control guidance-number" placeholder="执行次数（最低50条）">
+                        <input type="text" class="form-control task-number" placeholder="执行次数（最低50条）">
                     </div>
                 </div>
                 <!--<div class="form-group">
@@ -109,17 +105,17 @@
                     <label class="col-sm-2 control-label">账号类型</label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox1" value="option1" checked="true"> 系统账号
+                            <input type="checkbox" name="number-type"  value="1" checked="true"> 系统账号
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="inlineCheckbox2" value="option2"> 私有账号
+                            <input type="checkbox" name="number-type"  value="0"> 私有账号
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">执行时间</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="执行时间（次/秒）">
+                        <input type="text" class="form-control task-interval" placeholder="执行时间（次/秒）">
                     </div>
                 </div>
 
@@ -131,11 +127,11 @@
                                 class="context-integration">（5积分）</span>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="guidance-type" value="2" data-number="5"> 回帖<span
+                            <input type="radio" name="guidance-type" value="2" data-number="4"> 回帖<span
                                 class="context-integration">（5积分）</span>
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="guidance-type" value="0" data-number="5"> 浏览帖子<span
+                            <input type="radio" name="guidance-type" value="0" data-number="3"> 浏览帖子<span
                                 class="context-integration">（5积分）</span>
                         </label>
                     </div>
@@ -151,6 +147,39 @@
         </div>
         <div class="absolute-dialog-action">
             <button class="btn btn-success cancel-button">取消</button>
+            <button class="btn btn-primary" id="reserve-task-button">确认</button>
+        </div>
+    </div>
+    <div id="choose-corpus-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <div class="left-nav">
+                <div class="corpus-type">
+                    <div class=" corpus-show  al-ui segment private">
+                        <div class="title">私人语料树管理</div>
+                        <div class="content_wrap">
+                            <div class="zTreeDemoBackground left">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" corpus-show al-ui segment system">
+                        <div class="title">系统语料树管理</div>
+                        <div class="content_wrap">
+                            <div class="zTreeDemoBackground left">
+                                <ul id="public-corpus" class="ztree"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-context">
+                <div class="corpus-table">
+                    <table class="table table-condensed" id="corpus-context-table"></table>
+                </div>
+            </div>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success" id="cancel-corpus-button">取消</button>
             <button class="btn btn-primary" id="reserve-corpus-button">确认</button>
         </div>
     </div>

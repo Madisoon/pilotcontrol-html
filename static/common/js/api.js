@@ -108,14 +108,14 @@ define(function (require, exports, module) {
 		};
 	}());
 	const result = (function () {
-		let url = baseUrl
+		let url = baseUrl+ 'guidance/';
 		return {
-			customerManage: { //客户管理
-				changeCustomer: function (customerInfo, customerId, success) {
-					getDataWay(url + 'changeCustomer', {
-						customerInfo: customerInfo,
-						customerId: customerId
-					}, success)
+			taskManage: { // 客户管理
+				insertTask: function (taskInfo, taskContext, success) {
+					getDataWay(url + 'insertTask', {
+						taskInfo: taskInfo,
+						taskContext: taskContext
+					}, 'PUT', success)
 				}
 			}
 		};

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>舆情导控</title>
+    <style>
+        .task-show-context {
+            height: 87%;
+            overflow-y: auto;
+            border: 1px solid rgba(34, 36, 38, .15);
+        }
+
+        .task-show-header .word {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .task-create {
+            flex: 1 1 5%;
+        }
+
+        .task-url {
+            flex: 1 1 20%;
+        }
+
+        .task-type {
+            flex: 1 1 5%;
+        }
+
+        .corpus-context {
+            flex: 1 1 20%;
+        }
+
+        .task-number {
+            flex: 1 1 20%;
+        }
+
+        .task-operate {
+            flex: 1 1 15%;
+        }
+
+        .task-create-item {
+            display: flex;
+            padding: 8px;
+            height: 57px;
+            border-bottom: 1px solid rgba(34, 36, 38, .15);
+        }
+
+        .task-create-item .word {
+            line-height: 40px;
+            font-size: 0.9rem;
+        }
+
+        .task-create-item.active {
+            background-color: #f5f5f5;
+        }
+
+        .task-create-item .btn {
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+<div id="guidance-monitor-html">
+    <div class="left-nav" id="guidance-type-show">
+
+    </div>
+    <div class="monitor-context">
+        <div class="top-header">
+            <div class="word task-create">发布人</div>
+            <div class="word task-type">发布类型</div>
+            <div class="word task-url">帖子url</div>
+            <div class="word corpus-context">语料内容</div>
+            <div class="word task-number">执行次数</div>
+            <div class="word task-create">发布时间</div>
+        </div>
+        <div class="bottom-task">
+            <div class="task-create-item">
+                <div class="task-create word">菜籽
+                </div>
+                <div class="task-type word">发帖</div>
+                <div class="task-url word">http://vuematerial.io/#/components/list</div>
+                <div class="corpus-context word">内容</div>
+                <div class="task-number word">10</div>
+                <div class="task-operate word">
+                    <button type="button" class="btn btn-primary">复制</button>
+                    <button type="button" class="btn btn-success">完成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./guidancemonitor')
+</script>
+</body>
+</html>

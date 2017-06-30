@@ -755,4 +755,64 @@ table {
     }
   }
 
+  #choose-corpus-dialog {
+    .dialog-context {
+      display: flex;
+    }
+  }
+}
+
+#guidance-monitor-html {
+  width: 98%;
+  height: 100%;
+  margin-left: 1%;
+  margin-top: 10px;
+  display: flex;
+  .left-nav {
+    flex: 1 1 18%;
+    height: 98%;
+    box-shadow: $border-shadow;
+    background-color: #fff;
+    .guidance-show {
+      padding: 8px;
+    }
+    .guidance-type-item {
+      position: relative;
+      padding: 1em;
+      background: none;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid rgba(34, 36, 38, .15);
+      .title {
+        font: {
+          size: 1.1rem;
+          weight: 600;
+        }
+      }
+      .context {
+        margin-top: 3px;
+        padding: 4px;
+        color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        &.active {
+          background: #e1f5fe;
+          border-left: 3px solid #29b6f6;
+        }
+        &:hover {
+          background: #e1f5fe;
+        }
+      }
+    }
+  }
+  .monitor-context {
+    flex: 1 1 80%;
+    margin-left: 2%;
+    .top-header {
+      display: flex;
+      .word {
+        margin-left: 1%;
+        color: #000;
+      }
+    }
+  }
 }
