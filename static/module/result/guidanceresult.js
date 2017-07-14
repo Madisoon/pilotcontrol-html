@@ -430,8 +430,5 @@ define(function (require, exports, module) {
 		 $('.form-control.custom-context').val("");// 导控的语料内容
 		 $('.guidance-corpus-show').empty();
 	};
-
-
-
 });
 

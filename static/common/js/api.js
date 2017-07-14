@@ -6,8 +6,8 @@ define(function (require, exports, module) {
 	// 通过 require 引入依赖
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
-	const baseUrl = 'http://127.0.0.1:8011/';
-	/*const baseUrl = 'http://118.178.237.219:8080/pilotcontrol-app-manage/';*/
+	const baseUrl = 'http://127.0.0.1:8011/'
+	/*const baseUrl = 'http://39.108.178.160:8080/pilotcontrol-app-manage/';*/
 	const getDataWay = function (url, params, httpType, success) {
 		//发送ajax请求
 		$.ajax({
@@ -20,7 +20,7 @@ define(function (require, exports, module) {
 			},
 			error: function () {
 			},
-		});
+		})
 	}
 	//客户相关的所有的接口
 	// 自行执行函数
@@ -35,11 +35,11 @@ define(function (require, exports, module) {
 					}, success)
 				}
 			}
-		};
-	}());
+		}
+	}())
 
 	const corpus = (function () {
-		let url = baseUrl + 'corpus/';
+		let url = baseUrl + 'corpus/'
 		return {
 			corpusManage: {
 				insertCorpus: function (corpusName, corpusId, corpusType, createUser, success) {
@@ -48,27 +48,27 @@ define(function (require, exports, module) {
 						corpusId: corpusId,
 						corpusType: corpusType,
 						createUser: createUser
-					}, 'PUT',success)
+					}, 'PUT', success)
 				},
 				deleteCorpus: function (corpusId, success) {
-					getDataWay(url + 'deleteCorpus', {corpusId: corpusId}, 'POST',success)
+					getDataWay(url + 'deleteCorpus', {corpusId: corpusId}, 'POST', success)
 				},
 				updateCorpus: function (corpusId, corpusName, success) {
 					getDataWay(url + 'updateCorpus', {
 						corpusId: corpusId,
 						corpusName: corpusName
-					}, 'POST',success)
+					}, 'POST', success)
 				},
 				getCorpusByUserName: function (userName, corpusType, success) {
 					getDataWay(url + 'getCorpusByUserName', {
 						userName: userName,
 						corpusType: corpusType
-					}, 'GET',success)
+					}, 'GET', success)
 				},
 				getCorpusByAuthority: function (userName, success) {
 					getDataWay(url + 'getCorpusByAuthority', {
 						userName: userName
-					}, 'GET',success)
+					}, 'GET', success)
 				}
 			},
 			corpusContextManage: {
@@ -77,22 +77,22 @@ define(function (require, exports, module) {
 						corpusId: corpusId,
 						corpusContextNumber: corpusContextNumber,
 						corpusContext: corpusContext
-					}, 'PUT',success)
+					}, 'PUT', success)
 				},
 				deleteCorpusContext: function (corpusContextNumber, success) {
 					getDataWay(url + 'deleteCorpusContext', {
 						corpusContextNumber: corpusContextNumber
-					}, 'POST',success)
+					}, 'POST', success)
 				},
 				updateCorpusContext: function (corpusContextNumber, corpusContext, success) {
 					getDataWay(url + 'updateCorpusContext', {
 						corpusContextNumber: corpusContextNumber,
 						corpusContext: corpusContext
-					}, 'POST',success)
+					}, 'POST', success)
 				}
 			}
-		};
-	}());
+		}
+	}())
 
 	const guidance = (function () {
 		let url = baseUrl
@@ -105,10 +105,10 @@ define(function (require, exports, module) {
 					}, success)
 				}
 			}
-		};
-	}());
+		}
+	}())
 	const result = (function () {
-		let url = baseUrl+ 'guidance/';
+		let url = baseUrl + 'guidance/'
 		return {
 			taskManage: { // 客户管理
 				insertTask: function (taskInfo, taskContext, success) {
@@ -118,12 +118,12 @@ define(function (require, exports, module) {
 					}, 'PUT', success)
 				}
 			}
-		};
-	}());
+		}
+	}())
 	//系统相关的所有的接口
 	//用户管理
 	const system = (function () {
-		let url = baseUrl + 'system/';
+		let url = baseUrl + 'system/'
 		return {
 			userManage: {
 				insertSysUser: function (userData, userCorpus, userConfig, success) {
@@ -141,26 +141,26 @@ define(function (require, exports, module) {
 					}, 'POST', success)
 				},
 				deleteUser: function (userName, success) {
-					getDataWay(url + 'deleteUser', {userName: userName}, 'POST', success);
+					getDataWay(url + 'deleteUser', {userName: userName}, 'POST', success)
 				},
 				judgeUser: function (userName, userPassword, success) {
 					getDataWay(url + 'judgeUser', {
 						userName: userName,
 						userPassword: userPassword
-					}, 'POST', success);
+					}, 'POST', success)
 				},
 				getAllUser: function (success) {
-					getDataWay(url + 'getAllUser', {}, success);
+					getDataWay(url + 'getAllUser', {}, success)
 				}
 			},
 			roleManage: {
 				getAllRole: function (success) {
-					getDataWay(url + 'getAllRole', {}, 'GET', success);
+					getDataWay(url + 'getAllRole', {}, 'GET', success)
 				},
-				getSingleRole: function (roleId,success) {
+				getSingleRole: function (roleId, success) {
 					getDataWay(url + 'getSingleRole', {
 						roleId: roleId
-					}, 'GET', success);
+					}, 'GET', success)
 				},
 				changeRole: function (roleId, menuId, menuPid, menuPurview, success) {
 					getDataWay(url + 'changeRole', {
@@ -168,7 +168,7 @@ define(function (require, exports, module) {
 						menuId: menuId,
 						menuPid: menuPid,
 						menuPurview: menuPurview
-					}, 'POST',success)
+					}, 'POST', success)
 				},
 				insertRole: function (roleName, success) {
 					getDataWay(url + 'insertRole', {
@@ -189,7 +189,7 @@ define(function (require, exports, module) {
 				deleteRole: function (roleId, success) {
 					getDataWay(url + 'deleteRole', {
 						roleId: roleId
-					}, 'POST',success)
+					}, 'POST', success)
 				}
 			},
 			moduleManage: {
@@ -239,7 +239,7 @@ define(function (require, exports, module) {
 						configId: configId
 					}, 'POST', success)
 				},
-				getAllTypeConfig: function (userName,success) {
+				getAllTypeConfig: function (userName, success) {
 					getDataWay(url + 'getAllTypeConfig', {userName: userName}, 'GET', success)
 				},
 				getGuidanceAuthority: function (userName, userType, success) {
@@ -257,30 +257,30 @@ define(function (require, exports, module) {
 				}
 			},
 			numberManage: {
-				insertNumber: function (numberInfo , success) {
+				insertNumber: function (numberInfo, success) {
 					getDataWay(url + 'insertNumber', {
 						numberInfo: numberInfo
 					}, 'PUT', success)
 				},
-				deleteNumber: function (numberId , success) {
+				deleteNumber: function (numberId, success) {
 					getDataWay(url + 'deleteNumber', {
 						numberId: numberId
 					}, 'POST', success)
 				},
-				updateNumberOpen: function (numberId , success) {
+				updateNumberOpen: function (numberId, success) {
 					getDataWay(url + 'updateNumberOpen', {
 						numberId: numberId
 					}, 'POST', success)
 				},
-				updateNumber: function (numberInfo, numberId , success) {
+				updateNumber: function (numberInfo, numberId, success) {
 					getDataWay(url + 'updateNumber', {
 						numberInfo: numberInfo,
 						numberId: numberId
 					}, 'POST', success)
 				}
 			}
-		};
-	}());
+		}
+	}())
 	return {
 		baseUrl: baseUrl,
 		config: config,
@@ -288,5 +288,5 @@ define(function (require, exports, module) {
 		guidance: guidance,
 		result: result,
 		system: system
-	};
-});
+	}
+})
