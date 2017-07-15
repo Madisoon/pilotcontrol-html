@@ -13,7 +13,6 @@ define(function (require, exports, module) {
 			writeDom: function (userName, userType, htmlId, success) {
 				let configDom = [];
 				api.system.configManage.getGuidanceAuthority(userName, userType, (rep) => {
-					console.log(rep);
 					configDom.push('<ul class="guidance-show">');
 					for (let configItem of rep) {
 						configDom.push('<li class="guidance-type-item">');
@@ -26,7 +25,6 @@ define(function (require, exports, module) {
 						configDom.push('</li>');
 					}
 					configDom.push('</ul>');
-					console.log(configDom);
 					$(htmlId).append(configDom.join(''));
 					$('.guidance-type-item .context').unbind('click').click(function () {
 						$('.guidance-type-item .context').removeClass('active');

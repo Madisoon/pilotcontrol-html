@@ -116,6 +116,10 @@ define(function (require, exports, module) {
 						taskInfo: taskInfo,
 						taskContext: taskContext
 					}, 'PUT', success)
+				},
+				getAllMonitor: function (success) {
+					getDataWay(url + 'getAllMonitor', {
+					}, 'GET', success)
 				}
 			}
 		}
