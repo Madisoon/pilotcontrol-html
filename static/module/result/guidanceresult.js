@@ -72,7 +72,6 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '导控的类型',
 				formatter: (value, row, index) => {
-					console.log(value);
 					let returnValue = '';
 					switch (value){
 						case '1':
@@ -111,7 +110,7 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '订单状态',
 				formatter: (value, row, index) => {
-					return value === 0?'完成':'进行中';
+					return value === '1'?'完成':'进行中';
 				}
 			}, {
 				field: 'user_name',

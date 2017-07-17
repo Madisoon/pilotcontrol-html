@@ -120,7 +120,12 @@ define(function (require, exports, module) {
 				getAllMonitor: function (success) {
 					getDataWay(url + 'getAllMonitor', {
 					}, 'GET', success)
-				}
+				},
+				updateMonitorStatus: function (taskId, success) {
+					getDataWay(url + 'updateMonitorStatus', {
+						taskId: taskId
+					}, 'POST', success)
+				},
 			}
 		}
 	}())

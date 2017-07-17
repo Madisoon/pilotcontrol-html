@@ -354,11 +354,12 @@ define(function (require, exports, module) {
 	let judgeLoginName = (userLoginName, userPassWord)=>{
 		api.system.userManage.judgeUser(userLoginName, userPassWord, (rep)=>{
 			if (rep.result === 1) {
+				$('#preloader').show();
 				localStorage.setItem('sysInfo', JSON.stringify(rep));
 				localStorage.setItem('sysUser', JSON.stringify(rep.user));
-				window.location.href = './index.html';
-				/*setTimeout(function () {
-				}, 1000);*/
+				setTimeout(function () {
+					window.location.href = './index.html';
+				}, 1200);
 			} else {
 				layer.msg('账号或密码错误!', {
 					time: 1500
@@ -388,7 +389,7 @@ define(function (require, exports, module) {
 	});
 
 
-	// promise异步编码
+/*	// promise异步编码
 	let promiseFunction = ()=>{
 		let i = 0;
 		console.log(1);
@@ -401,6 +402,6 @@ define(function (require, exports, module) {
 		// 异步编码
 		console.log(2);
 	});
-	console.log(3);
+	console.log(3);*/
 
 });
