@@ -508,6 +508,10 @@ table {
   #guidance-result-html .context-integration {
     font-size: 0.8rem;
     color: #e64a19; }
+  #guidance-result-html .all-total-integration {
+    color: red;
+    font-weight: 600;
+    font-size: 14px; }
   #guidance-result-html .left-nav {
     flex: 1 1 18%;
     height: 98%;
@@ -614,3 +618,5 @@ table {
         margin-left: 4px; }
       #guidance-monitor-html .monitor-context .bottom-task .task-create-item .word {
         margin-left: 1%; }
+
+/*# sourceMappingURL=header.css.map */

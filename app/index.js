@@ -21,6 +21,10 @@ define(function (require, exports, module) {
 		 $('.person-setting-fixed').stop().fadeToggle();
 	});
 
+	$('.info-show').click(() => {
+		$('.user-info-choice').stop().slideToggle();
+	});
+
   let navMenuDom = [];
 	for (let functionsItem of sysInfo.function) {
 		navMenuDom.push('<li class="menu-item"> ');

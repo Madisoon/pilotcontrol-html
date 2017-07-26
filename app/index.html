@@ -15,7 +15,7 @@
             right: 0px;
             top: 52px;
             z-index: 10;
-            padding-top: 20px;
+            padding-top: 10px;
             overflow: auto;
             box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.2);
             background: #ffffff;
@@ -99,13 +99,55 @@
         .label-danger {
             background-color: #dd2c00;
         }
+
+        .user-info-choice {
+            width: 100px;
+            background-color: white;
+            position: absolute;
+            right: 1%;
+            top: 53px;
+            box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+            border-radius: 2px;
+            padding-top: 5px;
+            z-index: 2;
+
+        }
+
+        .user-info-choice a {
+            color: #333;
+            display: block;
+            padding-left: 12px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+
+        }
+
+        .user-info-choice ul {
+            -webkit-padding-start: 0px;
+            -webkit-margin-after: 4px;
+        }
+
+        .user-info-choice ul li {
+            font-size: .9rem;
+        }
+
+        .user-info-choice ul li a:hover {
+            background-color: #2299ee;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 <div class="index-html">
+    <div class="user-info-choice" style="display: none">
+        <ul>
+            <li class="setting"><a href="#" id="personal-setting">个人设置</a></li>
+            <li><a href="./login.html">退出系统</a></li>
+        </ul>
+    </div>
+
+
     <div class="person-setting-fixed" style="display: none">
-        <div class="title">
-        </div>
         <div class="gn-title">公告</div>
         <div class="notice">
             <ul class="list-w-title">

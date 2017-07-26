@@ -24,7 +24,7 @@ define(function (require, exports, module) {
 	let computeIntegration = ()=>{
 		let guidanceNumber = parseInt($('.form-control.task-number').val(),10);
 		let guidanceIntegration = $('input[name=guidance-type]:checked').attr("data-number");
-		$('.form-control.all-total-integration').val(guidanceNumber*guidanceIntegration);
+		$('.all-total-integration').html(guidanceNumber*guidanceIntegration);
 	};
 
 	$('.form-control.task-number').change(() => {
@@ -350,7 +350,7 @@ define(function (require, exports, module) {
 		});
 		let taskInterval = $('.form-control.task-interval').val();// 导控的间隔
 		let taskType = $('input[name=guidance-type]:checked').val();// 导控的类型
-		let taskIntegration = $('.form-control.all-total-integration').val();// 导控的积分
+		let taskIntegration = $('.all-total-integration').html();// 导控的积分
 
 
 
@@ -425,7 +425,7 @@ define(function (require, exports, module) {
 		 $('.form-control.task-url').val(""); // 导控地址
 		 $('.form-control.task-number').val("");// 导控的数量
 		 $('.form-control.task-interval').val("");// 导控的间隔
-		 $('.form-control.all-total-integration').val("");// 导控的积分
+		 $('.all-total-integration').html("");// 导控的积分
 		 $('.form-control.custom-context').val("");// 导控的语料内容
 		 $('.guidance-corpus-show').empty();
 	};
