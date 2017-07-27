@@ -342,6 +342,7 @@ define(function (require, exports, module) {
 
 	let getFormValue = ()=>{
 		let taskUrl = $('.form-control.task-url').val(); // 导控地址
+		let taskTitle = $('.form-control.task-title').val(); // 导控地址
 		let taskContext = '';// 导控内容
 		let taskNumber = $('.form-control.task-number').val();// 导控的数量
 		let numberType = [];// 账号的类型
@@ -393,6 +394,7 @@ define(function (require, exports, module) {
 			config_id: configId,
 			task_corpus_type: corpusType,
 			task_url: taskUrl,
+			task_title: taskTitle,
 			number_type: numberType.join(','),
 			interval_time: taskInterval,
 			task_type: taskType,
@@ -408,12 +410,12 @@ define(function (require, exports, module) {
     	layer.close(addTaskDialog);
 			initializeTable();
 			if (rep.result) {
-				layer.msg(' 删 除 成 功 ', {
+				layer.msg(' 新 建 成 功 ', {
 					icon: 1,
 					time: 1200,
 				});
 			} else {
-				layer.msg(' 删 除 失 败 ', {
+				layer.msg(' 新 建 失 败 ', {
 					icon: 2,
 					time: 1200,
 				});
@@ -423,6 +425,7 @@ define(function (require, exports, module) {
 
 	let initializeForm = ()=>{
 		 $('.form-control.task-url').val(""); // 导控地址
+		 $('.form-control.task-title').val(""); // 导控地址
 		 $('.form-control.task-number').val("");// 导控的数量
 		 $('.form-control.task-interval').val("");// 导控的间隔
 		 $('.all-total-integration').html("");// 导控的积分
