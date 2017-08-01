@@ -3,67 +3,67 @@
  */
 define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
-	const api = require('../../common/js/api');
-	const guidanceTypeSpm = require('../../common/js/guidanceType');
-	let [configId, corpusChooseDialog, addTaskDialog] = [0, {}, {}];
-	const [userLoginName, userType] =  [window.parent.SYSTEM.user.user_loginname, window.parent.SYSTEM.userType];
+	const api = require('../../common/js/api')
+	const guidanceTypeSpm = require('../../common/js/guidanceType')
+	let [configId, corpusChooseDialog, addTaskDialog] = [0, {}, {}]
+	const [userLoginName, userType] = [window.parent.SYSTEM.user.user_loginname, window.parent.SYSTEM.userType]
 	guidanceTypeSpm.guidanceType.writeDom(userLoginName, userType, '#guidance-type-show', (rep) => {
-		configId = rep;
-		initializeTable();
-	});
-	$('#add-order-form').click(()=>{
-		initializeForm();
+		configId = rep
+		initializeTable()
+	})
+	$('#add-order-form').click(() => {
+		initializeForm()
 		addTaskDialog = layer.open({
 			title: ' 舆 情 导 控 ',
 			type: 1,
 			area: ['70%', '90%'], //宽高
 			content: $('#order-form-dialog')
-		});
-	});
+		})
+	})
 
-	let computeIntegration = ()=>{
-		let guidanceNumber = parseInt($('.form-control.task-number').val(),10);
-		let guidanceIntegration = $('input[name=guidance-type]:checked').attr("data-number");
-		$('.all-total-integration').html(guidanceNumber*guidanceIntegration);
-	};
+	let computeIntegration = () => {
+		let guidanceNumber = parseInt($('.form-control.task-number').val(), 10)
+		let guidanceIntegration = $('input[name=guidance-type]:checked').attr('data-number')
+		$('.all-total-integration').html(guidanceNumber * guidanceIntegration)
+	}
 
 	$('.form-control.task-number').change(() => {
-		computeIntegration();
-	});
+		computeIntegration()
+	})
 
-	$('input[name=guidance-type]').click(()=>{
-		 computeIntegration();
-	});
+	$('input[name=guidance-type]').click(() => {
+		computeIntegration()
+	})
 
 	$('.guidance-context-class').click(function () {
-		let guidanceContextType = $(this).val();
+		let guidanceContextType = $(this).val()
 		// 1,2,3,4 分别代表自动内容，制定内容，混合内容，关闭内容
-		switch(guidanceContextType){
+		switch (guidanceContextType) {
 			case '1':
-				$('.form-group.custom-corpus').fadeOut();
-				$('.form-group.automatic-corpus').fadeIn();
-				break;
+				$('.form-group.custom-corpus').fadeOut()
+				$('.form-group.automatic-corpus').fadeIn()
+				break
 			case '2':
-				$('.form-group.custom-corpus').fadeIn();
-				$('.form-group.automatic-corpus').fadeOut();
-				break;
+				$('.form-group.custom-corpus').fadeIn()
+				$('.form-group.automatic-corpus').fadeOut()
+				break
 			case '3':
-				$('.form-group.custom-corpus').fadeIn();
-				$('.form-group.automatic-corpus').fadeIn();
-				break;
+				$('.form-group.custom-corpus').fadeIn()
+				$('.form-group.automatic-corpus').fadeIn()
+				break
 			case '4':
-				$('.form-group.custom-corpus').fadeOut();
-				$('.form-group.automatic-corpus').fadeOut();
-				break;
+				$('.form-group.custom-corpus').fadeOut()
+				$('.form-group.automatic-corpus').fadeOut()
+				break
 			default:
-				$('.form-group.custom-corpus').fadeOut();
-				$('.form-group.automatic-corpus').fadeOut();
-				break;
+				$('.form-group.custom-corpus').fadeOut()
+				$('.form-group.automatic-corpus').fadeOut()
+				break
 		}
-	});
+	})
 
-	let initializeTable = ()=>{
-		$('#form-table').bootstrapTable('destroy');
+	let initializeTable = () => {
+		$('#form-table').bootstrapTable('destroy')
 		$('#form-table').bootstrapTable({
 			columns: [{
 				checkbox: true
@@ -72,22 +72,22 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '导控的类型',
 				formatter: (value, row, index) => {
-					let returnValue = '';
-					switch (value){
+					let returnValue = ''
+					switch (value) {
 						case '1':
 							returnValue = '发帖'
-							break;
+							break
 						case '2':
 							returnValue = '回帖'
-							break;
+							break
 						case '0':
 							returnValue = '浏览帖子'
-							break;
+							break
 						default:
 							returnValue = '格式错误'
-							break;
+							break
 					}
-					return returnValue;
+					return returnValue
 				}
 			}, {
 				field: 'task_url',
@@ -110,7 +110,7 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '订单状态',
 				formatter: (value, row, index) => {
-					return value === '1'?'完成':'进行中';
+					return value === '1' ? '完成' : '进行中'
 				}
 			}, {
 				field: 'user_name',
@@ -128,18 +128,18 @@ define(function (require, exports, module) {
 				return '任意搜索'
 			},
 			url: '' + api.baseUrl + 'guidance/getAllTaskByConfig',
-			queryParamsType: "json",
+			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {
 					configId: configId,
 					userName: userLoginName
-				};
-				return JSON.stringify(param);
+				}
+				return JSON.stringify(param)
 			},
 			pagination: true,
 			paginationHAlign: 'left',
 			paginationDetailHAlign: 'right'
-		});
+		})
 	}
 
 	$('#add-corpus').click(function () {
@@ -150,16 +150,13 @@ define(function (require, exports, module) {
 			content: $('#choose-corpus-dialog'),
 			zIndex: layer.zIndex,
 			success: function (layero) {
-				layer.setTop(layero);
+				layer.setTop(layero)
 			}
-		});
-	});
+		})
+	})
 
-
-
-
-	let initializeCorpusTable = ()=>{
-		$('#corpus-context-table').bootstrapTable('destroy');
+	let initializeCorpusTable = () => {
+		$('#corpus-context-table').bootstrapTable('destroy')
 		$('#corpus-context-table').bootstrapTable({
 			columns: [{
 				checkbox: true
@@ -186,19 +183,19 @@ define(function (require, exports, module) {
 				return '任意搜索'
 			},
 			url: '' + api.baseUrl + 'corpus/getAllCorpusContext',
-			queryParamsType: "json",
+			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {
 					pageNumber: params.pageNumber,
 					pageSize: params.pageSize,
 					corpusId: corpusIdGroup.join(',')
-				};
-				return JSON.stringify(param);
+				}
+				return JSON.stringify(param)
 			},
 			pagination: true,
 			paginationHAlign: 'left',
 			paginationDetailHAlign: 'right'
-		});
+		})
 	}
 	// 树的初始化设置
 	let setting = {
@@ -213,10 +210,10 @@ define(function (require, exports, module) {
 				rootPId: 0
 			},
 			key: {
-				name: "corpus_name"
+				name: 'corpus_name'
 			}
 		}
-	};
+	}
 
 	let settingPublic = {
 		callback: {
@@ -230,55 +227,53 @@ define(function (require, exports, module) {
 				rootPId: 0
 			},
 			key: {
-				name: "corpus_name"
+				name: 'corpus_name'
 			}
 		}
-	};
+	}
 
 	// 联动性参数设置
-	let zNodesPublic = null;
-	let [zNodes, zTree, rMenu] = [[], {}, {}];
-	let initializeZtree  = ()=>{
-		api.corpus.corpusManage.getCorpusByUserName(userLoginName, userType ,function (rep) {
-			zNodes = rep;
-			$.fn.zTree.init($('#treeDemo'), setting, zNodes);
-			zTree = $.fn.zTree.getZTreeObj('treeDemo');
+	let zNodesPublic = null
+	let [zNodes, zTree, rMenu] = [[], {}, {}]
+	let initializeZtree = () => {
+		api.corpus.corpusManage.getCorpusByUserName(userLoginName, userType, function (rep) {
+			zNodes = rep
+			$.fn.zTree.init($('#treeDemo'), setting, zNodes)
+			zTree = $.fn.zTree.getZTreeObj('treeDemo')
 			if (userType === 0) {
-				api.corpus.corpusManage.getCorpusByAuthority(userLoginName ,function (rep) {
-					zNodesPublic = rep;
-					$.fn.zTree.init($('#public-corpus'), settingPublic, zNodesPublic);
-				});
-			}else{
-				$('.corpus-show.system').remove();
+				api.corpus.corpusManage.getCorpusByAuthority(userLoginName, function (rep) {
+					zNodesPublic = rep
+					$.fn.zTree.init($('#public-corpus'), settingPublic, zNodesPublic)
+				})
+			} else {
+				$('.corpus-show.system').remove()
 			}
-			if(rep.length!==0){
-				corpusId = rep[0].id;
-				let node = zTree.getNodeByParam('id', corpusId);//获取id为1的点
-				zTree.selectNode(node);//选择点
-				zTree.setting.callback.onClick(null, zTree.setting.treeId, node);//调用事件
+			if (rep.length !== 0) {
+				corpusId = rep[0].id
+				let node = zTree.getNodeByParam('id', corpusId)//获取id为1的点
+				zTree.selectNode(node)//选择点
+				zTree.setting.callback.onClick(null, zTree.setting.treeId, node)//调用事件
 			}
-		});
-	};
-	initializeZtree ();
+		})
+	}
+	initializeZtree()
 
-
-	function onClickCallBack(event, treeId, treeNode) {
-		var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-		var nodes = treeObj.transformToArray(treeNode);
-		corpusId = treeNode.id;
-		var nodesLen = nodes.length;
-		var corpusIds = [];
+	function onClickCallBack (event, treeId, treeNode) {
+		var treeObj = $.fn.zTree.getZTreeObj('treeDemo')
+		var nodes = treeObj.transformToArray(treeNode)
+		corpusId = treeNode.id
+		var nodesLen = nodes.length
+		var corpusIds = []
 		for (var i = 0; i < nodesLen; i++) {
-			corpusIds.push(nodes[i].id);
+			corpusIds.push(nodes[i].id)
 		}
-		corpusIdGroup = corpusIds;
-		initializeCorpusTable();
+		corpusIdGroup = corpusIds
+		initializeCorpusTable()
 		if (userType === 0) {
-			let treeObjPublicS = $.fn.zTree.getZTreeObj("public-corpus");
-			treeObjPublicS.cancelSelectedNode();
+			let treeObjPublicS = $.fn.zTree.getZTreeObj('public-corpus')
+			treeObjPublicS.cancelSelectedNode()
 		}
-	};
-
+	}
 
 	function removeTreeNode () {
 		hideRMenu()
@@ -297,97 +292,99 @@ define(function (require, exports, module) {
 		for (let i = 0; i < nodeIdLen; i++) {
 			idS.push(nodeId[i].id)
 		}
-		api.system.areaManage.deleteArea(idS.join(','), (rep)=>{
+		api.system.areaManage.deleteArea(idS.join(','), (rep) => {
 
-		});
+		})
 	}
 
-	function onClickCallBackPublic(event, treeId, treeNode) {
-		let treeObjPublic = $.fn.zTree.getZTreeObj("public-corpus");
-		let nodes = treeObjPublic.transformToArray(treeNode);
-		let nodesLen = nodes.length;
-		let corpusIds = [];
+	function onClickCallBackPublic (event, treeId, treeNode) {
+		let treeObjPublic = $.fn.zTree.getZTreeObj('public-corpus')
+		let nodes = treeObjPublic.transformToArray(treeNode)
+		let nodesLen = nodes.length
+		let corpusIds = []
 		for (let i = 0; i < nodesLen; i++) {
-			corpusIds.push(nodes[i].id);
+			corpusIds.push(nodes[i].id)
 		}
-		corpusIdGroup = corpusIds;
-		initializeCorpusTable();
-		let treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-		treeObj.cancelSelectedNode();
+		corpusIdGroup = corpusIds
+		initializeCorpusTable()
+		let treeObj = $.fn.zTree.getZTreeObj('treeDemo')
+		treeObj.cancelSelectedNode()
 	}
 
-	$('#reserve-corpus-button').click(()=>{
+	$('#reserve-corpus-button').click(() => {
 		// 获取语料的信息
-		layer.close(corpusChooseDialog);
-		let dataCorpus = $('#corpus-context-table').bootstrapTable('getSelections', null);
-		let dataCorpusLen = dataCorpus.length;
+		layer.close(corpusChooseDialog)
+		let dataCorpus = $('#corpus-context-table').bootstrapTable('getSelections', null)
+		let dataCorpusLen = dataCorpus.length
 		if (dataCorpusLen === 0) {
-			layer.msg(' 没 有 选 中 任 何 数 据 ');
+			layer.msg(' 没 有 选 中 任 何 数 据 ')
 		} else {
-			let corpusDom = [];
+			let corpusDom = []
 			for (data of dataCorpus) {
-					corpusDom.push('<span class="label label-primary corpus-icon icon-cursor icon-margin">'+data.corpus_context+'');
-					corpusDom.push('&nbsp;&nbsp;<span class="glyphicon  glyphicon-remove "></span>');
-					corpusDom.push('</span>');
+				corpusDom.push('<p class="corpus-p">' + data.corpus_context + '<span class="glyphicon glyphicon-remove icon-red icon-cursor corpus-context-item"></span> </p>')
+				/*				corpusDom.push('')
+				 corpusDom.push('')
+				 corpusDom.push('<span class="label label-primary corpus-icon icon-cursor icon-margin">' + data.corpus_context + '')
+				 corpusDom.push('&nbsp;&nbsp;<span class="glyphicon  glyphicon-remove "></span>')
+				 corpusDom.push('</span>')*/
 			}
-			$('.guidance-corpus-show').empty();
-			$('.guidance-corpus-show').append(corpusDom.join(''));
+			$('.guidance-corpus-show').empty()
+			$('.guidance-corpus-show').append(corpusDom.join(''))
 		}
-	});
+	})
+
+	$('')
 
 	$('#cancel-corpus-button').click(() => {
-		layer.close(corpusChooseDialog);
-	});
+		layer.close(corpusChooseDialog)
+	})
 
-
-	let getFormValue = ()=>{
-		let taskUrl = $('.form-control.task-url').val(); // 导控地址
-		let taskTitle = $('.form-control.task-title').val(); // 导控地址
-		let taskContext = '';// 导控内容
-		let taskNumber = $('.form-control.task-number').val();// 导控的数量
-		let numberType = [];// 账号的类型
+	let getFormValue = () => {
+		let taskUrl = $('.form-control.task-url').val() // 导控地址
+		let taskTitle = $('.form-control.task-title').val() // 导控地址
+		let taskContext = ''// 导控内容
+		let taskNumber = $('.form-control.task-number').val()// 导控的数量
+		let numberType = []// 账号的类型
 		$('input[name=number-type]:checked').each(function () {
-			numberType.push($(this).val());
-		});
-		let taskInterval = $('.form-control.task-interval').val();// 导控的间隔
-		let taskType = $('input[name=guidance-type]:checked').val();// 导控的类型
-		let taskIntegration = $('.all-total-integration').html();// 导控的积分
+			numberType.push($(this).val())
+		})
+		let taskInterval = $('.form-control.task-interval').val()// 导控的间隔
+		let taskType = $('input[name=guidance-type]:checked').val()// 导控的类型
+		let taskIntegration = $('.all-total-integration').html()// 导控的积分
 
-
-
-		let guidanceContextType = $('.guidance-context-class:checked').val();
+		let guidanceContextType = $('.guidance-context-class:checked').val()
 		// 1,2,3,4 分别代表自动内容，制定内容，混合内容，关闭内容
-		let customContextAll = $('.form-control.custom-context').val();
-		let customContext = customContextAll.split('\n');
-		let systemContext = [];
-		$('.guidance-corpus-show .label-primary').each(function () {
-			systemContext.push($(this).text());
-		});
-		let corpusType = 0;
-		switch(guidanceContextType){
+		let customContextAll = $('.form-control.custom-context').val()
+		let customContext = customContextAll.split('\n')
+		let systemContext = []
+		$('.guidance-corpus-show .corpus-p').each(function () {
+			systemContext.push($(this).text())
+		})
+		let corpusType = 0
+		switch (guidanceContextType) {
 			case '1':
 				// 只获取自动的内容
-				taskContext = systemContext;
-				corpusType = 1;
-				break;
+				taskContext = systemContext
+				corpusType = 1
+				break
 			case '2':
 				// 只获取定制的内容
-				taskContext = customContext;
-				corpusType = 1;
-				break;
+				taskContext = customContext
+				corpusType = 1
+				break
 			case '3':
 				// 只获取混合的内容
-				taskContext = [...customContext, ...systemContext];
-				corpusType = 1;
-				break;
+				taskContext = [...customContext, ...systemContext]
+				corpusType = 1
+				break
 			case '4':
 				// 不获取任何内容
-				taskContext = [];
-				corpusType = 0;
-				break;
+				taskContext = []
+				corpusType = 0
+				break
 			default:
-				taskContext = [];
-				break;
+				taskContext = []
+				break
 		}
 
 		let guidanceContext = {
@@ -401,36 +398,67 @@ define(function (require, exports, module) {
 			task_number: taskNumber,
 			task_integration: taskIntegration,
 			task_create: userLoginName
-		};
-		return [taskContext, guidanceContext];
+		}
+		return [taskContext, guidanceContext]
 	}
-	$('#reserve-task-button').click(()=>{
-		let [taskContext, taskInfo] = getFormValue();
-    api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), (rep)=>{
-    	layer.close(addTaskDialog);
-			initializeTable();
+	$('#reserve-task-button').click(() => {
+		let [taskContext, taskInfo] = getFormValue()
+		api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), (rep) => {
+			layer.close(addTaskDialog)
+			initializeTable()
 			if (rep.result) {
 				layer.msg(' 新 建 成 功 ', {
 					icon: 1,
 					time: 1200,
-				});
+				})
 			} else {
 				layer.msg(' 新 建 失 败 ', {
 					icon: 2,
 					time: 1200,
-				});
+				})
 			}
-		});
-	});
+		})
+	})
 
-	let initializeForm = ()=>{
-		 $('.form-control.task-url').val(""); // 导控地址
-		 $('.form-control.task-title').val(""); // 导控地址
-		 $('.form-control.task-number').val("");// 导控的数量
-		 $('.form-control.task-interval').val("");// 导控的间隔
-		 $('.all-total-integration').html("");// 导控的积分
-		 $('.form-control.custom-context').val("");// 导控的语料内容
-		 $('.guidance-corpus-show').empty();
-	};
-});
+	$('#delete-order-form').click(() => {
+		let dataCorpus = $('#form-table').bootstrapTable('getSelections', null)
+		let dataCorpusLen = dataCorpus.length
+		if (dataCorpusLen === 0) {
+			layer.msg(' 没 有 选 中 任 何 数 据 ')
+		} else {
+			let formId = []
+			for (data of dataCorpus) {
+				formId.push(data.id)
+			}
+			api.result.taskManage.deleteTask(formId.join(','), (rep) => {
+				if (rep.result) {
+					initializeTable()
+					layer.msg(' 删 除 成 功 ', {
+						icon: 1,
+						time: 1200,
+					})
+				} else {
+					layer.msg(' 删 除 失 败 ', {
+						icon: 2,
+						time: 1200,
+					})
+				}
+			})
+		}
+	})
+
+	let initializeForm = () => {
+		$('.form-control.task-url').val('') // 导控地址
+		$('.form-control.task-title').val('') // 导控地址
+		$('.form-control.task-number').val('')// 导控的数量
+		$('.form-control.task-interval').val('')// 导控的间隔
+		$('.all-total-integration').html('')// 导控的积分
+		$('.form-control.custom-context').val('')// 导控的语料内容
+		$('.guidance-corpus-show').empty()
+	}
+
+	$('body').on('click', '.corpus-context-item', function () {
+		$(this).parent().remove()
+	})
+})
 

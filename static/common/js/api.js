@@ -117,9 +117,13 @@ define(function (require, exports, module) {
 						taskContext: taskContext
 					}, 'PUT', success)
 				},
+				deleteTask: function (taskId, success) {
+					getDataWay(url + 'deleteTaskById', {
+						taskId: taskId,
+					}, 'POST', success)
+				},
 				getAllMonitor: function (success) {
-					getDataWay(url + 'getAllMonitor', {
-					}, 'GET', success)
+					getDataWay(url + 'getAllMonitor', {}, 'GET', success)
 				},
 				updateMonitorStatus: function (taskId, success) {
 					getDataWay(url + 'updateMonitorStatus', {
