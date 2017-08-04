@@ -106,11 +106,11 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '所需积分'
 			}, {
-				field: 'task_status',
+				field: 'task_number_success',
 				searchable: true,
 				title: '订单状态',
 				formatter: (value, row, index) => {
-					return value === '1' ? '完成' : '进行中'
+					return value + '/' + row.task_number
 				}
 			}, {
 				field: 'user_name',

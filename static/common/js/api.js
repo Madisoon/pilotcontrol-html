@@ -6,8 +6,8 @@ define(function (require, exports, module) {
 	// 通过 require 引入依赖
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
-	const baseUrl = 'http://127.0.0.1:8011/'
-	/*const baseUrl = 'http://39.108.178.160:8080/pilotcontrol-app-manage/';*/
+	const baseUrl = 'http://127.0.0.1:8022/'
+	/*const baseUrl = 'http://http://118.178.237.219:8011/'*/
 	const getDataWay = function (url, params, httpType, success) {
 		//发送ajax请求
 		$.ajax({
