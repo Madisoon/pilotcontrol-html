@@ -133,6 +133,20 @@ define(function (require, exports, module) {
 			}
 		}
 	}())
+
+	const button = (function () {
+		let url = baseUrl + 'button/'
+		return {
+			buttonManage: { // 客户管理
+				getButtonByClassName: function (className, success) {
+					getDataWay(url + 'getButtonByClassName', {
+						className,
+					}, 'GET', success)
+				},
+			}
+		}
+	}())
+
 	//系统相关的所有的接口
 	//用户管理
 	const system = (function () {
@@ -300,6 +314,7 @@ define(function (require, exports, module) {
 		corpus: corpus,
 		guidance: guidance,
 		result: result,
-		system: system
+		system: system,
+		button: button
 	}
 })

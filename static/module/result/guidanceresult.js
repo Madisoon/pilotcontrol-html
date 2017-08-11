@@ -5,7 +5,7 @@ define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
 	const guidanceTypeSpm = require('../../common/js/guidanceType')
-	let [configId, corpusChooseDialog, addTaskDialog] = [0, {}, {}]
+	let [configId, corpusChooseDialog, addTaskDialog, daokongType] = [0, {}, {}, 0]
 	const [userLoginName, userType] = [window.parent.SYSTEM.user.user_loginname, window.parent.SYSTEM.userType]
 	guidanceTypeSpm.guidanceType.writeDom(userLoginName, userType, '#guidance-type-show', (rep) => {
 		configId = rep
@@ -13,27 +13,58 @@ define(function (require, exports, module) {
 	})
 	$('#add-order-form').click(() => {
 		initializeForm()
-		addTaskDialog = layer.open({
-			title: ' 舆 情 导 控 ',
-			type: 1,
-			area: ['70%', '90%'], //宽高
-			content: $('#order-form-dialog')
-		})
+	})
+	$('#post-card').click(() => {
+		// 发帖
+		daokongType = 1
+		initializeForm()
+		$('.form-group').show()
+		$('.form-group.automatic-corpus').hide()
+	})
+	$('#replay-card').click(() => {
+		// 回帖
+		daokongType = 2
+		initializeForm()
+		$('.form-group').show()
+		$('.form-group.daokong-title').hide()
+		$('.form-group.automatic-corpus').hide()
+	})
+	$('#look-card').click(() => {
+		// 浏览帖子
+		daokongType = 0
+		initializeForm()
+		$('.form-group').show()
+		$('.form-group.daokong-title').hide()
+		$('.form-group.custom-corpus').hide()
+		$('.form-group.automatic-corpus').hide()
+		$('.form-group.daokong-content').hide()
+		$('.form-group.automatic-corpus').hide()
 	})
 
 	let computeIntegration = () => {
 		let guidanceNumber = parseInt($('.form-control.task-number').val(), 10)
-		let guidanceIntegration = $('input[name=guidance-type]:checked').attr('data-number')
+		let guidanceIntegration = 0
+		switch (daokongType) {
+			case 1:
+				guidanceIntegration = 5
+				break
+			case 2:
+				guidanceIntegration = 4
+				break
+			case 0:
+				guidanceIntegration = 3
+				break
+		}
 		$('.all-total-integration').html(guidanceNumber * guidanceIntegration)
 	}
 
 	$('.form-control.task-number').change(() => {
 		computeIntegration()
 	})
-
-	$('input[name=guidance-type]').click(() => {
-		computeIntegration()
-	})
+	/*
+	 $('input[name=guidance-type]').click(() => {
+	 computeIntegration()
+	 })*/
 
 	$('.guidance-context-class').click(function () {
 		let guidanceContextType = $(this).val()
@@ -51,9 +82,9 @@ define(function (require, exports, module) {
 				$('.form-group.custom-corpus').fadeIn()
 				$('.form-group.automatic-corpus').fadeIn()
 				break
-			case '4':
+/*			case '4':
 				$('.form-group.custom-corpus').fadeOut()
-				$('.form-group.automatic-corpus').fadeOut()
+				$('.form-group.automatic-corpus').fadeOut()*/
 				break
 			default:
 				$('.form-group.custom-corpus').fadeOut()
@@ -333,8 +364,6 @@ define(function (require, exports, module) {
 		}
 	})
 
-	$('')
-
 	$('#cancel-corpus-button').click(() => {
 		layer.close(corpusChooseDialog)
 	})
@@ -349,7 +378,7 @@ define(function (require, exports, module) {
 			numberType.push($(this).val())
 		})
 		let taskInterval = $('.form-control.task-interval').val()// 导控的间隔
-		let taskType = $('input[name=guidance-type]:checked').val()// 导控的类型
+		/*let taskType = $('input[name=guidance-type]:checked').val()// 导控的类型*/
 		let taskIntegration = $('.all-total-integration').html()// 导控的积分
 
 		let guidanceContextType = $('.guidance-context-class:checked').val()
@@ -394,7 +423,7 @@ define(function (require, exports, module) {
 			task_title: taskTitle,
 			number_type: numberType.join(','),
 			interval_time: taskInterval,
-			task_type: taskType,
+			task_type: daokongType,
 			task_number: taskNumber,
 			task_integration: taskIntegration,
 			task_create: userLoginName
@@ -455,6 +484,12 @@ define(function (require, exports, module) {
 		$('.all-total-integration').html('')// 导控的积分
 		$('.form-control.custom-context').val('')// 导控的语料内容
 		$('.guidance-corpus-show').empty()
+		addTaskDialog = layer.open({
+			title: ' 舆 情 导 控 ',
+			type: 1,
+			area: ['70%', '90%'], //宽高
+			content: $('#order-form-dialog')
+		})
 	}
 
 	$('body').on('click', '.corpus-context-item', function () {

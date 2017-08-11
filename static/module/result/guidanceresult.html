@@ -20,7 +20,12 @@
 
     </div>
     <div class="right-context">
-        <button type="button" class="btn btn-primary" id="add-order-form">新建任务</button>
+        <button type="button" class="btn btn-primary" id="post-card"><span class="glyphicon glyphicon-tower"></span>&nbsp;&nbsp;发帖
+        </button>
+        <button type="button" class="btn btn-primary" id="replay-card"><span class="glyphicon glyphicon-magnet"></span>&nbsp;&nbsp;回帖
+        </button>
+        <button type="button" class="btn btn-primary" id="look-card"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;浏览帖子
+        </button>
         <button type="button" class="btn btn-danger" id="delete-order-form">删除任务</button>
         <div class="guidance-table">
             <table class="table table-condensed" id="form-table"></table>
@@ -29,55 +34,44 @@
     <div id="order-form-dialog" class="al-ui-dialog" style="display: none">
         <div class="dialog-context">
             <form class="form-horizontal">
-                <!--<div class="form-group">
-                    <label class="col-sm-2 control-label">任务序号</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" placeholder="任务序号">
-                    </div>
-                </div>-->
-                <!--<div class="form-group">
-                    <label class="col-sm-2 control-label">任务名称</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="任务名称">
-                    </div>
-                </div>-->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">帖子URL</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control task-url" placeholder="帖子URL">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group daokong-title">
                     <label class="col-sm-2 control-label">标题</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control task-title" placeholder="帖子的标题">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group daokong-content">
                     <label class="col-sm-2 control-label">导控内容</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <input type="radio" name="guidance-context" class="guidance-context-class" value="1"
-                                   checked="true"> 自动内容
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="2"
+                                   checked="true"> 指定内容
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="guidance-context" class="guidance-context-class" value="2"> 指定内容
+                            <input type="radio" name="guidance-context" class="guidance-context-class" value="1"
+                            > 自动内容
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="guidance-context" class="guidance-context-class" value="3"> 混合内容
                         </label>
-                        <label class="radio-inline">
+<!--                        <label class="radio-inline">
                             <input type="radio" name="guidance-context" class="guidance-context-class" value="4"> 关闭内容
-                        </label>
+                        </label>-->
                     </div>
                 </div>
-                <div class="form-group custom-corpus" style="display: none">
+                <div class="form-group daokong-corpus custom-corpus ">
                     <label class="col-sm-2 control-label">自定义语料</label>
                     <div class="col-sm-10">
                         <textarea class="form-control custom-context" rows="5"></textarea>
                     </div>
                 </div>
-                <div class="form-group automatic-corpus">
+                <div class="form-group automatic-corpus" style="display: none;">
                     <label class="col-sm-2 control-label">执行语料
                         <svg class="icon icon-red icon-cursor" id="add-corpus" aria-hidden="true">
                             <use xlink:href="#icon-add"></use>
@@ -93,20 +87,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">执行次数</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control task-number" placeholder="执行次数（最低50条）">
+                        <input type="number" min="50" class="form-control task-number" placeholder="执行次数（最低50条）">
                     </div>
                 </div>
-                <!--<div class="form-group">
-                    <label class="col-sm-2 control-label">推送顺序</label>
-                    <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 顺序执行
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 随机执行
-                        </label>
-                    </div>
-                </div>-->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">账号类型</label>
                     <div class="col-sm-10">
@@ -124,24 +107,23 @@
                         <input type="text" class="form-control task-interval" placeholder="执行时间（次/秒）">
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">导控类型</label>
-                    <div class="col-sm-10">
-                        <label class="radio-inline">
-                            <input type="radio" name="guidance-type" value="1" data-number="5" checked="true">发帖<span
-                                class="context-integration">（5积分）</span>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="guidance-type" value="2" data-number="4"> 回帖<span
-                                class="context-integration">（4积分）</span>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="guidance-type" value="0" data-number="3"> 浏览帖子<span
-                                class="context-integration">（3积分）</span>
-                        </label>
-                    </div>
-                </div>
+                <!--                <div class="form-group">
+                                    <label class="col-sm-2 control-label">导控类型</label>
+                                    <div class="col-sm-10">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="guidance-type" value="1" data-number="5" checked="true">发帖<span
+                                                class="context-integration">（5积分）</span>
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="guidance-type" value="2" data-number="4"> 回帖<span
+                                                class="context-integration">（4积分）</span>
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="guidance-type" value="0" data-number="3"> 浏览帖子<span
+                                                class="context-integration">（3积分）</span>
+                                        </label>
+                                    </div>
+                                </div>-->
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">所需积分</label>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <title>Title</title>
+</head>
+<body>
+<div id="button-manage-html">
+    <button type="button" class="btn btn-primary" id="add-button-type">新建按钮类型</button>
+    <button type="button" class="btn btn-success" id="delete-button-type">删除按钮类型</button>
+    <div id="add-button-dialog" class="al-ui-dialog" style="display: none">
+        <form class="form-horizontal dialog-context" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">当前状态</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="button-status" value="1" checked="true"> 启用
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="button-status" value="0"> 停用
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">产品说明</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">功能说明</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">分值配置&nbsp;&nbsp;<span
+                        class="glyphicon glyphicon-plus icon-cursor icon-red add-mark"></span></label>
+                <div class="col-sm-10">
+                    <div class="al-ui segment">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="word" word-number="1223" word-remark="123156465">收藏数量--最少100--单个分值10</span>
+                                <span class="glyphicon glyphicon-remove icon-cursor remove-mark"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="word" word-number="1223" word-remark="123156465">收藏数量--最少100--单个分值10</span>
+                                <span class="glyphicon glyphicon-remove icon-cursor remove-mark"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="word" word-number="1223" word-remark="123156465">收藏数量--最少100--单个分值10</span>
+                                <span class="glyphicon glyphicon-remove icon-cursor remove-mark"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success" id="cancel-button">取消</button>
+            <button class="btn btn-primary" id="reserve-button">保存</button>
+        </div>
+    </div>
+    <div id="add-mark-dialog" class="al-ui-dialog" style="display: none">
+        <form class="form-horizontal dialog-context" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">名称</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control mark-name" placeholder="名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">单个分值</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control mark-number" placeholder="单个分值">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">最少个数</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control mark-limit" placeholder="最少个数">
+                </div>
+            </div>
+        </form>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success" id="cancel-remark-button">取消</button>
+            <button class="btn btn-primary" id="add-remark-button">保存</button>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./buttonmanage')
+</script>
+</body>
+</html>
