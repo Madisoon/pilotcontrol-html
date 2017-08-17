@@ -138,10 +138,41 @@ define(function (require, exports, module) {
 		let url = baseUrl + 'button/'
 		return {
 			buttonManage: { // 客户管理
-				getButtonByClassName: function (className, success) {
-					getDataWay(url + 'getButtonByClassName', {
-						className,
+				getButtonByName: function (buttonClass, success) {
+					getDataWay(url + 'getButtonByName', {
+						buttonClass,
 					}, 'GET', success)
+				},
+				insertButton: function (buttonData, markData, success) {
+					getDataWay(url + 'insertButton', {
+						buttonData,
+						markData
+					}, 'PUT', success)
+				},
+				updateButton: function (buttonData, markData, buttonId, success) {
+					getDataWay(url + 'updateButton', {
+						buttonData,
+						markData,
+						buttonId
+					}, 'POST', success)
+				},
+				deleteButton: function (buttonId, success) {
+					getDataWay(url + 'deleteButton', {
+						buttonId,
+					}, 'POST', success)
+				},
+			}
+		}
+	}())
+
+	const manpower = (function () {
+		let url = baseUrl + 'manpower/'
+		return {
+			manpowerManage: { // 客户管理
+				insertManPower: function (manPowerData, success) {
+					getDataWay(url + 'insertManPower', {
+						manPowerData,
+					}, 'PUT', success)
 				},
 			}
 		}
@@ -153,6 +184,11 @@ define(function (require, exports, module) {
 		let url = baseUrl + 'system/'
 		return {
 			userManage: {
+				getSysUser: function (userName, success) {
+					getDataWay(url + 'getSysUser', {
+						userName
+					}, 'GET', success)
+				},
 				insertSysUser: function (userData, userCorpus, userConfig, success) {
 					getDataWay(url + 'insertSysUser', {
 						userData: userData,
@@ -315,6 +351,7 @@ define(function (require, exports, module) {
 		guidance: guidance,
 		result: result,
 		system: system,
-		button: button
+		button: button,
+		manpower: manpower
 	}
 })

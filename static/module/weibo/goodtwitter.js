@@ -8,16 +8,41 @@ define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
 	const orderModule = require('../../common/js/ordermodule')
-	orderModule.orderModule.writeOrderDom('#order-component-show', false ,() => {
 
+	/*
+		$('body').on('click', '.order-sure-button', () => {
+			alert('点击按钮')
+			let orderData = orderModule.orderModule.getOrderForm()
+			api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
+				console.log(rep)
+			})
+			console.log(orderData)
+		})
+	*/
+
+	$('#all-order-show').click(() => {
+		$('#order-component-show').hide()
+		$('.order-table').show()
 	})
+
 	$('#single-add').click(() => {
-		layer.open({
+		orderModule.orderModule.writeOrderDom('#order-component-show', true, (rep) => {
+			if (rep === 1) {
+				initializeTable()
+				$('#order-component-show').hide()
+				$('.order-table').show()
+			} else {
+				alert('分数不够')
+			}
+		})
+		$('#order-component-show').show()
+		$('.order-table').hide()
+		/*layer.open({
 			title: '加粉订单',
 			type: 1,
 			area: ['80%', '95%'], //宽高
 			content: $('#add-single-order-dialog')
-		})
+		})*/
 	})
 
 	$('#multi-add').click(() => {
@@ -82,12 +107,14 @@ define(function (require, exports, module) {
 			formatSearch: function () {
 				return '任意搜索'
 			},
-			url: '' + api.baseUrl + 'guidance/getAllTaskByConfig',
+			url: '' + api.baseUrl + 'manpower/getAllManPower',
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {
-					configId: '1',
-					userName: 'admin'
+					pageNumber: params.pageNumber,
+					pageSize: params.pageSize,
+					userLoginName: 'admin',
+					type: '1'
 				}
 				return JSON.stringify(param)
 			},

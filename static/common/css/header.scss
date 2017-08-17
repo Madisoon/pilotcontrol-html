@@ -88,6 +88,10 @@ table {
 
 }
 
+.order-sure-button {
+  margin-left: 8px;
+}
+
 .dialog-context {
   flex: 1;
 }
@@ -882,4 +886,7 @@ table {
 
 #button-manage-html {
   padding: 8px;
+  .table-context-show {
+    margin-top: 8px;
+  }
 }

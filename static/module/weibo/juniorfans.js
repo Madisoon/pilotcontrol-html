@@ -1,9 +1,22 @@
 /**
+ * Created by Msater Zg on 2017/8/9.
+ */
+/**
  * Created by Msater Zg on 2017/8/8.
  */
 define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
+	const orderModule = require('../../common/js/ordermodule')
+	orderModule.orderModule.writeOrderDom('#order-component-show', true, () => {
+
+	})
+
+	$('body').on('click', '.order-sure-button', () => {
+		alert('点击按钮')
+		let orderData = orderModule.orderModule.getOrderForm()
+		console.log(orderData)
+	})
 
 	$('#single-add').click(() => {
 		layer.open({
@@ -21,6 +34,11 @@ define(function (require, exports, module) {
 			area: ['80%', '95%'], //宽高
 			content: $('#add-multi-order-dialog')
 		})
+	})
+
+	$('.mode-execution').click(() => {
+		let modeValue = $('.mode-execution:checked').val()
+		$('.order-plan').stop().slideToggle()
 	})
 
 	let initializeTable = () => {

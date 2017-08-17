@@ -75,6 +75,9 @@ a {
 table {
   font-size: 0.8rem; }
 
+.order-sure-button {
+  margin-left: 8px; }
+
 .dialog-context {
   flex: 1; }
 
@@ -621,5 +624,7 @@ table {
 
 #button-manage-html {
   padding: 8px; }
+  #button-manage-html .table-context-show {
+    margin-top: 8px; }
 
 /*# sourceMappingURL=header.css.map */
