@@ -11,14 +11,14 @@ define(function (require, exports, module) {
 
 	let orderModule = (function () {
 
-		let getUserMark = (loginName, contextFlag, success) => {
+		let getUserMark = (loginName, contextFlag, type, success) => {
 			api.system.userManage.getSysUser(loginName, (rep) => {
 				console.log(rep.user_mark)
-				insertManPowerData(rep.user_mark, loginName, contextFlag, success)
+				insertManPowerData(rep.user_mark, loginName, contextFlag, type, success)
 			})
 		}
 
-		let insertManPowerData = (userMark, loginName, contextFlag, success) => {
+		let insertManPowerData = (userMark, loginName, contextFlag, type, success) => {
 			let orderUrl = $('.form-control.al-order-url').val()
 			let orderContext = $('.form-control.al-order-context').val()
 			let orderSupplement = $('.form-control.al-order-supplement').val()
@@ -45,7 +45,7 @@ define(function (require, exports, module) {
 				task_mark: markNumber.join(','),
 				task_execution: executionMode,
 				task_execution_context: executionMode,
-				task_type: '1',
+				task_type: type,
 				task_create: loginName,
 				task_supplement: orderSupplement,
 			}
@@ -68,8 +68,11 @@ define(function (require, exports, module) {
 					contentFlag: true, // 判断是否需要内容
 					className: 'button-faker',
 					titleContent: '',
+					exampleContent: '',
 					userLoginName: 'admin',
+					dataType: '1',
 				}
+				console.log(success)
 				let newOrderData = Object.assign(orderData_, orderData)
 				let orderDom = []
 				api.button.buttonManage.getButtonByName(newOrderData.className, (rep) => {
@@ -83,15 +86,15 @@ define(function (require, exports, module) {
 					orderDom.push('</div>')
 					orderDom.push('<form class="form-horizontal">')
 					orderDom.push('<div class="form-group">')
-					orderDom.push('<label class="col-sm-2 control-label">微博地址或id:</label>')
+					orderDom.push('<label class="col-sm-2 control-label">' + newOrderData.titleContent + '</label>')
 					orderDom.push('<div class="col-sm-10">')
-					orderDom.push('<input type="text" class="form-control al-order-url" placeholder="微博地址或id">')
+					orderDom.push('<input type="text" class="form-control al-order-url" placeholder="' + newOrderData.titleContent + '">')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="form-group">')
 					orderDom.push('<label class="col-sm-2 control-label"></label>')
 					orderDom.push('<div class="col-sm-10">')
-					orderDom.push('<div class="al-order example-word">http://weibo.com/u/1742727537 或者 http:/微博ID：1742727537 </div>')
+					orderDom.push('<div class="al-order example-word">' + newOrderData.exampleContent + '</div>')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="custom-mark-content"> ')
@@ -198,7 +201,7 @@ define(function (require, exports, module) {
 					})
 
 					$('.btn-primary.order-sure-button').click(() => {
-						getUserMark('admin', true, success)
+						getUserMark('admin', true, newOrderData.dataType, success)
 					})
 
 				})

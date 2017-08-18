@@ -78,6 +78,9 @@ table {
 .order-sure-button {
   margin-left: 8px; }
 
+.btn.table-button {
+  margin-left: 8px; }
+
 .dialog-context {
   flex: 1; }
 

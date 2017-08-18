@@ -174,6 +174,12 @@ define(function (require, exports, module) {
 						manPowerData,
 					}, 'PUT', success)
 				},
+				changeOrderStatus: function (orderId, orderStatus, success) {
+					getDataWay(url + 'changeOrderStatus', {
+						orderId,
+						orderStatus
+					}, 'POST', success)
+				},
 			}
 		}
 	}())

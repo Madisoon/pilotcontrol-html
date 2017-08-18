@@ -15,6 +15,7 @@
     <style>
         .twitter-html-function {
             padding: 8px;
+            height: 100%;
         }
 
         .function-hint {
@@ -44,6 +45,15 @@
             display: flex;
             margin-top: 8px;
         }
+
+        .order-table {
+            margin-top: 8px;
+        }
+
+        #order-component-show {
+            max-height: 95%;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -51,25 +61,15 @@
     <!--功能按钮-->
     <div class="order-operation">
         <button type="button" class="btn btn-info" id="all-order-show">全部订单</button>
-        <button type="button" class="btn btn-primary" id="single-add">单个添加</button>
-        <button type="button" class="btn btn-success" id="multi-add">批量添加</button>
+        <button type="button" class="btn btn-primary" id="single-add">任务下发</button>
+        <!--<button type="button" class="btn btn-success" id="multi-add">批量添加</button>-->
     </div>
-    <div id="order-component-show">
+    <div id="order-component-show" style="display: none">
 
     </div>
-    <!--<div class="function-hint">
-        <div class="title">提示信息</div>
-        <p class="content">高级粉订单管理，暂停操作只有队列中、执行中、今天已完成三种状态下才能操作；退单只有当状态为“已暂停”后方可操作。</p>
-    </div>
-    &lt;!&ndash;搜索&ndash;&gt;
-    <div class="order-search">
-
-    </div>
-    &lt;!&ndash;表格&ndash;&gt;
     <div class="order-table">
         <table class="table table-condensed" id="junior-fans-table"></table>
-    </div>-->
-    <!--单个添加和多个添加的弹出框-->
+    </div>
 </div>
 <script>
 	seajs.use('./juniorfans')
