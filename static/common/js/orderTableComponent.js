@@ -13,20 +13,94 @@ define(function (require, exports, module) {
 		let orderInfoDialog = {}
 		let dom = []
 		dom.push('<div id="order-info-dialog" class="al-ui-dialog" style="display: none">')
-		dom.push('<div class="context dialog-context">')
-		dom.push('<div class="ui vertical segment">')
-		dom.push('<h6>微博账号id</h6>')
-		dom.push('<p>世上最痛苦的事，不是永恒的孤寂，而是明明看见了温暖与生机，我却无法触摸到</p>')
-		dom.push('</div>')
-		dom.push('<div class="ui vertical segment">')
-		dom.push('<h6>内容</h6>')
-		dom.push('<p>世上最痛苦的事，不是永恒的孤寂，而是明明看见了温暖与生机，我却无法触摸到</p>')
-		dom.push('</div>')
-		dom.push('<div class="ui vertical segment">')
-		dom.push('<h6>补充说明</h6>')
-		dom.push('<p>世上最痛苦的事，不是永恒的孤寂，而是明明看见了温暖与生机，我却无法触摸到</p>')
+		dom.push('<form class="form-horizontal dialog-context">')
+		dom.push('<div class=" form-group">')
+		dom.push('<label class="col-sm-2 control-label">地址</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		dom.push('<span >' + row.task_url + '</span>')
 		dom.push('</div>')
 		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">总数</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		dom.push('<span>' + row.task_number + '</span>')
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">所需分值</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		dom.push('<span>' + row.task_start_mark + '</span>')
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">实际分值</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		dom.push('<span>' + row.task_finish_mark + '</span>')
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">当前状态</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+
+		switch (row.task_check_status) {
+			case '0':
+				dom.push('<span style="color: blue; font-weight: 600">正在执行</span>')
+				break
+			case '1':
+				dom.push('<span style="color: forestgreen; font-weight: 600">已完成</span>')
+				break
+			case '2':
+				dom.push('<span style="color: yellow; font-weight: 600">暂停</span>')
+				break
+			case '3':
+				dom.push('<span style="color: red; font-weight: 600">已拒绝</span>')
+				break
+		}
+		/*if () {
+			dom.push('<span>正在执行</span>')
+		}else {
+			dom.push('<span>正在执行</span>')
+		}*/
+		console.log(row)
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">下单时间</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		dom.push('<span>' + row.task_time + '</span>')
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">订单内容</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		if (row.task_context === undefined) {
+			dom.push('<span>内容为空!</span>')
+		} else {
+			dom.push('<span>' + row.task_context + '</span>')
+		}
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">补充说明</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		if (row.task_supplement === undefined) {
+			dom.push('<span>内容为空!</span>')
+		} else {
+			dom.push('<span>' + row.task_supplement + '</span>')
+		}
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('<div class="form-group">')
+		dom.push('<label class="col-sm-2 control-label">反馈</label>')
+		dom.push('<div class="col-sm-10 order-show">')
+		if (row.manpower_contents === null || row.manpower_contents === undefined) {
+			dom.push('<span>内容为空!</span>')
+		} else {
+			dom.push('<p>' + row.manpower_contents + '</p>')
+		}
+		dom.push('</div>')
+		dom.push('</div>')
+		dom.push('</form>')
 		dom.push('<div class="absolute-dialog-action">')
 		dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')
 		if (row.task_status === '1') {
