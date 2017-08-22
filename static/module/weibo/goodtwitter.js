@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 	const api = require('../../common/js/api')
 	const orderModule = require('../../common/js/ordermodule')
 	const orderTableComponent = require('../../common/js/orderTableComponent')
-
+	let [userLoginName, type] = [window.parent.SYSTEM.user.user_loginname, '4']
 	$('#all-order-show').click(() => {
 		$('#order-component-show').hide()
 		$('.order-table').show()
@@ -17,16 +17,16 @@ define(function (require, exports, module) {
 
 	let orderData = {
 		contentFlag: false, // 判断是否需要内容
-		className: 'button-faker',
+		className: 'button-wbdzl',
 		titleContent: '微博地址或id',
 		exampleContent: 'http://weibo.com/u/1742727537 或者 http:/微博ID：1742727537',
-		userLoginName: 'admin',
-		dataType: '1',
+		userLoginName: userLoginName,
+		dataType: type,
 	}
 
 	let tableData = {
-		userName: 'admin',
-		type: '1'
+		userName: userLoginName,
+		type: type
 	}
 	orderTableComponent.orderTableComponent.writeOrderTableDom('#junior-fans-table', tableData, () => {
 

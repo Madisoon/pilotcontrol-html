@@ -32,22 +32,21 @@ define(function (require, exports, module) {
 				markNumber.push($(this).find('.al-single-number').attr('data-mark'))
 			})
 			let executionMode = $('.mode-execution:checked').val()
-
-			if (executionMode === 1) {
-				// 自动执行
-			} else {
-				// 手动执行
-			}
 			let orderData = {
 				task_url: orderUrl,
+				task_start_mark: realMark,
 				task_name: markName.join(','),
 				task_number: markOrderNumber.join(','),
 				task_mark: markNumber.join(','),
 				task_execution: executionMode,
-				task_execution_context: executionMode,
 				task_type: type,
 				task_create: loginName,
 				task_supplement: orderSupplement,
+			}
+			if (executionMode === '0') {
+				// 手动执行
+				orderData.task_execution_context = $('.form-control.execution-content').val()
+			} else {
 			}
 			if (contextFlag) {
 				orderData.task_context = orderContext
@@ -132,17 +131,10 @@ define(function (require, exports, module) {
 					orderDom.push('自动执行')
 					orderDom.push('</label>')
 					orderDom.push('<label class="radio-inline">')
-					orderDom.push('<input type="radio" class="mode-execution" name="mode-execution" value="2"> 计划任务')
+					orderDom.push('<input type="radio" class="mode-execution" name="mode-execution" value="0"> 计划任务')
 					orderDom.push('</label>')
 					orderDom.push('<div class="order-plan" style="display: none;">')
-					orderDom.push('<span>从&nbsp;</span>')
-					orderDom.push('<input type="text" style="width: 25%;" class="form-control" placeholder="开始时间">')
-					orderDom.push('<span>&nbsp;开始,每天&nbsp;</span>')
-					orderDom.push('<select class="form-control" style="width: 8%;">')
-					orderDom.push('<option>0</option>')
-					orderDom.push('</select>')
-					orderDom.push('<span>&nbsp;点增加&nbsp;</span>')
-					orderDom.push('<input type="number" style="width: 13%;" class="form-control" placeholder="数量">')
+					orderDom.push('<textarea class="form-control execution-content" placeholder="计划任务情况说明" rows="3"></textarea>')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
@@ -169,7 +161,7 @@ define(function (require, exports, module) {
 					orderDom.push('<div class="form-group">')
 					orderDom.push('<label class="col-sm-2 control-label">补充说明:</label>')
 					orderDom.push('<div class="col-sm-7">')
-					orderDom.push('<textarea class="form-control al-order-supplement" rows="3"></textarea>')
+					orderDom.push('<textarea class="form-control al-order-supplement" placeholder="补充说明" rows="3"></textarea>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="col-sm-3">')
 					orderDom.push('<p>' + buttonData.supplement_explain + '</p>')

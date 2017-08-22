@@ -84,6 +84,34 @@ table {
   }
 }
 
+.pagination {
+  margin-top: 0px;
+}
+
+// 分段的样式开始
+.ui.segment {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15);
+  margin: 1rem 0;
+  padding: 1em 1em;
+  border-radius: .28571429rem;
+  border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.ui.vertical.segment {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background: none transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid rgba(34, 36, 38, .15);
+}
+
+// 分段的样式结束
+
 .twitter-html-function {
 
 }
@@ -892,6 +920,14 @@ table {
 #button-manage-html {
   padding: 8px;
   .table-context-show {
+    margin-top: 8px;
+  }
+}
+
+.order-monitor-html {
+  padding: 8px;
+  height: 100%;
+  .order-monitor-table {
     margin-top: 8px;
   }
 }

@@ -180,6 +180,13 @@ define(function (require, exports, module) {
 						orderStatus
 					}, 'POST', success)
 				},
+				updateManPowerData: function (orderId, orderStatus, orderData, success) {
+					getDataWay(url + 'updateManPowerData', {
+						orderId,
+						orderStatus,
+						orderData
+					}, 'POST', success)
+				},
 			}
 		}
 	}())

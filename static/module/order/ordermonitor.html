@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>舆情导控</title>
+</head>
+<body>
+<div class="order-monitor-html">
+    <button type="button" class="btn btn-primary order" data-type="0" id="no-finish-order-btn">未完成的订单</button>
+    <button type="button" class="btn btn-success order" data-type="1" id="finish-order-btn">已完成的订单</button>
+    <button type="button" class="btn btn-info order" data-type="3" id="reject-order-btn">被拒绝的订单</button>
+    <div class="order-monitor-table">
+        <table class="table table-condensed" id="order-monitor-table"></table>
+    </div>
+    <div id="info-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-info">确认</button>
+        </div>
+    </div>
+    <!--<div id="get-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <p>订单号为201708090001的订单，确认已经开始</p>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-get">确认</button>
+        </div>
+    </div>-->
+    <div id="feedback-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <p>订单号为<span class="feedback-number">201708090001</span>的订单将反馈以下信息</p>
+            <textarea class="form-control feedback-content" rows="5"></textarea>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-feedback">确认</button>
+        </div>
+    </div>
+    <div id="reject-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <p>订单号为<span class="reject-number">201708090001</span>的订单将被拒绝，拒绝理由：</p>
+            <textarea class="form-control  reject-content" rows="5"></textarea>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-reject">确认</button>
+        </div>
+    </div>
+    <div id="finish-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <p>订单号为<span class="finish-number">201708090001</span>的订单任务已经完成</p>
+            <form>
+                <div class="form-group">
+                    <label class="control-label">扣除积分:</label>
+                    <input type="number" class="form-control finish-mark" placeholder="所扣积分">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">需要说明信息如下</label>
+                    <textarea class="form-control finish-content" rows="5"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-finish">确认</button>
+        </div>
+    </div>
+    <div id="pause-content-data-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <p>订单号为 <span class="pause-number">201708090001</span>的订单任务已经暂停</p>
+            <form>
+                <!--<div class="form-group">
+                    <label class="control-label">本次任务扣除积分:</label>
+                    <input type="number" class="form-control" placeholder="所扣积分">
+                </div>-->
+                <div class="form-group">
+                    <label class="control-label">需要说明信息如下</label>
+                    <textarea class="form-control pause-content" rows="5"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-success">取消</button>
+            <button class="btn btn-primary" id="sure-content-pause">确认</button>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./ordermonitor')
+</script>
+</body>
+</html>
