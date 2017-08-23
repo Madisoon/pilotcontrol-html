@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>微信-收藏转发</title>
+</head>
+<body>
+<div class="twitter-html-function">
+    <!--功能按钮-->
+    <div class="order-operation">
+        <button type="button" class="btn btn-info" id="all-order-show">全部订单</button>
+        <button type="button" class="btn btn-primary" id="read-add">阅读量</button>
+        <button type="button" class="btn btn-success" id="remark-add">发表评论</button>
+        <button type="button" class="btn btn-info" id="remark-good-add">评论点赞</button>
+        <button type="button" class="btn btn-warning" id="collection-articles-add">文章收藏</button>
+    </div>
+    <div id="order-component-show" style="display: none">
+
+    </div>
+    <div class="order-table">
+        <table class="table table-condensed" id="junior-fans-table"></table>
+    </div>
+</div>
+<script>
+	seajs.use('./yidianzixun')
+</script>
+</body>
+</html>

@@ -16,7 +16,7 @@ define(function (require, exports, module) {
 	})
 
 	let orderData = {
-		contentFlag: false, // 判断是否需要内容
+		contentFlag: true, // 判断是否需要内容
 		className: 'button-wxtwpl',
 		titleContent: '微信文章地址',
 		exampleContent: 'http://www.anyv.net/index.php/article-1509235',
