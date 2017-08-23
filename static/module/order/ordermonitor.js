@@ -156,7 +156,7 @@ define(function (require, exports, module) {
 		layer.open({
 			title: '信息展示',
 			type: 1,
-			area: ['35%', '60%'], //宽高
+			area: ['45%', '80%'], //宽高
 			content: $('#reject-content-data-dialog')
 		})
 	})
@@ -199,7 +199,7 @@ define(function (require, exports, module) {
 
 	$('#sure-content-reject').click(function () {
 		let orderData = {
-			content: $('.form-control.reject-content').val()
+			content: $('.reject-content:checked').val()
 		}
 		api.manpower.manpowerManage.updateManPowerData(orderId, '3', JSON.stringify(orderData), () => {
 			initializeTable()

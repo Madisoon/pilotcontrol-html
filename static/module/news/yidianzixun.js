@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 	const api = require('../../common/js/api')
 	const orderModule = require('../../common/js/ordermodule')
 	const orderTableComponent = require('../../common/js/orderTableComponent')
-	let [userLoginName, type] = [window.parent.SYSTEM.user.user_loginname, '13']
+	let [userLoginName, type] = [window.parent.SYSTEM.user.user_loginname, '12,13,14,15']
 	$('#all-order-show').click(() => {
 		$('#order-component-show').hide()
 		$('.order-table').show()

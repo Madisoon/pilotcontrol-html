@@ -41,7 +41,7 @@
     </div>-->
     <div id="feedback-content-data-dialog" class="al-ui-dialog" style="display: none">
         <div class="dialog-context">
-            <p>订单号为<span class="feedback-number">201708090001</span>的订单将反馈以下信息</p>
+            <p>订单号为<span class="feedback-number"></span>的订单将反馈以下信息</p>
             <textarea class="form-control feedback-content" rows="5"></textarea>
         </div>
         <div class="absolute-dialog-action">
@@ -51,8 +51,26 @@
     </div>
     <div id="reject-content-data-dialog" class="al-ui-dialog" style="display: none">
         <div class="dialog-context">
-            <p>订单号为<span class="reject-number">201708090001</span>的订单将被拒绝，拒绝理由：</p>
-            <textarea class="form-control  reject-content" rows="5"></textarea>
+            <p>订单号为<span class="reject-number"></span>的订单将被拒绝，拒绝理由：</p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" class="reject-content" value=" 上帝会把我们最珍贵的东西拿走，以提醒我们得到的太多。当失去的时候，你唯一能做的便是——不要忘记。" checked>
+                    上帝会把我们最珍贵的东西拿走，以提醒我们得到的太多。当失去的时候，你唯一能做的便是——不要忘记。
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" class="reject-content" value=" 一个微笑所负载和传导的真情，胜过了千言万语，所以才有了“相逢一笑泯恩仇”之说。">
+                    一个微笑所负载和传导的真情，胜过了千言万语，所以才有了“相逢一笑泯恩仇”之说。
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" class="reject-content" value="世间唯一可以证明因果的，就是你付出多少努力，你就必有多少收获。">
+                    世间唯一可以证明因果的，就是你付出多少努力，你就必有多少收获。
+                </label>
+            </div>
+            <!--<textarea class="form-control  reject-content" rows="5"></textarea>-->
         </div>
         <div class="absolute-dialog-action">
             <button class="btn btn-success">取消</button>
@@ -61,7 +79,7 @@
     </div>
     <div id="finish-content-data-dialog" class="al-ui-dialog" style="display: none">
         <div class="dialog-context">
-            <p>订单号为<span class="finish-number">201708090001</span>的订单任务已经完成</p>
+            <p>订单号为<span class="finish-number"></span>的订单任务已经完成</p>
             <form>
                 <div class="form-group">
                     <label class="control-label">扣除积分:</label>
@@ -80,7 +98,7 @@
     </div>
     <div id="pause-content-data-dialog" class="al-ui-dialog" style="display: none">
         <div class="dialog-context">
-            <p>订单号为 <span class="pause-number">201708090001</span>的订单任务已经暂停</p>
+            <p>订单号为 <span class="pause-number"></span>的订单任务已经暂停</p>
             <form>
                 <!--<div class="form-group">
                     <label class="control-label">本次任务扣除积分:</label>
