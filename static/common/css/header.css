@@ -657,6 +657,8 @@ table {
   height: 100%; }
   .order-monitor-html .order-monitor-table {
     margin-top: 8px; }
+  .order-monitor-html .order-show {
+    padding-top: 7px; }
 
 .twitter-html-function {
   padding: 8px;

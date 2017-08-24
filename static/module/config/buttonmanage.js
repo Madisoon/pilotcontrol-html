@@ -203,6 +203,9 @@ define(function (require, exports, module) {
 			method: 'GET',
 			url: '' + api.baseUrl + 'button/getAllButton',
 			queryParamsType: 'json',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParams: function (params) {
 
 			},

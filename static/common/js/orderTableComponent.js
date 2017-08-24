@@ -8,7 +8,7 @@ define(function (require, exports, module) {
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
 	const api = require('./api')
-
+	const orderTypeArray = require('../../common/js/ordertypecommon')
 	let writeDialogDom = (row, htmlId) => {
 		let orderInfoDialog = {}
 		let dom = []
@@ -56,12 +56,6 @@ define(function (require, exports, module) {
 				dom.push('<span style="color: red; font-weight: 600">已拒绝</span>')
 				break
 		}
-		/*if () {
-			dom.push('<span>正在执行</span>')
-		}else {
-			dom.push('<span>正在执行</span>')
-		}*/
-		console.log(row)
 		dom.push('</div>')
 		dom.push('</div>')
 		dom.push('<div class="form-group">')
@@ -102,7 +96,7 @@ define(function (require, exports, module) {
 		dom.push('</div>')
 		dom.push('</form>')
 		dom.push('<div class="absolute-dialog-action">')
-		dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')
+		/*dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')*/
 		if (row.task_status === '1') {
 			dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" data-status = "0">暂停</button>')
 			dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" data-status = "2">停止</button>')
@@ -155,7 +149,10 @@ define(function (require, exports, module) {
 			}, {
 				field: 'task_type',
 				searchable: true,
-				title: '类别'
+				title: '类别',
+				formatter: (value, row, index) => {
+					return orderTypeArray.orderTypeArray[value]
+				}
 			}, {
 				field: 'task_time',
 				searchable: true,
@@ -179,16 +176,16 @@ define(function (require, exports, module) {
 				formatter: (value, row, index) => {
 					switch (value) {
 						case '0':
-							return '<span style="color: blue; font-weight: 600">正在执行</span>'
+							return '<div style="color: blue; font-weight: 600;font-size: 12px">正在执行</div>'
 							break
 						case '1':
-							return '<span style="color: forestgreen; font-weight: 600">已完成</span>'
+							return '<div style="color: forestgreen; font-weight: 600;font-size: 12px">已完成</div>'
 							break
 						case '2':
 							return '暂停'
 							break
 						case '3':
-							return '<span style="color: red; font-weight: 600">被拒绝</span>'
+							return '<div style="color: red; font-weight: 600;font-size: 12px">被拒绝</div>'
 							break
 					}
 				}
@@ -222,6 +219,9 @@ define(function (require, exports, module) {
 			classes: 'table table-bordered table-hover',
 			method: 'POST',
 			url: '' + api.baseUrl + 'manpower/getAllManPower',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {

@@ -15,6 +15,9 @@ define(function (require, exports, module) {
 			type: httpType,
 			dataType: 'JSON',
 			data: params,
+			beforeSend: function (request) {
+				request.setRequestHeader('webToken', JSON.parse(localStorage.getItem('sysInfo')).token)
+			},
 			success: function (rep) {
 				success(rep)
 			},

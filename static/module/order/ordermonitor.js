@@ -4,13 +4,15 @@
 define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
+	const orderTypeArray = require('../../common/js/ordertypecommon')
 	let userOperation = false
 	let [infoDialog,
 		getDialog,
 		feedbackDialog,
 		rejectDialog,
 		finishDialog,
-		pauseDialog] = [{}, {}, {}, {}, {}, {}]
+		pauseDialog,
+		detailDialog] = [{}, {}, {}, {}, {}, {}, {}]
 	let [orderId, orderType] = [0, 0]
 	let initializeTable = () => {
 		//初始化表格
@@ -29,13 +31,12 @@ define(function (require, exports, module) {
 				sortable: true,
 				title: '用户'
 			}, {
-				field: 'user_name',
+				field: 'task_type',
 				searchable: true,
-				title: '类别'
-			}, {
-				field: 'user_mark',
-				searchable: true,
-				title: '项目'
+				title: '类别',
+				formatter: (value, row, index) => {
+					return orderTypeArray.orderTypeArray[value]
+				}
 			}, {
 				field: 'task_time',
 				title: '提交时间'
@@ -101,6 +102,9 @@ define(function (require, exports, module) {
 			pagination: true,
 			paginationHAlign: 'left',
 			paginationDetailHAlign: 'right',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {
@@ -110,7 +114,14 @@ define(function (require, exports, module) {
 				}
 				return JSON.stringify(param)
 			},
-			onClickRow: function (row) {
+			onDblClickRow: function (row) {
+				detailDialog = layer.open({
+					title: '订单详情展示',
+					type: 1,
+					area: ['65%', '80%'], //宽高
+					content: $('#order-detail-dialog')
+				})
+				getShowForm(row)
 			},
 			onLoadSuccess: function (data) {
 			}
@@ -127,17 +138,6 @@ define(function (require, exports, module) {
 			content: $('#info-content-data-dialog')
 		})
 	})
-
-	/*	$('body').on('click', '.label.get-content', function () {
-			orderId = $(this).attr('data-id')
-			layer.confirm('订单号为201708090001的订单，确认已经开始?', {
-				btn: ['确认', '取消'] //按钮
-			}, function () {
-				layer.msg('已经接收', {icon: 1})
-			}, function () {
-				layer.msg('填写拒绝理由', {icon: 1})
-			})
-		})*/
 
 	$('body').on('click', '.label.feedback-content', function () {
 		orderId = $(this).attr('data-id')
@@ -233,5 +233,36 @@ define(function (require, exports, module) {
 		initializeTable()
 	})
 
+	let getShowForm = (row) => {
+
+		let taskName = row.task_name.split(',')
+		let taskNumber = row.task_number.split(',')
+		let taskNameLen = taskName.length
+		let dom = []
+		for (let i = 0; i < taskNameLen; i++) {
+			dom.push('<p> ' + taskName[i] + '：&nbsp;&nbsp;<span style="color: red;">' + taskNumber[i] + '</span></p>')
+		}
+		$('#order-monitor-number').empty()
+		$('#order-monitor-number').append(dom.join(''))
+
+		$('#order-monitor-url').text(row.task_url)
+		switch (row.task_check_status) {
+			case '0':
+				$('#order-monitor-status').text('正在执行')
+				break
+			case '1':
+				$('#order-monitor-status').text('已完成')
+				break
+			case '2':
+				$('#order-monitor-status').text('已暂停')
+				break
+			case '3':
+				$('#order-monitor-status').text('已拒绝')
+				break
+		}
+		$('#order-monitor-time').text(row.task_time)
+		$('#order-monitor-content').text(row.task_context)
+		$('#order-monitor-supplement').text(row.task_supplement)
+	}
 })
 

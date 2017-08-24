@@ -35,6 +35,9 @@ define(function (require, exports, module) {
 				return '任意搜索'
 			},
 			url: '' + api.baseUrl + 'corpus/getAllCorpusContext',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {

@@ -383,31 +383,46 @@ define(function (require, exports, module) {
 	})
 
 	// 登陆函数
-	let judgeLoginName = (userLoginName, userPassWord) => {
-		api.system.userManage.judgeUser(userLoginName, userPassWord, (rep) => {
-			if (rep.result === 1) {
-				$('#preloader').show()
-				localStorage.setItem('sysInfo', JSON.stringify(rep))
-				localStorage.setItem('sysUser', JSON.stringify(rep.user))
-				setTimeout(function () {
-					window.location.href = './index.html'
-				}, 1200)
-			} else {
-				layer.msg('账号或密码错误!', {
-					time: 1500
-				})
+	let judgeLoginName = (userLoginName, userPassword) => {
+		$.ajax({
+			url: 'http://127.0.0.1:8022/system/judgeUser',
+			type: 'POST',
+			dataType: 'JSON',
+			data: {
+				userName: userLoginName,
+				userPassword: userPassword
+
+			},
+			success: function (rep) {
+				if (rep.result === 1) {
+					$('#preloader').show()
+					localStorage.setItem('sysInfo', JSON.stringify(rep))
+					localStorage.setItem('sysUser', JSON.stringify(rep.user))
+					setTimeout(function () {
+						window.location.href = './index.html'
+					}, 1200)
+				} else {
+					layer.msg('账号或密码错误!', {
+						time: 1500
+					})
+				}
 			}
 		})
+		/*
+
+				api.system.userManage.judgeUser(userLoginName, userPassWord, (rep) => {
+
+				})*/
 	}
 
-	// enter 登陆方法
+// enter 登陆方法
 	$(document).keypress(function (e) {
 		if (e.charCode == 13) {
 			$('#login-button').trigger('click')
 		}
 	})
 
-	//按钮点击登陆方法
+//按钮点击登陆方法
 	$('#login-button').unbind('click').click(() => {
 		let loginName = $('.form-control.login-name').val()
 		let loginPd = $('.form-control.login-password').val()
@@ -424,7 +439,7 @@ define(function (require, exports, module) {
 		rememberMe()
 	})
 
-	//记住密码的方法
+//记住密码的方法
 	function rememberMe () {
 		if ($('#remember-pwd').prop('checked')) {
 			$.cookie('pHrememberme', true, {expires: 365})
@@ -437,18 +452,16 @@ define(function (require, exports, module) {
 		}
 	}
 
-	//程序运行时，先找cookie
+//程序运行时，先找cookie
 	getRemember()
+
 	function getRemember () {
 		let rememberme = $.cookie('pHrememberme')
-		console.log(rememberme)
 		if (rememberme === 'true') {
-			console.log('记住密码')
 			$('#remember-pwd').prop('checked', true)
 			$('.form-control.login-name').val($.cookie('pHloginname'))
 			$('.form-control.login-password').val($.cookie('pHloginpwd'))
 		} else {
-			console.log('没有记住密码')
 			$('#remember-pwd').prop('checked', false)
 			$('.form-control.login-name').val('')
 			$('.form-control.login-password').val('')

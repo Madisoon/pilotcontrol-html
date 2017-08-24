@@ -7,6 +7,8 @@ define(function (require, exports, module) {
 	const sysInfo = JSON.parse(localStorage.getItem('sysInfo'))
 	const sysUser = JSON.parse(localStorage.getItem('sysUser'))
 
+	console.log(sysInfo)
+
 	SYSTEM = {
 		user: sysInfo.user,
 		model: sysInfo.module,
@@ -16,6 +18,8 @@ define(function (require, exports, module) {
 		user: sysInfo.user,
 		userType: (sysInfo.user.role_name) === '超级管理员' ? 1 : 0
 	}
+
+	console.log(JSON.parse(localStorage.getItem('sysInfo')).token)
 
 	$('#system-info').click(() => {
 		$('.person-setting-fixed').stop().fadeToggle()

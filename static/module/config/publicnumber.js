@@ -207,6 +207,9 @@ define(function (require, exports, module) {
 			classes: 'table table-bordered table-hover',
 			method: 'POST',
 			url: '' + api.baseUrl + 'system/getAllNumber',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				let param = {

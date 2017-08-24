@@ -85,6 +85,9 @@ define(function (require, exports, module) {
 				return '任意搜索'
 			},
 			url: '' + api.baseUrl + 'system/getAllSysUser',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'undefined',
 			pagination: true,
 			paginationHAlign: 'left',

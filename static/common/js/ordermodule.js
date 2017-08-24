@@ -8,7 +8,6 @@ define(function (require, exports, module) {
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
 	const api = require('./api')
-
 	let orderModule = (function () {
 
 		let getUserMark = (loginName, contextFlag, type, success) => {
@@ -46,17 +45,22 @@ define(function (require, exports, module) {
 			if (executionMode === '0') {
 				// 手动执行
 				orderData.task_execution_context = $('.form-control.execution-content').val()
-			} else {
 			}
 			if (contextFlag) {
 				orderData.task_context = orderContext
 			}
-			if (userMark - realMark > 0) {
-				api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
-					success(1)
+			if (orderData.task_url === '' || orderData.task_number === '0') {
+				layer.msg('信息填写不完整!', {
+					time: 1500
 				})
 			} else {
-				success(0)
+				if (userMark - realMark > 0) {
+					api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
+						success(1)
+					})
+				} else {
+					success(0)
+				}
 			}
 
 		}
@@ -154,14 +158,14 @@ define(function (require, exports, module) {
 						orderDom.push('<label class="radio-inline">')
 						orderDom.push('<input type="radio" name="inlineRadioOptions" value="2"> 关闭内容')
 						orderDom.push('</label>')
-						orderDom.push('<textarea class="form-control al-order-context" rows="3"></textarea>')
+						orderDom.push('<textarea class="form-control al-order-context" rows="3" placeholder="一行代表一条内容!"></textarea>')
 						orderDom.push('</div>')
 						orderDom.push('</div>')
 					}
 					orderDom.push('<div class="form-group">')
 					orderDom.push('<label class="col-sm-2 control-label">补充说明:</label>')
 					orderDom.push('<div class="col-sm-7">')
-					orderDom.push('<textarea class="form-control al-order-supplement" placeholder="补充说明" rows="3"></textarea>')
+					orderDom.push('<textarea class="form-control al-order-supplement" placeholder="补充说明!" rows="3"></textarea>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="col-sm-3">')
 					orderDom.push('<p>' + buttonData.supplement_explain + '</p>')
@@ -178,12 +182,18 @@ define(function (require, exports, module) {
 					$(htmlId).empty()
 					$(htmlId).append(orderDom.join(''))
 
-					$('.form-control.al-order-number').change(() => {
+					$('.form-control.al-order-number').change(function () {
+						// 输入框移除事件
 						markTotal = 0
 						$('.custom-mark-content .form-group').each(function () {
-							let number = $(this).find('.al-order-number').val()
-							let singleMark = $(this).find('.al-single-number').attr('data-mark')
-							markTotal += parseInt(parseInt(number, 10) * parseInt(singleMark, 10), 10)
+							let number = parseInt($(this).find('.al-order-number').val(), 10)
+							let numberLimit = parseInt($(this).find('.al-limit-number').attr('data-number'), 10)
+							if (number < numberLimit) {
+								number = numberLimit
+								$(this).find('.al-order-number').val(numberLimit)
+							}
+							let singleMark = parseInt($(this).find('.al-single-number').attr('data-mark'), 10)
+							markTotal += parseInt(number * singleMark, 10)
 						})
 						$('.al-order-total-number').text(markTotal)
 					})
@@ -193,7 +203,7 @@ define(function (require, exports, module) {
 					})
 
 					$('.btn-primary.order-sure-button').click(() => {
-						getUserMark('admin', true, newOrderData.dataType, success)
+						getUserMark(newOrderData.userLoginName, true, newOrderData.dataType, success)
 					})
 
 				})

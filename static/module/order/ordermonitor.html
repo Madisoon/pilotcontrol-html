@@ -54,19 +54,22 @@
             <p>订单号为<span class="reject-number"></span>的订单将被拒绝，拒绝理由：</p>
             <div class="radio">
                 <label>
-                    <input type="radio" name="optionsRadios" class="reject-content" value=" 上帝会把我们最珍贵的东西拿走，以提醒我们得到的太多。当失去的时候，你唯一能做的便是——不要忘记。" checked>
+                    <input type="radio" name="optionsRadios" class="reject-content"
+                           value=" 上帝会把我们最珍贵的东西拿走，以提醒我们得到的太多。当失去的时候，你唯一能做的便是——不要忘记。" checked>
                     上帝会把我们最珍贵的东西拿走，以提醒我们得到的太多。当失去的时候，你唯一能做的便是——不要忘记。
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="optionsRadios" class="reject-content" value=" 一个微笑所负载和传导的真情，胜过了千言万语，所以才有了“相逢一笑泯恩仇”之说。">
+                    <input type="radio" name="optionsRadios" class="reject-content"
+                           value=" 一个微笑所负载和传导的真情，胜过了千言万语，所以才有了“相逢一笑泯恩仇”之说。">
                     一个微笑所负载和传导的真情，胜过了千言万语，所以才有了“相逢一笑泯恩仇”之说。
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="optionsRadios" class="reject-content" value="世间唯一可以证明因果的，就是你付出多少努力，你就必有多少收获。">
+                    <input type="radio" name="optionsRadios" class="reject-content"
+                           value="世间唯一可以证明因果的，就是你付出多少努力，你就必有多少收获。">
                     世间唯一可以证明因果的，就是你付出多少努力，你就必有多少收获。
                 </label>
             </div>
@@ -115,6 +118,47 @@
             <button class="btn btn-primary" id="sure-content-pause">确认</button>
         </div>
     </div>
+
+    <div id="order-detail-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <form class="form-horizontal dialog-context">
+                <div class=" form-group"><label class="col-sm-2 control-label">地址</label>
+                    <div class="col-sm-10 order-show">
+                        <span id="order-monitor-url">http://localhost:64334/pilotcontrol-html/app/index.html#</span>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-sm-2 control-label">总数</label>
+                    <div class="col-sm-10 order-show" id="order-monitor-number">
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-sm-2 control-label">当前状态</label>
+                    <div class="col-sm-10 order-show">
+                        <span style="color: forestgreen; font-weight: 600" id="order-monitor-status">已完成</span>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-sm-2 control-label">下单时间</label>
+                    <div class="col-sm-10 order-show">
+                        <span id="order-monitor-time">2017-08-22 15:18:42.0</span>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-sm-2 control-label">订单内容</label>
+                    <div class="col-sm-10 order-show">
+                        <span id="order-monitor-content">内容为空!</span>
+                    </div>
+                </div>
+                <div class="form-group"><label class="col-sm-2 control-label">补充说明</label>
+                    <div class="col-sm-10 order-show">
+                        <span id="order-monitor-supplement">123123123123</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--<div class="absolute-dialog-action">
+            <button class="btn btn-primary">取消</button>
+        </div>-->
+    </div>
+
+
 </div>
 <script>
 	seajs.use('./ordermonitor')
