@@ -208,6 +208,11 @@ define(function (require, exports, module) {
 						otherId
 					}, 'POST', success)
 				},
+				getOtherConfigByType: function (otherType, success) {
+					getDataWay(url + 'getOtherConfigByType', {
+						otherType
+					}, 'GET', success)
+				}
 			}
 		}
 	}())

@@ -81,8 +81,12 @@ define(function (require, exports, module) {
 							/*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-primary get-content">接受</span> ' +*/
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-success feedback-content">反馈</span> ' +
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-info refuse-content">拒绝</span> ' +
-							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-warning finish-content">完成</span> ' +
-							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-danger pause-content">暂停</span>'
+							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-warning finish-content">完成</span> '
+						if (value === '2') {
+							returnValue += '<span  data-check-status = "0"  data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-danger pause-content">开始</span>'
+						} else {
+							returnValue += '<span data-check-status = "2" data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-danger pause-content">暂停</span>'
+						}
 					}
 					return returnValue
 				}
@@ -222,7 +226,7 @@ define(function (require, exports, module) {
 		let orderData = {
 			content: $('.form-control.pause-content').val()
 		}
-		api.manpower.manpowerManage.updateManPowerData(orderId, '2', JSON.stringify(orderData), () => {
+		api.manpower.manpowerManage.updateManPowerData(orderId, $('.pause-content').attr('data-check-status'), JSON.stringify(orderData), () => {
 			initializeTable()
 			layer.closeAll()
 		})

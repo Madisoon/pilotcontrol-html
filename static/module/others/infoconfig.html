@@ -2,9 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>其他-其他信息</title>
 </head>
 <body>
+<div class="twitter-html-function">
+    <!--功能按钮-->
+    <div class="order-operation">
+        <button type="button" class="btn btn-info" id="all-order-show">全部订单</button>
+        <button type="button" class="btn btn-primary type-button" data-type="1" id="read-add">阅读量</button>
+        <button type="button" class="btn btn-success type-button" data-type="2" id="remark-add">发表评论</button>
+        <button type="button" class="btn btn-info type-button" data-type="3" id="remark-good-add">评论点赞</button>
+        <button type="button" class="btn btn-warning type-button" data-type="4" id="collection-articles-add">文章收藏
+        </button>
+    </div>
+    <div id="order-component-show" style="display: none">
+        <div id="add-single-order-dialog" class="al-ui-dialog">
+            <div class="dialog-context">
+                <div class="function-hint">
+                    <div class="title">产品信息</div>
+                    <p class="content">而友谊正是一种财富。 </p></div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">操作链接</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="other-type-option">
 
+                            </select>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control al-order-url" placeholder="文章地址">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <div class="al-order example-word">http://www.anyv.net/index.php/article-1509235</div>
+                        </div>
+                    </div>
+                    <div class="custom-mark-content">
+
+                    </div>
+                    <div class="form-group"><label class="col-sm-2 control-label">本次合计:</label><span style="color: red;"
+                                                                                                     class="col-sm-10 al-order-total-number">0分</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">执行方式:</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" class="mode-execution" name="mode-execution" value="1"
+                                       checked="true">自动执行
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" class="mode-execution" name="mode-execution" value="0"> 计划任务
+                            </label>
+                            <div class="order-plan" style="display: none;">
+                                <textarea class="form-control execution-content" placeholder="计划任务情况说明"
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group daokong-content" style="display: none">
+                        <label class="col-sm-2 control-label">执行内容:</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" value="1" checked="true"> 指定内容</label>
+                            <label class="radio-inline"><input type="radio" name="inlineRadioOptions"
+                                                               value="2">自动内容</label>
+                            <label class="radio-inline"><input type="radio" name="inlineRadioOptions" value="2">
+                                关键词</label>
+                            <label class="radio-inline"><input type="radio" name="inlineRadioOptions"
+                                                               value="2">关闭内容</label>
+                            <textarea class="form-control al-order-context" rows="3" placeholder="一行代表一条内容!"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">补充说明:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control al-order-supplement" placeholder="补充说明!"
+                                      rows="3"></textarea>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>我们需要家人，然而，也需要朋友。有了朋友，生活会更加美好;没有朋友，生活就无滋无味。而友谊正是一种财富。</p>
+                        </div>
+                    </div>
+                </form>
+                <div></div>
+            </div>
+            <div class="absolute-dialog-action">
+                <button type="button" class="btn btn-primary order-sure-button">确定</button>
+            </div>
+        </div>
+    </div>
+    <div class="order-table">
+        <table class="table table-condensed" id="junior-fans-table"></table>
+    </div>
+</div>
+<script>
+	seajs.use('./infoconfig')
+</script>
 </body>
 </html>

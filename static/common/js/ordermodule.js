@@ -67,7 +67,6 @@ define(function (require, exports, module) {
 					success(0)
 				}
 			}
-
 		}
 
 		return {
