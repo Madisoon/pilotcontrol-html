@@ -684,4 +684,9 @@ table {
   .twitter-html-function .order-show {
     padding-top: 7px; }
 
+.other-config-html {
+  padding: 8px; }
+  .other-config-html .other-table {
+    margin-top: 8px; }
+
 /*# sourceMappingURL=header.css.map */

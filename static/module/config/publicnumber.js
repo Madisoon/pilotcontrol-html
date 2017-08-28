@@ -139,6 +139,9 @@ define(function (require, exports, module) {
 			classes: 'table table-bordered table-hover',
 			method: 'POST',
 			url: '' + api.baseUrl + 'system/getAllNumber',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				let param = {
@@ -205,11 +208,11 @@ define(function (require, exports, module) {
 			dataField: 'data',//指定后台的数据的名称
 			undefinedText: '--',
 			classes: 'table table-bordered table-hover',
-			method: 'POST',
-			url: '' + api.baseUrl + 'system/getAllNumber',
 			ajaxOptions: {
 				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
 			},
+			method: 'POST',
+			url: '' + api.baseUrl + 'system/getAllNumber',
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				let param = {

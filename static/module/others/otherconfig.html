@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>微博-点赞量</title>
+
+</head>
+<body>
+<div class="other-config-html">
+    <button type="button" class="btn btn-primary" id="add-other-config">添加</button>
+    <button type="button" class="btn btn-danger" id="delete-other-config">删除</button>
+    <div class="other-table">
+        <table class="table table-condensed" id="other-config-table"></table>
+    </div>
+    <div id="add-other-config-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">配置状态</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="other-status" class="other-status" value="1" checked="true"> 启动
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="other-status" class="other-status" value="0"> 停止
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">类别</label>
+                    <div class="col-sm-10">
+                        <select class="form-control other-type">
+                            <option value="1">阅读量</option>
+                            <option value="2">发布评论</option>
+                            <option value="3">评论点赞</option>
+                            <option value="4">文章收藏</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">站点名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control other-site" placeholder="站点名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">示例</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control other-example" placeholder="示例">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">最小数量</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" value="0" class="form-control other-limit" placeholder="站点名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">单个分值</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" value="0" class="form-control other-mark" placeholder="单个分值">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control other-abstract" rows="4"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-primary" id="reserve-other-button">确认</button>
+        </div>
+    </div>
+</div>
+<script>
+	seajs.use('./otherconfig')
+</script>
+</body>
+</html>

@@ -82,9 +82,9 @@ define(function (require, exports, module) {
 				$('.form-group.custom-corpus').fadeIn()
 				$('.form-group.automatic-corpus').fadeIn()
 				break
-/*			case '4':
-				$('.form-group.custom-corpus').fadeOut()
-				$('.form-group.automatic-corpus').fadeOut()*/
+				/*			case '4':
+								$('.form-group.custom-corpus').fadeOut()
+								$('.form-group.automatic-corpus').fadeOut()*/
 				break
 			default:
 				$('.form-group.custom-corpus').fadeOut()
@@ -155,10 +155,10 @@ define(function (require, exports, module) {
 			undefinedText: '--',
 			classes: 'table table-bordered table-hover',
 			method: 'POST',
-			formatSearch: function () {
-				return '任意搜索'
-			},
 			url: '' + api.baseUrl + 'guidance/getAllTaskByConfig',
+			ajaxOptions: {
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
 				var param = {
@@ -210,9 +210,6 @@ define(function (require, exports, module) {
 			undefinedText: '--',
 			classes: 'table table-bordered table-hover',
 			method: 'POST',
-			formatSearch: function () {
-				return '任意搜索'
-			},
 			url: '' + api.baseUrl + 'corpus/getAllCorpusContext',
 			ajaxOptions: {
 				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}

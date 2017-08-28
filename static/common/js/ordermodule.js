@@ -56,7 +56,12 @@ define(function (require, exports, module) {
 			} else {
 				if (userMark - realMark > 0) {
 					api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
-						success(1)
+						if (rep.result === 1) {
+							success(1)
+							layer.msg('下单成功!', {icon: 1, time: 1000})
+						} else {
+							layer.msg('下单失败!', {icon: 2, time: 1000})
+						}
 					})
 				} else {
 					success(0)
@@ -205,7 +210,6 @@ define(function (require, exports, module) {
 					$('.btn-primary.order-sure-button').click(() => {
 						getUserMark(newOrderData.userLoginName, true, newOrderData.dataType, success)
 					})
-
 				})
 			},
 			/*			getOrderForm: function () {

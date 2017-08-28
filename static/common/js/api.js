@@ -190,6 +190,24 @@ define(function (require, exports, module) {
 						orderData
 					}, 'POST', success)
 				},
+			},
+			otherConfigManage: {
+				insertOtherConfig: function (otherData, success) {
+					getDataWay(url + 'insertOtherConfig', {
+						otherData,
+					}, 'PUT', success)
+				},
+				deleteOtherConfig: function (configId, success) {
+					getDataWay(url + 'deleteOtherConfig', {
+						configId,
+					}, 'POST', success)
+				},
+				updateOtherConfig: function (otherData, otherId, success) {
+					getDataWay(url + 'updateOtherConfig', {
+						otherData,
+						otherId
+					}, 'POST', success)
+				},
 			}
 		}
 	}())
