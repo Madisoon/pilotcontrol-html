@@ -7,7 +7,9 @@
 define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
-	let [userLoginName] = [window.parent.SYSTEM.user.user_loginname]
+	const orderTableComponent = require('../../common/js/orderTableComponent')
+	let [userLoginName, otherType] = [window.parent.SYSTEM.user.user_loginname, '']
+
 	$('.type-button').click(function () {
 		let otherType = $(this).attr('data-type')
 		if (otherType == '2' || otherType == '3') {
@@ -44,6 +46,7 @@ define(function (require, exports, module) {
 	getOtherConfigByType('1')
 
 	$('body').on('change', '#other-type-option', function () {
+		otherType = $('#other-type-option').val()
 		let otherLimit = $('#other-type-option > option:selected').attr('data-limit')
 		let otherMark = $('#other-type-option > option:selected').attr('data-mark')
 		let otherExample = $('#other-type-option > option:selected').attr('data-example')
@@ -109,25 +112,22 @@ define(function (require, exports, module) {
 			task_number: markOrderNumber.join(','),
 			task_mark: markNumber.join(','),
 			task_execution: executionMode,
-			task_type: type,
+			task_type: otherType,
 			task_create: loginName,
 			task_supplement: orderSupplement,
+			task_daokong_type: '0'
 		}
 		if (executionMode === '0') {
 			// 手动执行
 			orderData.task_execution_context = $('.form-control.execution-content').val()
 		}
-
-		console.log(orderData)
-
-		/*if (orderData.task_url === '' || orderData.task_number === '0') {
+		if (orderData.task_url === '' || orderData.task_number === '0') {
 			layer.msg('信息填写不完整!', {
 				time: 1500
 			})
 		} else {
 			if (userMark - realMark > 0) {
 				api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
-					getTableData()
 					layer.msg('下单成功!', {icon: 1, time: 1000})
 				})
 			} else {
@@ -135,7 +135,21 @@ define(function (require, exports, module) {
 					time: 1500
 				})
 			}
-		}*/
+		}
 	}
+
+	let tableData = {
+		userName: userLoginName,
+		type: '0',
+		pilotControlType: '0'
+	}
+
+	let getTableData = () => {
+		$('#order-component-show').hide()
+		$('.order-table').show()
+		orderTableComponent.orderTableComponent.writeOrderTableDom('#junior-fans-table', tableData, () => {
+		})
+	}
+	getTableData()
 
 })

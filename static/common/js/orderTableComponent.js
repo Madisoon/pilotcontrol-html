@@ -228,7 +228,8 @@ define(function (require, exports, module) {
 					pageNumber: params.pageNumber,
 					pageSize: params.pageSize,
 					userLoginName: tableData.userName,
-					type: tableData.type
+					type: tableData.type,
+					pilotControlType: tableData.pilotControlType
 				}
 				return JSON.stringify(param)
 			},

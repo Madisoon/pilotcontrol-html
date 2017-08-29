@@ -27,7 +27,8 @@ define(function (require, exports, module) {
 
 	let tableData = {
 		userName: userLoginName,
-		type: type
+		type: type,
+		pilotControlType: '1'
 	}
 	orderTableComponent.orderTableComponent.writeOrderTableDom('#junior-fans-table', tableData, () => {
 
