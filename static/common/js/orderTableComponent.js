@@ -97,15 +97,21 @@ define(function (require, exports, module) {
 		dom.push('</form>')
 		dom.push('<div class="absolute-dialog-action">')
 		/*dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')*/
-		if (row.task_status === '1') {
-			dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" data-status = "0">暂停</button>')
-			dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" data-status = "2">停止</button>')
-		} else if (row.task_status === '0') {
-			dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" data-status = "1">开始</button>')
-			dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" data-status = "2">停止</button>')
-		} else {
+
+		if (row.task_check_status === '1' || row.task_check_status === '3') {
 			dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" disabled="true">开始</button>')
 			dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" disabled="true">停止</button>')
+		} else {
+			if (row.task_status === '1') {
+				dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" data-status = "0">暂停</button>')
+				dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" data-status = "2">停止</button>')
+			} else if (row.task_status === '0') {
+				dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" data-status = "1">开始</button>')
+				dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" data-status = "2">停止</button>')
+			} else {
+				dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" disabled="true">开始</button>')
+				dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" disabled="true">停止</button>')
+			}
 		}
 		dom.push('</div>')
 		dom.push('</div>')
@@ -151,7 +157,11 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '类别',
 				formatter: (value, row, index) => {
-					return orderTypeArray.orderTypeArray[value]
+					if (row.task_daokong_type === '1') {
+						return orderTypeArray.orderTypeArray[value]
+					} else {
+						return '属于其他类型'
+					}
 				}
 			}, {
 				field: 'task_time',
@@ -176,7 +186,7 @@ define(function (require, exports, module) {
 				formatter: (value, row, index) => {
 					switch (value) {
 						case '0':
-							return '<div style="color: blue; font-weight: 600;font-size: 12px">正在执行</div>'
+							return '<div style="color: blue; font-weight: 600;font-size: 12px">执行中</div>'
 							break
 						case '1':
 							return '<div style="color: forestgreen; font-weight: 600;font-size: 12px">已完成</div>'

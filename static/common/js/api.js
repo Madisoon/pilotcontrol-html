@@ -212,6 +212,11 @@ define(function (require, exports, module) {
 					getDataWay(url + 'getOtherConfigByType', {
 						otherType
 					}, 'GET', success)
+				},
+				getOtherInfoById: function (typeId, success) {
+					getDataWay(url + 'getOtherInfoById', {
+						typeId
+					}, 'GET', success)
 				}
 			}
 		}

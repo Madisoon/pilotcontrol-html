@@ -35,7 +35,15 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '类别',
 				formatter: (value, row, index) => {
-					return orderTypeArray.orderTypeArray[value]
+					console.log(row)
+					if (row.task_daokong_type === '1') {
+						return orderTypeArray.orderTypeArray[value]
+					} else {
+						api.manpower.otherConfigManage.getOtherInfoById(value, (rep) => {
+							console.log(rep)
+							return rep.name
+						})
+					}
 				}
 			}, {
 				field: 'task_time',
@@ -234,6 +242,8 @@ define(function (require, exports, module) {
 
 	$('.btn.order').click(function () {
 		orderType = $(this).attr('data-type')
+		$('.btn.order').removeClass('btn-primary')
+		$(this).addClass('btn-primary')
 		initializeTable()
 	})
 

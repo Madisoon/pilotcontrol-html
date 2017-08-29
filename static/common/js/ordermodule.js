@@ -162,7 +162,7 @@ define(function (require, exports, module) {
 						orderDom.push('<label class="radio-inline">')
 						orderDom.push('<input type="radio" name="inlineRadioOptions" value="2"> 关闭内容')
 						orderDom.push('</label>')
-						orderDom.push('<textarea class="form-control al-order-context" rows="3" placeholder="一行代表一条内容!"></textarea>')
+						orderDom.push('<textarea class="form-control al-order-context" rows="3" placeholder="一行代表一条评论"></textarea>')
 						orderDom.push('</div>')
 						orderDom.push('</div>')
 					}
@@ -179,7 +179,7 @@ define(function (require, exports, module) {
 					orderDom.push('<div></div>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="absolute-dialog-action">')
-					orderDom.push('<button type="button" class="btn btn-primary order-sure-button">确定</button>')
+					orderDom.push('<button type="button" class="btn btn-primary order-sure-button">提交</button>')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
 
