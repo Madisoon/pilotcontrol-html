@@ -151,38 +151,45 @@ define(function (require, exports, module) {
 			}, {
 				field: 'id',
 				searchable: true,
-				title: '订单号'
+				title: '订单号',
+				width: 110
 			}, {
 				field: 'task_type',
 				searchable: true,
 				title: '类别',
+				width: 110,
 				formatter: (value, row, index) => {
 					if (row.task_daokong_type === '1') {
 						return orderTypeArray.orderTypeArray[value]
 					} else {
-						return '属于其他类型'
+						return row.task_type_name
 					}
 				}
 			}, {
 				field: 'task_time',
 				searchable: true,
-				title: '开始时间'
+				title: '开始时间',
+				width: 140
 			}, {
 				field: 'task_end_time',
 				searchable: true,
-				title: '结束时间'
-			}, {
+				title: '结束时间',
+				width: 140
+			}/*, {
 				field: 'task_start_mark',
 				searchable: true,
-				title: '理应扣分'
-			}, {
+				title: '理应扣分',
+				width: 60
+			}*/, {
 				field: 'task_finish_mark',
 				searchable: true,
-				title: '实际扣分'
+				title: '实际扣分',
+				width: 60
 			}, {
 				field: 'task_check_status',
 				searchable: true,
 				title: '审核状态',
+				width: 60,
 				formatter: (value, row, index) => {
 					switch (value) {
 						case '0':
@@ -203,6 +210,7 @@ define(function (require, exports, module) {
 				field: 'task_status',
 				searchable: true,
 				title: '状态',
+				width: 40,
 				formatter: (value, row, index) => {
 					switch (value) {
 						case '0':

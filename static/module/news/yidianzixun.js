@@ -11,6 +11,8 @@ define(function (require, exports, module) {
 	const orderTableComponent = require('../../common/js/orderTableComponent')
 	let [userLoginName, type] = [window.parent.SYSTEM.user.user_loginname, '12,13,14,15']
 	$('#all-order-show').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#all-order-show').addClass('btn-primary')
 		$('#order-component-show').hide()
 		$('.order-table').show()
 	})
@@ -24,6 +26,8 @@ define(function (require, exports, module) {
 
 	})
 	$('#read-add').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#read-add').addClass('btn-primary')
 		let orderData = {
 			contentFlag: false, // 判断是否需要内容
 			className: 'button-ydzxydl',
@@ -47,6 +51,8 @@ define(function (require, exports, module) {
 	})
 
 	$('#remark-add').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#remark-add').addClass('btn-primary')
 		let orderData = {
 			contentFlag: true, // 判断是否需要内容
 			className: 'button-ydzxfbpl',
@@ -70,6 +76,8 @@ define(function (require, exports, module) {
 	})
 
 	$('#remark-good-add').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#remark-good-add').addClass('btn-primary')
 		let orderData = {
 			contentFlag: true, // 判断是否需要内容
 			className: 'button-ydzxpldz',
@@ -93,6 +101,8 @@ define(function (require, exports, module) {
 	})
 
 	$('#collection-articles-add').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#collection-articles-add').addClass('btn-primary')
 		let orderData = {
 			contentFlag: false, // 判断是否需要内容
 			className: 'button-ydzxwzsc',

@@ -11,6 +11,8 @@ define(function (require, exports, module) {
 	const orderTableComponent = require('../../common/js/orderTableComponent')
 	let [userLoginName, type] = [window.parent.SYSTEM.user.user_loginname, '11']
 	$('#all-order-show').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#all-order-show').addClass('btn-primary')
 		$('#order-component-show').hide()
 		$('.order-table').show()
 	})
@@ -33,7 +35,8 @@ define(function (require, exports, module) {
 
 	})
 	$('#single-add').click(() => {
-
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#single-add').addClass('btn-primary')
 		orderModule.orderModule.writeOrderDom('#order-component-show', orderData, (rep) => {
 			if (rep === 1) {
 				orderTableComponent.orderTableComponent.writeOrderTableDom('#junior-fans-table', tableData, (rep) => {

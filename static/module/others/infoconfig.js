@@ -11,6 +11,9 @@ define(function (require, exports, module) {
 	let [userLoginName, otherType] = [window.parent.SYSTEM.user.user_loginname, '']
 
 	$('.type-button').click(function () {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$(this).addClass('btn-primary')
+
 		let otherType = $(this).attr('data-type')
 		if (otherType == '2' || otherType == '3') {
 			$('.daokong-content').show()
@@ -23,6 +26,8 @@ define(function (require, exports, module) {
 	})
 
 	$('#all-order-show').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#all-order-show').addClass('btn-primary')
 		$('.order-table').show()
 		$('#order-component-show').hide()
 	})

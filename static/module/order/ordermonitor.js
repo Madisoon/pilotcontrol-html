@@ -24,42 +24,48 @@ define(function (require, exports, module) {
 				field: 'id',
 				searchable: true,
 				sortable: true,
-				title: '订单号'
+				title: '订单号',
+				width: 110
 			}, {
 				field: 'task_create',
 				searchable: true,
 				sortable: true,
-				title: '用户'
+				title: '用户',
+				width: 60
 			}, {
 				field: 'task_type',
 				searchable: true,
 				title: '类别',
+				width: 110,
 				formatter: (value, row, index) => {
-					console.log(row)
 					if (row.task_daokong_type === '1') {
 						return orderTypeArray.orderTypeArray[value]
 					} else {
-						api.manpower.otherConfigManage.getOtherInfoById(value, (rep) => {
-							console.log(rep)
-							return rep.name
-						})
+						return row.task_type_name
 					}
 				}
 			}, {
 				field: 'task_time',
-				title: '提交时间'
+				title: '提交时间',
+				width: 120,
+				formatter: (value, row, index) => {
+					return value.substring(0, 16)
+				}
 			}, {
 				field: 'task_start_mark',
 				searchable: true,
-				title: '损耗积分'
+				title: '损耗积分',
+				width: 60
 			}, {
 				field: 'task_finish_mark',
 				searchable: true,
-				title: '实际扣分'
+				title: '实际扣分',
+				width: 60
 			}, {
 				field: 'task_status',
 				searchable: true,
 				title: '状态',
+				width: 40,
 				formatter: (value, row, index) => {
 					switch (value) {
 						case '0':
@@ -77,6 +83,7 @@ define(function (require, exports, module) {
 				field: 'task_check_status',
 				searchable: true,
 				title: '操作',
+				width: 237,
 				formatter: (value, row, index) => {
 
 					let returnValue = ''

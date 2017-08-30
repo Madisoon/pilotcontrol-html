@@ -10,11 +10,15 @@ define(function (require, exports, module) {
 	const orderTableComponent = require('../../common/js/orderTableComponent')
 	let [userLoginName, type, imageUrl] = [window.parent.SYSTEM.user.user_loginname, '7', '']
 	$('#all-order-show').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#all-order-show').addClass('btn-primary')
 		$('#order-component-show').hide()
 		$('.order-table').show()
 	})
 
 	$('#single-add').click(() => {
+		$('.order-operation .btn').removeClass('btn-primary')
+		$('#single-add').addClass('btn-primary')
 		getFormData()
 		$('#upload-input-image').val('')
 		$('.al-order-total-number').text('0分')
