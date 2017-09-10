@@ -49,7 +49,13 @@ define(function (require, exports, module) {
 			if (contextFlag) {
 				orderData.task_context = orderContext
 			}
-			if (orderData.task_url === '' || orderData.task_number === '0') {
+			if (orderData.task_url === '' || orderData.task_start_mark === 0) {
+				if (orderData.task_url === '') {
+					$('.form-control.al-order-url').addClass('active')
+				}
+				if (orderData.task_start_mark === 0) {
+					$('.form-control.al-order-number').addClass('active')
+				}
 				layer.msg('信息填写不完整!', {
 					time: 1500
 				})
@@ -190,6 +196,7 @@ define(function (require, exports, module) {
 						// 输入框移除事件
 						markTotal = 0
 						$('.custom-mark-content .form-group').each(function () {
+							$('.form-control.al-order-number').removeClass('active')
 							let number = parseInt($(this).find('.al-order-number').val(), 10)
 							let numberLimit = parseInt($(this).find('.al-limit-number').attr('data-number'), 10)
 							if (number < numberLimit) {
@@ -200,6 +207,14 @@ define(function (require, exports, module) {
 							markTotal += parseInt(number * singleMark, 10)
 						})
 						$('.al-order-total-number').text(markTotal)
+					})
+
+					$('.form-control.al-order-url').change(() => {
+						if ($('.form-control.al-order-url').val() === '') {
+							$('.form-control.al-order-url').addClass('active')
+						} else {
+							$('.form-control.al-order-url').removeClass('active')
+						}
 					})
 
 					$('.mode-execution').click(() => {

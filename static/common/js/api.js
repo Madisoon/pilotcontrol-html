@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
 	const baseUrl = 'http://127.0.0.1:8022/'
-	/*const baseUrl = 'http://http://118.178.237.219:8011/'*/
+	/*const baseUrl = 'http://118.178.237.219:8011/'*/
 	const getDataWay = function (url, params, httpType, success) {
 		//发送ajax请求
 		$.ajax({
@@ -217,6 +217,41 @@ define(function (require, exports, module) {
 					getDataWay(url + 'getOtherInfoById', {
 						typeId
 					}, 'GET', success)
+				}
+			},
+			messageConfigManage: {
+				insertMessageConfig: function (messageData, success) {
+					getDataWay(url + 'insertMessageConfig', {
+						messageData,
+					}, 'PUT', success)
+				},
+				updateMessageConfig: function (messageData, messageId, success) {
+					getDataWay(url + 'updateMessageConfig', {
+						messageData,
+						messageId
+					}, 'POST', success)
+				},
+				deleteMessageConfig: function (messageId, success) {
+					getDataWay(url + 'deleteMessageConfig', {
+						messageId,
+					}, 'POST', success)
+				}
+			},
+			planManage: {
+				addPlan: function (planData, success) {
+					getDataWay(url + 'addPlan', {planData: planData}, 'PUT', success)
+				},
+				deletePlan: function (idData, success) {
+					getDataWay(url + 'deletePlan', {idData: idData}, 'PUT', success)
+				},
+				updatePlan: function (planData, id, success) {
+					getDataWay(url + 'updatePlan', {
+						planData: planData,
+						id: id
+					}, 'POST', success)
+				},
+				getAllPlan: function (success) {
+					getDataWay(url + 'getAllPlan', {}, 'POST', success)
 				}
 			}
 		}

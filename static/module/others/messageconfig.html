@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css">
+    <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
+    <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+    <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../spm_modules/layer/layer.js"></script>
+    <script src="../../common/js/iconfont.js"></script>
+    <script src="../../../spm_modules/seajs-3.0.0/dist/sea.js"></script>
+    <title>导控-短信配置</title>
+</head>
+<body>
+<div class="message-config-html">
+    <button type="button" class="btn btn-primary" id="add-people">添加人员</button>
+    <button type="button" class="btn btn-danger" id="delete-people">删除人员</button>
+    <div class="table-message-config">
+        <table class="table table-condensed" id="message-config-table"></table>
+    </div>
+    <div id="add-message-config-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">人员状态</label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="people-status" class="people-status" value="1" checked="true"> 启动
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="people-status" class="people-status" value="0"> 停止
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">人员名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control message-name" placeholder="人员名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机号码</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control message-number" placeholder="手机号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">配置状态</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="message-config-all"> 全部
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="message-config" value="1"> 微博
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="message-config" value="2"> 微信
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="message-config" value="3"> 新闻
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="message-config" value="4"> 其他
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">计划任务</label>
+                    <div class="col-sm-10">
+                        <select class="form-control message-plan">
+
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="absolute-dialog-action">
+            <button class="btn btn-primary" id="reserve-message-button">确认</button>
+        </div>
+    </div>
+
+
+</div>
+<script>
+	seajs.use('./messageconfig')
+</script>
+</body>
+</html>

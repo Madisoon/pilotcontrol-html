@@ -6,8 +6,9 @@ define(function (require, exports, module) {
 	const api = require('../static/common/js/api')
 	const sysInfo = JSON.parse(localStorage.getItem('sysInfo'))
 	const sysUser = JSON.parse(localStorage.getItem('sysUser'))
-
-	console.log(sysInfo)
+	if (sysInfo === null || sysInfo === '') {
+		window.location.href = './login.html'
+	}
 
 	SYSTEM = {
 		user: sysInfo.user,

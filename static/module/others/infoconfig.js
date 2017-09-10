@@ -120,7 +120,8 @@ define(function (require, exports, module) {
 			task_type: otherType,
 			task_create: loginName,
 			task_supplement: orderSupplement,
-			task_daokong_type: '0'
+			task_daokong_type: '0',
+			task_context: $('.al-order-context').val()
 		}
 		if (executionMode === '0') {
 			// 手动执行
@@ -133,6 +134,17 @@ define(function (require, exports, module) {
 		} else {
 			if (userMark - realMark > 0) {
 				api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
+					getTableData()
+					$('.order-operation .btn').removeClass('btn-primary')
+					$('#all-order-show').addClass('btn-primary')
+					$('.order-table').show()
+					$('#order-component-show').hide()
+					$('.form-control.al-order-url').val('')
+					$('.form-control.al-order-supplement').val('')
+					$('.al-order-total-number').text('0')
+					$('.al-order-number').val(0)
+					$('.form-control.execution-content').val('')
+					$('.al-order-context').val('')
 					layer.msg('下单成功!', {icon: 1, time: 1000})
 				})
 			} else {

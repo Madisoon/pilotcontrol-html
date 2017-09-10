@@ -84,6 +84,10 @@ table {
   }
 }
 
+.form-control.active {
+  background-color: #FF4040;
+}
+
 .pagination {
   margin-top: 0px;
 }
@@ -973,6 +977,20 @@ table {
 .other-config-html {
   padding: 8px;
   .other-table {
+    margin-top: 8px;
+  }
+}
+
+.message-config-html {
+  padding: 8px;
+  .table-message-config {
+    margin-top: 8px;
+  }
+}
+
+.sys-plan-html {
+  padding: 8px;
+  .table-plan-config {
     margin-top: 8px;
   }
 }
