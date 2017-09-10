@@ -218,9 +218,12 @@ define(function (require, exports, module) {
 					})
 
 					$('.mode-execution').click(() => {
-						$('.order-plan').stop().slideToggle()
+						if ($('.mode-execution:checked').val() === '1') {
+							$('.order-plan').stop().slideUp()
+						} else {
+							$('.order-plan').stop().slideDown()
+						}
 					})
-
 					$('.btn-primary.order-sure-button').click(() => {
 						getUserMark(newOrderData.userLoginName, true, newOrderData.dataType, success)
 					})
