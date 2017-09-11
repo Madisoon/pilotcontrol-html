@@ -157,7 +157,7 @@ define(function (require, exports, module) {
 			method: 'POST',
 			url: '' + api.baseUrl + 'guidance/getAllTaskByConfig',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
@@ -212,7 +212,7 @@ define(function (require, exports, module) {
 			method: 'POST',
 			url: '' + api.baseUrl + 'corpus/getAllCorpusContext',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'json',
 			queryParams: function (params) {

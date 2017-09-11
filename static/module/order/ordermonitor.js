@@ -122,7 +122,7 @@ define(function (require, exports, module) {
 			paginationHAlign: 'left',
 			paginationDetailHAlign: 'right',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'json',
 			queryParams: function (params) {

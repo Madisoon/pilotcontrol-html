@@ -147,7 +147,7 @@ define(function (require, exports, module) {
 			method: 'post',
 			url: '' + api.baseUrl + 'manpower/getAllPlan',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			pagination: true,
 			paginationHAlign: 'left',

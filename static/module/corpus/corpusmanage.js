@@ -36,7 +36,7 @@ define(function (require, exports, module) {
 			},
 			url: '' + api.baseUrl + 'corpus/getAllCorpusContext',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'json',
 			queryParams: function (params) {

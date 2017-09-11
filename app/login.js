@@ -396,8 +396,8 @@ define(function (require, exports, module) {
 			success: function (rep) {
 				if (rep.result === 1) {
 					$('#preloader').show()
-					localStorage.setItem('sysInfo', JSON.stringify(rep))
-					localStorage.setItem('sysUser', JSON.stringify(rep.user))
+					localStorage.setItem('sysInfoControl', JSON.stringify(rep))
+					localStorage.setItem('sysUserControl', JSON.stringify(rep.user))
 					setTimeout(function () {
 						window.location.href = './index.html'
 					}, 1200)

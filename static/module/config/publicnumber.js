@@ -140,7 +140,7 @@ define(function (require, exports, module) {
 			method: 'POST',
 			url: '' + api.baseUrl + 'system/getAllNumber',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'json',
 			queryParams: function (params) {
@@ -209,7 +209,7 @@ define(function (require, exports, module) {
 			undefinedText: '--',
 			classes: 'table table-bordered table-hover',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			method: 'POST',
 			url: '' + api.baseUrl + 'system/getAllNumber',

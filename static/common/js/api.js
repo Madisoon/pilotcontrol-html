@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 	/* require('http://localhost:63343/service-html/spm_modules/layer/layer.js');*/
 	//地址，参数（为对象），方法请求成功
 	const baseUrl = 'http://127.0.0.1:8022/'
-	/*const baseUrl = 'http://118.178.237.219:8011/'*/
+	/*const baseUrl = 'http://121.199.4.149:8011/'*/
 	const getDataWay = function (url, params, httpType, success) {
 		//发送ajax请求
 		$.ajax({
@@ -16,7 +16,7 @@ define(function (require, exports, module) {
 			dataType: 'JSON',
 			data: params,
 			beforeSend: function (request) {
-				request.setRequestHeader('webToken', JSON.parse(localStorage.getItem('sysInfo')).token)
+				request.setRequestHeader('webToken', JSON.parse(localStorage.getItem('sysInfoControl')).token)
 			},
 			success: function (rep) {
 				success(rep)

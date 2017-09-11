@@ -204,7 +204,7 @@ define(function (require, exports, module) {
 			url: '' + api.baseUrl + 'button/getAllButton',
 			queryParamsType: 'json',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParams: function (params) {
 

@@ -4,8 +4,8 @@
 define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../static/common/js/api')
-	const sysInfo = JSON.parse(localStorage.getItem('sysInfo'))
-	const sysUser = JSON.parse(localStorage.getItem('sysUser'))
+	const sysInfo = JSON.parse(localStorage.getItem('sysInfoControl'))
+	const sysUser = JSON.parse(localStorage.getItem('sysUserControl'))
 	if (sysInfo === null || sysInfo === '') {
 		window.location.href = './login.html'
 	}
@@ -19,9 +19,6 @@ define(function (require, exports, module) {
 		user: sysInfo.user,
 		userType: (sysInfo.user.role_name) === '超级管理员' ? 1 : 0
 	}
-
-	console.log(JSON.parse(localStorage.getItem('sysInfo')).token)
-
 	$('#system-info').click(() => {
 		$('.person-setting-fixed').stop().fadeToggle()
 	})

@@ -86,7 +86,7 @@ define(function (require, exports, module) {
 			},
 			url: '' + api.baseUrl + 'system/getAllSysUser',
 			ajaxOptions: {
-				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfo')).token}
+				headers: {'webToken': JSON.parse(localStorage.getItem('sysInfoControl')).token}
 			},
 			queryParamsType: 'undefined',
 			pagination: true,
