@@ -162,7 +162,6 @@ define(function (require, exports, module) {
 			}
 		})
 	}
-	initializeTable()
 
 	let initializeTablePublic = () => {
 		$('#number-table').bootstrapTable('destroy')
