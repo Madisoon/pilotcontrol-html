@@ -49,9 +49,17 @@ define(function (require, exports, module) {
 			if (contextFlag) {
 				orderData.task_context = orderContext
 			}
-			if (orderData.task_url === '' || orderData.task_start_mark === 0) {
+
+			if (contextFlag) {
+				orderData.task_context = orderContext
+			}
+
+			if (orderData.task_url === '' || orderData.task_start_mark === 0 || (contextFlag && orderContext === '')) {
 				if (orderData.task_url === '') {
 					$('.form-control.al-order-url').addClass('active')
+				}
+				if (orderData.task_context === '') {
+					$('.form-control.al-order-context').addClass('active')
 				}
 				if (orderData.task_start_mark === 0) {
 					$('.form-control.al-order-number').addClass('active')
@@ -99,8 +107,8 @@ define(function (require, exports, module) {
 					orderDom.push('</div>')
 					orderDom.push('<form class="form-horizontal">')
 					orderDom.push('<div class="form-group">')
-					orderDom.push('<label class="col-sm-2 control-label">' + newOrderData.titleContent + '</label>')
-					orderDom.push('<div class="col-sm-10">')
+					orderDom.push('<label class="col-sm-2 control-label"><span class="must-write-icon">*</span>' + newOrderData.titleContent + '</label>')
+					orderDom.push('<div class="col-sm-5">')
 					orderDom.push('<input type="text" class="form-control al-order-url" placeholder="' + newOrderData.titleContent + '">')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
@@ -118,7 +126,7 @@ define(function (require, exports, module) {
 					let markTotal = 0
 					for (let i = 0; i < markNamesLen; i++) {
 						orderDom.push('<div class="form-group"> ')
-						orderDom.push('<label class="col-sm-2 control-label">' + markNames[i] + ':</label> ')
+						orderDom.push('<label class="col-sm-2 control-label"><span class="must-write-icon">*</span>' + markNames[i] + ':</label> ')
 						orderDom.push('<div class="col-sm-2"> ')
 						orderDom.push('<input type="number" min="100" class="form-control al-order-number" value="0" data-name="' + markNames[i] + '" placeholder="数量"> ')
 						orderDom.push('</div> ')
@@ -139,7 +147,7 @@ define(function (require, exports, module) {
 					orderDom.push('</div>')
 					orderDom.push('<div class="form-group">')
 					orderDom.push('<label class="col-sm-2 control-label">执行方式:</label>')
-					orderDom.push('<div class="col-sm-10">')
+					orderDom.push('<div class="col-sm-5">')
 					orderDom.push('<label class="radio-inline">')
 					orderDom.push('<input type="radio" class="mode-execution" name="mode-execution" value="1" checked="true">')
 					orderDom.push('自动执行')
@@ -154,8 +162,8 @@ define(function (require, exports, module) {
 					orderDom.push('</div>')
 					if (newOrderData.contentFlag) {
 						orderDom.push('<div class="form-group">')
-						orderDom.push('<label class="col-sm-2 control-label">执行内容:</label>')
-						orderDom.push('<div class="col-sm-10">')
+						orderDom.push('<label class="col-sm-2 control-label"><span class="must-write-icon">*</span>执行内容:</label>')
+						orderDom.push('<div class="col-sm-5">')
 						orderDom.push('<label class="radio-inline">')
 						orderDom.push('<input type="radio" name="inlineRadioOptions" value="1" checked="true"> 指定内容')
 						orderDom.push('</label>')
@@ -174,7 +182,7 @@ define(function (require, exports, module) {
 					}
 					orderDom.push('<div class="form-group">')
 					orderDom.push('<label class="col-sm-2 control-label">补充说明:</label>')
-					orderDom.push('<div class="col-sm-7">')
+					orderDom.push('<div class="col-sm-5">')
 					orderDom.push('<textarea class="form-control al-order-supplement" placeholder="补充说明!" rows="3"></textarea>')
 					orderDom.push('</div>')
 					orderDom.push('<div class="col-sm-3">')
@@ -184,7 +192,7 @@ define(function (require, exports, module) {
 					orderDom.push('</form>')
 					orderDom.push('<div></div>')
 					orderDom.push('</div>')
-					orderDom.push('<div class="absolute-dialog-action">')
+					orderDom.push('<div class="order-absolute-dialog-action">')
 					orderDom.push('<button type="button" class="btn btn-primary order-sure-button">提交</button>')
 					orderDom.push('</div>')
 					orderDom.push('</div>')
@@ -214,6 +222,14 @@ define(function (require, exports, module) {
 							$('.form-control.al-order-url').addClass('active')
 						} else {
 							$('.form-control.al-order-url').removeClass('active')
+						}
+					})
+
+					$('.form-control.al-order-context').change(() => {
+						if ($('.form-control.al-order-context').val() === '') {
+							$('.form-control.al-order-context').addClass('active')
+						} else {
+							$('.form-control.al-order-context').removeClass('active')
 						}
 					})
 

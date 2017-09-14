@@ -47,6 +47,10 @@ html {
   margin-left: 5px;
   margin-top: 5px; }
 
+.must-write-icon {
+  color: red;
+  font-weight: 600; }
+
 .al-ui.segment {
   position: relative;
   background: #FFF;
@@ -74,6 +78,11 @@ a {
 
 table {
   font-size: 0.8rem; }
+  table th, table td {
+    text-align: center; }
+  table thead {
+    background-color: #696969;
+    color: white; }
 
 .form-control.active {
   background-color: #FF4040; }
@@ -119,6 +128,12 @@ table {
 .absolute-dialog-action {
   text-align: right;
   margin-bottom: 8px; }
+
+.order-absolute-dialog-action {
+  text-align: right;
+  margin-right: 20%; }
+  .order-absolute-dialog-action .order-sure-button {
+    width: 120px; }
 
 .form-group .control-label {
   font-weight: 500;

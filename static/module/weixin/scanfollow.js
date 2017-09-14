@@ -67,7 +67,7 @@ define(function (require, exports, module) {
 			let orderDom = []
 			for (let i = 0; i < markNamesLen; i++) {
 				orderDom.push('<div class="form-group"> ')
-				orderDom.push('<label class="col-sm-2 control-label">' + markNames[i] + ':</label> ')
+				orderDom.push('<label class="col-sm-2 control-label"><span class="must-write-icon">*</span>' + markNames[i] + ':</label> ')
 				orderDom.push('<div class="col-sm-2"> ')
 				orderDom.push('<input type="number" min="100" class="form-control al-order-number" value="0" data-name="' + markNames[i] + '" placeholder="数量"> ')
 				orderDom.push('</div> ')

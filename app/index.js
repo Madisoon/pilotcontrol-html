@@ -53,7 +53,9 @@ define(function (require, exports, module) {
 		navMenuDom.push('</li>')
 	}
 	$('.parent-first-menu').append(navMenuDom.join(''))
-	$('.menu-item').click(function () {
+
+	// 采用事件委托
+	$('.parent-first-menu').on('click', '.menu-item', function () {
 		let iconUrl = $(this).find('.icon-x').attr('xlink:href')
 		if (iconUrl === '#icon-add1') {
 			$(this).find('.icon-x').attr('xlink:href', '#icon-move')

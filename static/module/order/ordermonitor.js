@@ -282,8 +282,23 @@ define(function (require, exports, module) {
 				break
 		}
 		$('#order-monitor-time').text(row.task_time)
-		$('#order-monitor-content').text(row.task_context)
-		$('#order-monitor-supplement').text(row.task_supplement)
+		if (row.task_context) {
+			let contentSpaceSplit = row.task_context.split('\n')
+			let contentDom = []
+			for (let i = 0, contentSpaceSplitLen = contentSpaceSplit.length; i < contentSpaceSplitLen; i++) {
+				contentDom.push('<p>' + contentSpaceSplit[i] + '</p>')
+			}
+			$('#order-monitor-content').empty()
+			$('#order-monitor-content').append(contentDom.join(''))
+		} else {
+			$('#order-monitor-content').empty()
+			$('#order-monitor-content').append('<p>内容为空!</p>')
+		}
+		if (row.task_supplement) {
+			$('#order-monitor-supplement').text(row.task_supplement)
+		} else {
+			$('#order-monitor-supplement').text('内容为空!')
+		}
 	}
 })
 
