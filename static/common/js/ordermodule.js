@@ -12,7 +12,6 @@ define(function (require, exports, module) {
 
 		let getUserMark = (loginName, contextFlag, type, success) => {
 			api.system.userManage.getSysUser(loginName, (rep) => {
-				console.log(rep.user_mark)
 				insertManPowerData(rep.user_mark, loginName, contextFlag, type, success)
 			})
 		}
@@ -70,6 +69,9 @@ define(function (require, exports, module) {
 			} else {
 				if (userMark - realMark > 0) {
 					api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
+						let realMarkS = $('#user-real-mark', window.parent.document).text()
+						realMarkS = parseInt(realMarkS) - parseInt(realMark)
+						$('#user-real-mark', window.parent.document).text(realMarkS)
 						if (rep.result === 1) {
 							success(1)
 							layer.msg('下单成功!', {icon: 1, time: 1000})

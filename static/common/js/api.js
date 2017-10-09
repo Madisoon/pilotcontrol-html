@@ -114,10 +114,12 @@ define(function (require, exports, module) {
 		let url = baseUrl + 'guidance/'
 		return {
 			taskManage: { // 客户管理
-				insertTask: function (taskInfo, taskContext, success) {
+				insertTask: function (taskInfo, taskContext, remarkContent, daokongTypeOrder, success) {
 					getDataWay(url + 'insertTask', {
 						taskInfo: taskInfo,
-						taskContext: taskContext
+						taskContext: taskContext,
+						remarkContent,
+						daokongTypeOrder
 					}, 'PUT', success)
 				},
 				deleteTask: function (taskId, success) {
@@ -132,6 +134,13 @@ define(function (require, exports, module) {
 					getDataWay(url + 'updateMonitorStatus', {
 						taskId: taskId
 					}, 'POST', success)
+				},
+				getSinaRemark: function (urlPost, host, page, success) {
+					getDataWay(url + 'getSinaRemark', {
+						urlPost,
+						host,
+						page
+					}, 'GET', success)
 				},
 			}
 		}

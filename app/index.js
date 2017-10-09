@@ -19,6 +19,11 @@ define(function (require, exports, module) {
 		user: sysInfo.user,
 		userType: (sysInfo.user.role_name) === '超级管理员' ? 1 : 0
 	}
+
+	api.system.userManage.getSysUser(sysInfo.user.user_loginname, (rep) => {
+		$('#user-real-mark').text(rep.user_mark)
+	})
+
 	$('#system-info').click(() => {
 		$('.person-setting-fixed').stop().fadeToggle()
 	})
@@ -37,11 +42,11 @@ define(function (require, exports, module) {
 		navMenuDom.push('</svg> ')
 		navMenuDom.push('</span>')
 		navMenuDom.push('<span class="menu-item-title">&nbsp; ' + functionsItem[0].menu_parent_name + '</span>')
-		navMenuDom.push('<span>')
-		navMenuDom.push('<svg class="icon" aria-hidden="true">')
-		navMenuDom.push('<use class="icon-x" xlink:href="#icon-add1"></use>')
-		navMenuDom.push('</svg>')
-		navMenuDom.push('</span>')
+		/*		navMenuDom.push('<span>')
+				navMenuDom.push('<svg class="icon" aria-hidden="true">')
+				navMenuDom.push('<use class="icon-x" xlink:href="#icon-add1"></use>')
+				navMenuDom.push('</svg>')
+				navMenuDom.push('</span>')*/
 		navMenuDom.push('</a>')
 		navMenuDom.push('<ul class="child-second-menu" style="display: none;">')
 		for (let singleItem  of functionsItem) {

@@ -136,6 +136,17 @@
             background-color: #2299ee;
             color: #fff;
         }
+
+        .user-balance {
+            max-width: 160px;
+            margin-right: 8px;
+            height: 100%;
+            float: right;
+        }
+
+        .user-balance-number {
+            line-height: 52px;
+        }
     </style>
 </head>
 <body>
@@ -203,6 +214,11 @@
                 </svg>
             </a>
             <div class="sys-message">
+                <div class="user-balance">
+                    <div class="user-balance-number">
+                        <span class="label label-danger">积分余额：<span id="user-real-mark"></span>分</span>
+                    </div>
+                </div>
             </div>
             <a class="opertion-icon right " href="#">
                 <div class="info-show">
@@ -226,7 +242,7 @@
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-choicenessfill"></use>
                         </svg>
-                        <span>&nbsp;&nbsp;首页</span>
+                        <span>&nbsp;首页</span>
                     </a>
                 </li>
             </ul>

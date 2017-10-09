@@ -5,19 +5,10 @@ define(function (require, exports, module) {
 	// 通过 require 引入依赖,加载所需要的js文件
 	const api = require('../../common/js/api')
 	const guidanceTypeSpm = require('../../common/js/guidanceType')
-	let [configId, corpusChooseDialog, addTaskDialog, daokongType, daokongTypeOrder, sinaRemarkDialog] = [0, {}, {}, 0, 1, {}]
+	let [configId, corpusChooseDialog, addTaskDialog, daokongType] = [0, {}, {}, 0]
 	const [userLoginName, userType] = [window.parent.SYSTEM.user.user_loginname, window.parent.SYSTEM.userType]
-	guidanceTypeSpm.guidanceType.writeDom(userLoginName, userType, '#guidance-type-show', (rep, configName) => {
+	guidanceTypeSpm.guidanceType.writeDom(userLoginName, userType, '#guidance-type-show', (rep) => {
 		configId = rep
-		if (configName === '论坛') {
-			daokongTypeOrder = 1
-			$('.btn-primary.luntan').show()
-			$('.btn-primary.news').hide()
-		} else {
-			daokongTypeOrder = 0
-			$('.btn-primary.luntan').hide()
-			$('.btn-primary.news').show()
-		}
 		initializeTable()
 	})
 	$('#add-order-form').click(() => {
@@ -50,69 +41,6 @@ define(function (require, exports, module) {
 		$('.form-group.automatic-corpus').hide()
 	})
 
-	$('#post-blog').click(() => {
-		// 发帖
-		daokongType = 1
-		initializeFormBlog()
-		$('.form-group.daokong-remark').hide()
-		$('.form-group.sina-custom-remark').show()
-		$('.form-group.sina-remark').hide()
-	})
-	$('#replay-blog').click(() => {
-		// 回帖
-		daokongType = 2
-		initializeFormBlog()
-		$('.form-group.daokong-remark').show()
-		$('.form-group.sina-custom-remark').hide()
-		$('.form-group.sina-remark').show()
-	})
-
-	$('#sina-add-remark').click(() => {
-		sinaRemarkDialog = layer.open({
-			title: ' 选 择 评 论 ',
-			type: 1,
-			area: ['70%', '80%'],
-			content: $('#sina-remark-dialog'),
-			zIndex: layer.zIndex,
-			success: function (layero) {
-				layer.setTop(layero)
-			}
-		})
-		let sinaUrl = $('.form-control.sina-task-url').val()
-		api.result.taskManage.getSinaRemark(sinaUrl, 'sina', '1', (rep) => {
-			console.log(rep)
-			let remarkDom = []
-			for (dataItem of rep.data) {
-				remarkDom.push('<div class="checkbox">')
-				remarkDom.push('<label>')
-				remarkDom.push('<input type="checkbox" value="' + dataItem.content + '" data-newsid="' + dataItem.newsid + '" data-mid="' + dataItem.mid + '" data-channel="' + dataItem.channel + '" class="all-news-remark">')
-				remarkDom.push(dataItem.content)
-				remarkDom.push('</label>')
-				remarkDom.push('</div>')
-			}
-			$('.sina-remark-show').empty()
-			$('.sina-remark-show').append(remarkDom.join(''))
-		})
-	})
-
-	$('#remark-button').click(() => {
-		layer.close(sinaRemarkDialog)
-		let remarkDom = []
-		$('.all-news-remark:checked').each(function () {
-			let content = $(this).val()
-			let newsid = $(this).attr('data-newsid')
-			let channel = $(this).attr('data-channel')
-			let mid = $(this).attr('data-mid')
-			remarkDom.push('<p class="remark-p" data-newsid="' + newsid + '" data-mid="' + mid + '" data-channel="' + channel + '">' + content + '<span class="glyphicon glyphicon-remove remark-remove icon-red icon-cursor"></span> </p>')
-		})
-		$('.guidance-sina-remark-show').empty()
-		$('.guidance-sina-remark-show').append(remarkDom.join(''))
-	})
-
-	$('.guidance-sina-remark-show').on('click', '.remark-remove', function () {
-		$(this).parent().remove()
-	})
-
 	let computeIntegration = () => {
 		let guidanceNumber = parseInt($('.form-control.task-number').val(), 10)
 		let guidanceIntegration = 0
@@ -133,11 +61,10 @@ define(function (require, exports, module) {
 	$('.form-control.task-number').change(() => {
 		computeIntegration()
 	})
-
-	$('.form-control.sina-task-number').change(() => {
-		let guidanceNumber = parseInt($('.form-control.sina-task-number').val(), 10)
-		$('.sina-all-total-integration').html(guidanceNumber * 5)
-	})
+	/*
+	 $('input[name=guidance-type]').click(() => {
+	 computeIntegration()
+	 })*/
 
 	$('.guidance-context-class').click(function () {
 		let guidanceContextType = $(this).val()
@@ -154,6 +81,10 @@ define(function (require, exports, module) {
 			case '3':
 				$('.form-group.custom-corpus').fadeIn()
 				$('.form-group.automatic-corpus').fadeIn()
+				break
+				/*			case '4':
+								$('.form-group.custom-corpus').fadeOut()
+								$('.form-group.automatic-corpus').fadeOut()*/
 				break
 			default:
 				$('.form-group.custom-corpus').fadeOut()
@@ -429,11 +360,17 @@ define(function (require, exports, module) {
 			let corpusDom = []
 			for (data of dataCorpus) {
 				corpusDom.push('<p class="corpus-p">' + data.corpus_context + '<span class="glyphicon glyphicon-remove icon-red icon-cursor corpus-context-item"></span> </p>')
+				/*				corpusDom.push('')
+				 corpusDom.push('')
+				 corpusDom.push('<span class="label label-primary corpus-icon icon-cursor icon-margin">' + data.corpus_context + '')
+				 corpusDom.push('&nbsp;&nbsp;<span class="glyphicon  glyphicon-remove "></span>')
+				 corpusDom.push('</span>')*/
 			}
 			$('.guidance-corpus-show').empty()
 			$('.guidance-corpus-show').append(corpusDom.join(''))
 		}
 	})
+
 	$('#cancel-corpus-button').click(() => {
 		layer.close(corpusChooseDialog)
 	})
@@ -498,53 +435,10 @@ define(function (require, exports, module) {
 			task_integration: taskIntegration,
 			task_create: userLoginName
 		}
-
-		let remarkContent = []
-		return [taskContext, guidanceContext, remarkContent]
+		return [taskContext, guidanceContext]
 	}
-
-	let getFormValueSina = () => {
-		let taskUrl = $('.form-control.sina-task-url').val() // 导控地址
-		let taskTitle = $('.form-control.sina-task-title').val() // 导控地址
-		let taskNumber = $('.form-control.sina-task-number').val()// 导控的数量
-		let numberType = []// 账号的类型
-		$('input[name=sina-number-type]:checked').each(function () {
-			numberType.push($(this).val())
-		})
-		let taskInterval = $('.form-control.sina-task-interval').val()// 导控的间隔
-		let taskIntegration = $('.sina-all-total-integration').html()// 导控的积分
-		let customContextAll = $('.form-control.sina-custom-context').val()
-		let customContext = customContextAll.split('\n')
-		let corpusContent = []
-		let systemContext = []
-		for (let customContextItem of customContext) {
-			corpusContent.push(customContextItem)
-		}
-		$('.guidance-sina-remark-show .remark-p').each(function () {
-			let contentObject = {}
-			contentObject.content = $(this).text()
-			contentObject.newsid = $(this).attr('data-newsid')
-			contentObject.mid = $(this).attr('data-mid')
-			contentObject.channel = $(this).attr('data-channel')
-			systemContext.push(contentObject)
-		})
-		console.log(systemContext)
-		let guidanceContext = {
-			config_id: configId,
-			task_url: taskUrl,
-			task_title: taskTitle,
-			number_type: numberType.join(','),
-			interval_time: taskInterval,
-			task_type: daokongType,
-			task_number: taskNumber,
-			task_integration: taskIntegration,
-			task_create: userLoginName
-		}
-		return [corpusContent, guidanceContext, systemContext]
-	}
-
 	$('#reserve-task-button').click(() => {
-		let [taskContext, taskInfo, remarkContent] = getFormValue()
+		let [taskContext, taskInfo] = getFormValue()
 		if (!taskInfo.task_title ||
 			!taskInfo.task_url ||
 			!taskInfo.interval_time ||
@@ -557,48 +451,7 @@ define(function (require, exports, module) {
 			// 全部填写完成之后
 			api.system.userManage.getSysUser(userLoginName, (rep) => {
 				if (parseInt(rep.user_mark) > parseInt(taskInfo.task_integration)) {
-					api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), JSON.stringify(remarkContent), daokongTypeOrder, (rep) => {
-						let realMark = $('#user-real-mark', window.parent.document).text()
-						realMark = parseInt(realMark) - parseInt(taskInfo.task_integration)
-						$('#user-real-mark', window.parent.document).text(realMark)
-						layer.close(addTaskDialog)
-						initializeTable()
-						if (rep.result) {
-							layer.msg(' 新 建 成 功 ', {
-								icon: 1,
-								time: 1200,
-							})
-						} else {
-							layer.msg(' 新 建 失 败 ', {
-								icon: 2,
-								time: 1200,
-							})
-						}
-					})
-				} else {
-					layer.msg('积分不足，无法下单!', {
-						time: 1500
-					})
-				}
-			})
-		}
-	})
-
-	$('#sina-task-btn').click(() => {
-		// 数据需要修改
-		let [taskContext, taskInfo, remarkContent] = getFormValueSina()
-		if (!taskInfo.task_url ||
-			!taskInfo.interval_time ||
-			!taskInfo.task_number ||
-			!taskInfo.task_integration) {
-			layer.msg('信息填写不完整!', {
-				time: 1500
-			})
-		} else {
-			// 全部填写完成之后
-			api.system.userManage.getSysUser(userLoginName, (rep) => {
-				if (parseInt(rep.user_mark) > parseInt(taskInfo.task_integration)) {
-					api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), JSON.stringify(remarkContent), daokongTypeOrder, (rep) => {
+					api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), (rep) => {
 						let realMark = $('#user-real-mark', window.parent.document).text()
 						realMark = parseInt(realMark) - parseInt(taskInfo.task_integration)
 						$('#user-real-mark', window.parent.document).text(realMark)
@@ -665,22 +518,6 @@ define(function (require, exports, module) {
 			type: 1,
 			area: ['70%', '90%'], //宽高
 			content: $('#order-form-dialog')
-		})
-	}
-
-	let initializeFormBlog = () => {
-		$('.form-control.task-url').val('') // 导控地址
-		$('.form-control.task-title').val('') // 导控地址
-		$('.form-control.task-number').val('')// 导控的数量
-		$('.form-control.task-interval').val('')// 导控的间隔
-		$('.all-total-integration').html('')// 导控的积分
-		$('.form-control.custom-context').val('')// 导控的语料内容
-		$('.guidance-corpus-show').empty()
-		addTaskDialog = layer.open({
-			title: ' 新闻导控 ',
-			type: 1,
-			area: ['70%', '90%'], //宽高
-			content: $('#blog-order-form-dialog')
 		})
 	}
 

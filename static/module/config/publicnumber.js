@@ -132,7 +132,7 @@ define(function (require, exports, module) {
 				title: '创建时间'
 			}],
 			pageNumber: 1,
-			pageSize: 20,
+			pageSize: 11,
 			sidePagination: 'server',
 			dataField: 'data',//指定后台的数据的名称
 			undefinedText: '--',
@@ -202,8 +202,8 @@ define(function (require, exports, module) {
 				}
 			}],
 			pageNumber: 1,
-			pageSize: 20,
-			sidePagination: 'server',
+			pageSize: 10,
+			sidePagination: 'client',
 			dataField: 'data',//指定后台的数据的名称
 			undefinedText: '--',
 			classes: 'table table-bordered table-hover',

@@ -134,6 +134,9 @@ define(function (require, exports, module) {
 		} else {
 			if (userMark - realMark > 0) {
 				api.manpower.manpowerManage.insertManPower(JSON.stringify(orderData), (rep) => {
+					let realMarkS = $('#user-real-mark', window.parent.document).text()
+					realMarkS = parseInt(realMarkS) - parseInt(realMark)
+					$('#user-real-mark', window.parent.document).text(realMarkS)
 					getTableData()
 					$('.order-operation .btn').removeClass('btn-primary')
 					$('#all-order-show').addClass('btn-primary')
