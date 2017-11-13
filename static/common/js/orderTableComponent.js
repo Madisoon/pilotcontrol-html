@@ -227,7 +227,21 @@ define(function (require, exports, module) {
 			}, {
 				field: 'manpower_contents',
 				searchable: true,
-				title: '信息反馈'
+				title: '信息反馈',
+				formatter: (value, row, index) => {
+					if (value === '' || value === undefined) {
+						return ''
+					} else {
+						let fileArray = value.split(',')
+						let dom = []
+						for (item of fileArray) {
+							// 获取到了图片的地址
+							dom.push('<a target="_blank" href="118.178.237.219:8080/dummyPath/' + item + '"><span class="label label-success span-file">' +
+								'<span data-toggle="tooltip" data-placement="left" title="点击下载文件!" class="glyphicon glyphicon-download-alt"></span></span></a>')
+						}
+						return dom.join('')
+					}
+				}
 			}],
 			pageNumber: 1,
 			pageSize: 20,
@@ -254,7 +268,7 @@ define(function (require, exports, module) {
 			pagination: true,
 			paginationHAlign: 'left',
 			paginationDetailHAlign: 'right',
-			onClickRow: function (row) {
+			onDblClickRow: function (row) {
 				writeDialogDom(row, htmlId)
 			},
 		})

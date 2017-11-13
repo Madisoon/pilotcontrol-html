@@ -9,7 +9,7 @@ $border-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12
  */
 body {
   @include body-css;
-
+  background-color: #f1f2f7;
 }
 
 html {
@@ -59,10 +59,17 @@ html {
   box-shadow: $border-shadow;
 }
 
+.span-file {
+  margin-left: 5px;
+}
+
 .panel {
   border-radius: 0px;
   box-shadow: $border-shadow;
+}
 
+.red-title {
+  color: #FF6C60 !important;
 }
 
 li {
@@ -256,28 +263,29 @@ table {
     display: flex;
     height: 52px;
     width: 100%;
-    background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
+    background-color: #ffffff;
+    /*background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);*/
     svg {
-      color: white;
+      /*color: white;*/
     }
     .left-logo {
-      width: 15%;
+      width: 13%;
       height: 52px;
       /*background-color: #7e57c2*/
       .sys-name {
         font: {
-          size: 1.2rem;
+          size: 1.3rem;
         }
         text-align: center;
         line-height: 52px;
-        color: white;
+        /*color: white;*/
         display: block;
       }
     }
 
     .right-message {
       display: flex;
-      width: 85%;
+      width: 87%;
       height: 52px;
       /*background-color: #9575cd;*/
       .sys-message {
@@ -290,10 +298,10 @@ table {
         line-height: 52px;
         text-align: center;
         color: rgba(0, 0, 0, 0.6);
-        @include border-css(right, rgba(0, 0, 0, 0.14), 1px);
+        /* @include border-css(right, rgba(0, 0, 0, 0.14), 1px);*/
       }
       a:hover {
-        background-color: #b39ddb;
+        /*background-color: #1f89d6;*/
       }
       #user-info {
         display: inline-block;
@@ -305,7 +313,7 @@ table {
       }
 
       #user-info:hover {
-        background-color: #b39ddb;
+        /*background-color: #1f89d6;*/
       }
 
       #user-info img {
@@ -320,10 +328,10 @@ table {
     .opertion-icon {
       flex: 0 0 52px;
       &.left {
-        @include border-css(right, rgba(0, 0, 0, 0.14), 1px);
+        /*@include border-css(right, rgba(0, 0, 0, 0.14), 1px);*/
       }
       &.right {
-        @include border-css(left, rgba(0, 0, 0, 0.14), 1px);
+        /*@include border-css(left, rgba(0, 0, 0, 0.14), 1px);*/
       }
     }
   }
@@ -333,7 +341,7 @@ table {
     width: 100%;
     display: flex;
     .left-nav {
-      width: 15%;
+      width: 13%;
       height: 100%;
       font-size: 13px;
       color: rgba(255, 255, 255, 0.6);
@@ -343,12 +351,20 @@ table {
       }
 
       .menu-item.active {
+        color: white;
         background-color: #35404d;
       }
 
       .menu-item {
+        .icon:hover {
+          color: rgb(255, 108, 96) !important;
+        }
         a.active {
           background-color: #35404d;
+          color: white;
+          .icon {
+            color: rgb(255, 108, 96);
+          }
         }
         .parent-item {
           display: flex;
@@ -358,10 +374,10 @@ table {
         }
         .child-second-menu {
           a:hover {
-            color: #9575cd !important;
+            color: #FF6C60 !important;
           }
           .span-active {
-            color: #9575cd;
+            color: #FF6C60;
           }
         }
       }
@@ -386,9 +402,9 @@ table {
       }
     }
     .right-context {
-      width: 85%;
+      width: 87%;
       height: 92%;
-      /*background-color: #f5f5f5;*/
+      background-color: #f1f2f7;
     }
   }
 
@@ -782,6 +798,12 @@ table {
     font-size: 14px;
   }
 
+  .sina-all-total-integration {
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
   .left-nav {
     flex: 1 1 18%;
     height: 98%;
@@ -821,6 +843,8 @@ table {
   .right-context {
     flex: 1 1 81%;
     margin-left: 1%;
+    padding: 8px;
+    background-color: #fff;
     .guidance-table {
       margin-top: 8px;
     }

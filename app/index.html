@@ -147,6 +147,49 @@
         .user-balance-number {
             line-height: 52px;
         }
+
+        .second-item {
+            padding-left: 32px !important;
+        }
+
+        .menu-item svg {
+            width: 25px;
+        }
+
+        .child-second-menu a {
+            padding-left: 40px !important;
+        }
+
+        .index-smaller {
+            padding: 3px;
+            border: 1px solid #f0f0f8;
+            border-radius: 3px;
+        }
+
+        .expand-html {
+            line-height: 59px !important;
+        }
+
+        .person-setting img {
+            width: 29px;
+            height: 29px;
+        }
+
+        .person-setting {
+            margin-right: 13px;
+            line-height: 52px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .label-danger.green {
+            background-color: #9ccd74;
+        }
+
+        .person-setting:hover {
+            color: rgb(0, 0, 0);
+        }
+
     </style>
 </head>
 <body>
@@ -204,41 +247,37 @@
             <div class="sys-name">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-xin1"></use>
-                </svg>&nbsp;舆情导控平台
+                </svg>&nbsp;舆情<span class="red-title">导控平台</span>
             </div>
         </div>
         <div class="right-message">
             <a class="opertion-icon left expand-html" href="#">
-                <svg class="icon" aria-hidden="true">
+                <svg class="icon index-smaller" aria-hidden="true">
                     <use xlink:href="#icon-meun"></use>
                 </svg>
             </a>
             <div class="sys-message">
                 <div class="user-balance">
                     <div class="user-balance-number">
-                        <span class="label label-danger">积分余额：<span id="user-real-mark"></span>分</span>
+                        <span class="label label-danger green">积分余额：<span id="user-real-mark"></span>分</span>
                     </div>
                 </div>
             </div>
-            <a class="opertion-icon right " href="#">
-                <div class="info-show">
-                    <span id="user-info">
-                        <img src="../static/img/header.jpg" class="user-photo">
-                    </span>
-                </div>
-            </a>
-            <a class="opertion-icon right " href="#" id="system-info">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-caidan-copy"></use>
+            <div class="person-setting">
+                <span>Google</span>
+                <svg class="icon icon-red" aria-hidden="true">
+                    <use xlink:href="#icon-control-arr-copy"></use>
                 </svg>
-            </a>
+
+            </div>
         </div>
     </nav>
     <div class="pilotControl-html-nav">
         <div class="left-nav">
             <ul class="parent-first-menu">
+                <!--1,2级菜单-->
                 <li class="menu-item">
-                    <a href="../static/module/result/guidanceresult.html" class="active" target="contextIframe">
+                    <a href="../static/module/result/guidanceresult.html" class="first-a active" target="contextIframe">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-choicenessfill"></use>
                         </svg>

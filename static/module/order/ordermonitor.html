@@ -5,6 +5,7 @@
     <link href="../../../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../../common/css/header.css" rel="stylesheet" type="text/css">
     <script src="../../../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../../spm_modules/jquery/jquery.form.js"></script>
     <script src="../../../spm_modules/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
     <script src="../../../spm_modules/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
     <script src="../../../spm_modules/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
@@ -20,6 +21,7 @@
 </head>
 <body>
 <div class="order-monitor-html">
+
     <button type="button" class="btn btn-default btn-primary order" data-type="0" id="no-finish-order-btn">未完成的订单
     </button>
     <button type="button" class="btn btn-default order" data-type="1" id="finish-order-btn">已完成的订单</button>
@@ -94,9 +96,12 @@
                     <input type="number" class="form-control finish-mark" placeholder="所扣积分">
                 </div>
                 <div class="form-group">
-                    <label class="control-label">需要说明信息如下</label>
-                    <textarea class="form-control finish-content" rows="5"></textarea>
+                    <label class="control-label">上传附件</label>
                 </div>
+            </form>
+            <form id="uploadNewsIcon" action="http://127.0.0.1:8022/guidance/uploadOrderFile" method="post"
+                  enctype="multipart/form-data">
+                <input id="newsIcon" name="file" class="form-control" onchange="uploadIcon()" type="file"/>
             </form>
         </div>
         <div class="absolute-dialog-action">
@@ -113,7 +118,7 @@
                 </div>-->
                 <div class="form-group">
                     <label class="control-label">需要说明信息如下</label>
-                    <textarea class="form-control pause-content" rows="5"></textarea>
+                    <textarea rows="5"></textarea>
                 </div>
             </form>
         </div>
@@ -156,15 +161,23 @@
                 </div>
             </form>
         </div>
-        <!--<div class="absolute-dialog-action">
-            <button class="btn btn-primary">取消</button>
-        </div>-->
     </div>
-
 
 </div>
 <script>
 	seajs.use('./ordermonitor')
+</script>
+<script>
+	function uploadIcon () {
+		$('#uploadNewsIcon').ajaxSubmit({
+			success: function (data) {
+				imgFeedBackUrl = data
+				layer.msg('上传成功!', {icon: 1, time: 1000})
+			}, error: function (e) {
+				layer.msg('上传失败!', {icon: 5, time: 1000})
+			}
+		})
+	}
 </script>
 </body>
 </html>

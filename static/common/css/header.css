@@ -12,7 +12,8 @@ body {
   width: 100%;
   position: fixed;
   font-size: 14px !important;
-  font-family: 'Open Sans'; }
+  font-family: 'Open Sans';
+  background-color: #f1f2f7; }
 
 html {
   padding: 0px;
@@ -58,9 +59,15 @@ html {
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
 
+.span-file {
+  margin-left: 5px; }
+
 .panel {
   border-radius: 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+
+.red-title {
+  color: #FF6C60 !important; }
 
 li {
   list-style-type: none; }
@@ -212,22 +219,23 @@ table {
     display: flex;
     height: 52px;
     width: 100%;
-    background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%); }
+    background-color: #ffffff;
+    /*background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);*/ }
     .index-html .pilotControl-html-header svg {
-      color: white; }
+      /*color: white;*/ }
     .index-html .pilotControl-html-header .left-logo {
-      width: 15%;
+      width: 13%;
       height: 52px;
       /*background-color: #7e57c2*/ }
       .index-html .pilotControl-html-header .left-logo .sys-name {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         text-align: center;
         line-height: 52px;
-        color: white;
+        /*color: white;*/
         display: block; }
     .index-html .pilotControl-html-header .right-message {
       display: flex;
-      width: 85%;
+      width: 87%;
       height: 52px;
       /*background-color: #9575cd;*/ }
       .index-html .pilotControl-html-header .right-message .sys-message {
@@ -239,9 +247,9 @@ table {
         line-height: 52px;
         text-align: center;
         color: rgba(0, 0, 0, 0.6);
-        border-right: 1px solid rgba(0, 0, 0, 0.14); }
+        /* @include border-css(right, rgba(0, 0, 0, 0.14), 1px);*/ }
       .index-html .pilotControl-html-header .right-message a:hover {
-        background-color: #b39ddb; }
+        /*background-color: #1f89d6;*/ }
       .index-html .pilotControl-html-header .right-message #user-info {
         display: inline-block;
         height: 52px;
@@ -250,7 +258,7 @@ table {
         text-align: center;
         cursor: pointer; }
       .index-html .pilotControl-html-header .right-message #user-info:hover {
-        background-color: #b39ddb; }
+        /*background-color: #1f89d6;*/ }
       .index-html .pilotControl-html-header .right-message #user-info img {
         vertical-align: middle;
         width: 32px;
@@ -260,15 +268,15 @@ table {
     .index-html .pilotControl-html-header .opertion-icon {
       flex: 0 0 52px; }
       .index-html .pilotControl-html-header .opertion-icon.left {
-        border-right: 1px solid rgba(0, 0, 0, 0.14); }
+        /*@include border-css(right, rgba(0, 0, 0, 0.14), 1px);*/ }
       .index-html .pilotControl-html-header .opertion-icon.right {
-        border-left: 1px solid rgba(0, 0, 0, 0.14); }
+        /*@include border-css(left, rgba(0, 0, 0, 0.14), 1px);*/ }
   .index-html .pilotControl-html-nav {
     height: 100%;
     width: 100%;
     display: flex; }
     .index-html .pilotControl-html-nav .left-nav {
-      width: 15%;
+      width: 13%;
       height: 100%;
       font-size: 13px;
       color: rgba(255, 255, 255, 0.6);
@@ -276,17 +284,23 @@ table {
       .index-html .pilotControl-html-nav .left-nav .parent-first-menu {
         margin-top: 15px; }
       .index-html .pilotControl-html-nav .left-nav .menu-item.active {
+        color: white;
         background-color: #35404d; }
+      .index-html .pilotControl-html-nav .left-nav .menu-item .icon:hover {
+        color: #ff6c60 !important; }
       .index-html .pilotControl-html-nav .left-nav .menu-item a.active {
-        background-color: #35404d; }
+        background-color: #35404d;
+        color: white; }
+        .index-html .pilotControl-html-nav .left-nav .menu-item a.active .icon {
+          color: #ff6c60; }
       .index-html .pilotControl-html-nav .left-nav .menu-item .parent-item {
         display: flex; }
         .index-html .pilotControl-html-nav .left-nav .menu-item .parent-item .menu-item-title {
           flex: 1; }
       .index-html .pilotControl-html-nav .left-nav .menu-item .child-second-menu a:hover {
-        color: #9575cd !important; }
+        color: #FF6C60 !important; }
       .index-html .pilotControl-html-nav .left-nav .menu-item .child-second-menu .span-active {
-        color: #9575cd; }
+        color: #FF6C60; }
       .index-html .pilotControl-html-nav .left-nav ul li {
         min-height: 46px;
         line-height: 46px;
@@ -302,9 +316,9 @@ table {
           color: white;
           background-color: #35404d; }
     .index-html .pilotControl-html-nav .right-context {
-      width: 85%;
+      width: 87%;
       height: 92%;
-      /*background-color: #f5f5f5;*/ }
+      background-color: #f1f2f7; }
 
 #forum-guidance-html {
   padding: 10px;
@@ -558,6 +572,10 @@ table {
     color: red;
     font-weight: 600;
     font-size: 14px; }
+  #guidance-result-html .sina-all-total-integration {
+    color: red;
+    font-weight: 600;
+    font-size: 14px; }
   #guidance-result-html .left-nav {
     flex: 1 1 18%;
     height: 98%;
@@ -587,7 +605,9 @@ table {
           background: #e1f5fe; }
   #guidance-result-html .right-context {
     flex: 1 1 81%;
-    margin-left: 1%; }
+    margin-left: 1%;
+    padding: 8px;
+    background-color: #fff; }
     #guidance-result-html .right-context .guidance-table {
       margin-top: 8px; }
   #guidance-result-html #choose-corpus-dialog .dialog-context {

@@ -52,7 +52,7 @@ define(function (require, exports, module) {
 
 	$('#post-blog').click(() => {
 		// 发帖
-		daokongType = 1
+		daokongType = 3
 		initializeFormBlog()
 		$('.form-group.daokong-remark').hide()
 		$('.form-group.sina-custom-remark').show()
@@ -60,7 +60,7 @@ define(function (require, exports, module) {
 	})
 	$('#replay-blog').click(() => {
 		// 回帖
-		daokongType = 2
+		daokongType = 4
 		initializeFormBlog()
 		$('.form-group.daokong-remark').show()
 		$('.form-group.sina-custom-remark').hide()
@@ -182,6 +182,12 @@ define(function (require, exports, module) {
 							break
 						case '0':
 							returnValue = '浏览帖子'
+							break
+						case '3':
+							returnValue = '博文评论'
+							break
+						case '4':
+							returnValue = '博文点赞'
 							break
 						default:
 							returnValue = '格式错误'
@@ -669,13 +675,12 @@ define(function (require, exports, module) {
 	}
 
 	let initializeFormBlog = () => {
-		$('.form-control.task-url').val('') // 导控地址
-		$('.form-control.task-title').val('') // 导控地址
-		$('.form-control.task-number').val('')// 导控的数量
-		$('.form-control.task-interval').val('')// 导控的间隔
-		$('.all-total-integration').html('')// 导控的积分
-		$('.form-control.custom-context').val('')// 导控的语料内容
-		$('.guidance-corpus-show').empty()
+		$('.form-control.sina-task-url').val('') // 导控地址
+		$('.form-control.sina-task-number').val('')// 导控的数量
+		$('.form-control.sina-task-interval').val('')// 导控的间隔
+		$('.form-control.sina-custom-context').val('')
+		$('.sina-all-total-integration').html('')// 导控的积分
+		$('.guidance-sina-remark-show').empty()
 		addTaskDialog = layer.open({
 			title: ' 新闻导控 ',
 			type: 1,

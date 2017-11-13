@@ -28,20 +28,20 @@ define(function (require, exports, module) {
 		$('.person-setting-fixed').stop().fadeToggle()
 	})
 
-	$('.info-show').click(() => {
+	$('.person-setting').click(() => {
 		$('.user-info-choice').stop().slideToggle()
 	})
 
 	let navMenuDom = []
 	for (let functionsItem of sysInfo.function) {
 		navMenuDom.push('<li class="menu-item"> ')
-		navMenuDom.push('<a href="#" class="parent-item"> ')
+		navMenuDom.push('<a href="#" class="first-a parent-item"> ')
 		navMenuDom.push('<span class="title-icon"> ')
 		navMenuDom.push('<svg class="icon" aria-hidden="true"> ')
 		navMenuDom.push('<use xlink:href="' + functionsItem[0].menu_parent_attr + '"></use> ')
 		navMenuDom.push('</svg> ')
 		navMenuDom.push('</span>')
-		navMenuDom.push('<span class="menu-item-title">&nbsp; ' + functionsItem[0].menu_parent_name + '</span>')
+		navMenuDom.push('<span class="menu-item-title">&nbsp;' + functionsItem[0].menu_parent_name + '</span>')
 		/*		navMenuDom.push('<span>')
 				navMenuDom.push('<svg class="icon" aria-hidden="true">')
 				navMenuDom.push('<use class="icon-x" xlink:href="#icon-add1"></use>')
@@ -73,6 +73,7 @@ define(function (require, exports, module) {
 		$('.menu-item .title-icon').removeClass('span-active')
 		$(this).find('.title-icon').addClass('span-active')
 		$(this).addClass('active')
+		$(this).find('.first-a').addClass('active')
 		$(this).find('ul').stop().slideToggle()
 	})
 	$('.expand-html').click(function () {
@@ -81,13 +82,13 @@ define(function (require, exports, module) {
 			$('.pilotControl-html-nav .left-nav').animate({width: '0%'}, 'fast')
 			$('.pilotControl-html-nav .right-context').animate({width: '100%'}, 'fast')
 		} else {
-			$('.pilotControl-html-nav .left-nav').animate({width: '15%'}, 'fast')
+			$('.pilotControl-html-nav .left-nav').animate({width: '180px'}, 'fast')
 			$('.pilotControl-html-nav .right-context').animate({width: '85%'}, 'fast')
 		}
 	})
 	$('.child-second-menu a').click(function () {
 		$('.child-second-menu a').css('color', 'rgba(255, 255, 255, 0.6)')
-		$(this).css('color', '#9575cd')
+		$(this).css('color', '#FF6C60')
 	})
 	$('.menu-item > ul').click(function (event) {
 		event.stopPropagation()

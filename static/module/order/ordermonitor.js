@@ -83,7 +83,7 @@ define(function (require, exports, module) {
 				field: 'task_check_status',
 				searchable: true,
 				title: '操作',
-				width: 237,
+				width: 90,
 				formatter: (value, row, index) => {
 
 					let returnValue = ''
@@ -92,9 +92,9 @@ define(function (require, exports, module) {
 					} else if (value === '3') {
 						returnValue = '******'
 					} else {
-						returnValue = '<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-default info-content">详细内容</span> ' +
+						returnValue = /*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-default info-content">详细内容</span> ' +*/
 							/*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-primary get-content">接受</span> ' +*/
-							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-success feedback-content">反馈</span> ' +
+							/*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-success feedback-content">反馈</span> ' +*/
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-info refuse-content">拒绝</span> ' +
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-warning finish-content">完成</span> '
 						if (value === '2') {
@@ -105,9 +105,6 @@ define(function (require, exports, module) {
 					}
 					return returnValue
 				}
-			}, {
-				field: 'manpower_content',
-				title: '信息反馈'
 			}],
 			pageNumber: 1,
 			pageSize: 12,
@@ -183,8 +180,11 @@ define(function (require, exports, module) {
 	$('body').on('click', '.label.finish-content', function () {
 		orderId = $(this).attr('data-id')
 		$('.finish-number').text(orderId)
+		$('.form-control.finish-mark').val('')
+		imgFeedBackUrl = ''
+		$('#newsIcon').val('')
 		layer.open({
-			title: '信息展示',
+			title: '完成反馈',
 			type: 1,
 			area: ['35%', '60%'], //宽高
 			content: $('#finish-content-data-dialog')
@@ -229,7 +229,7 @@ define(function (require, exports, module) {
 	$('#sure-content-finish').click(function () {
 		let orderData = {
 			mark: $('.form-control.finish-mark').val(),
-			content: $('.form-control.finish-content').val()
+			content: imgFeedBackUrl
 		}
 		api.manpower.manpowerManage.updateManPowerData(orderId, '1', JSON.stringify(orderData), () => {
 			initializeTable()
