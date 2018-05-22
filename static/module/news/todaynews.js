@@ -34,7 +34,7 @@ define(function (require, exports, module) {
 			titleContent: '文章地址',
 			exampleContent: 'http://www.anyv.net/index.php/article-1509235',
 			userLoginName: userLoginName,
-			dataType: '12',
+			dataType: '16',
 		}
 		orderModule.orderModule.writeOrderDom('#order-component-show', orderData, (rep) => {
 			if (rep === 1) {
@@ -59,7 +59,7 @@ define(function (require, exports, module) {
 			titleContent: '文章地址',
 			exampleContent: 'http://www.anyv.net/index.php/article-1509235',
 			userLoginName: userLoginName,
-			dataType: '13',
+			dataType: '17',
 		}
 		orderModule.orderModule.writeOrderDom('#order-component-show', orderData, (rep) => {
 			if (rep === 1) {
@@ -84,7 +84,7 @@ define(function (require, exports, module) {
 			titleContent: '文章地址',
 			exampleContent: 'http://www.anyv.net/index.php/article-1509235',
 			userLoginName: userLoginName,
-			dataType: '14',
+			dataType: '18',
 		}
 		orderModule.orderModule.writeOrderDom('#order-component-show', orderData, (rep) => {
 			if (rep === 1) {
@@ -109,7 +109,7 @@ define(function (require, exports, module) {
 			titleContent: '文章地址',
 			exampleContent: 'http://www.anyv.net/index.php/article-1509235',
 			userLoginName: userLoginName,
-			dataType: '15',
+			dataType: '19',
 		}
 		orderModule.orderModule.writeOrderDom('#order-component-show', orderData, (rep) => {
 			if (rep === 1) {

@@ -302,7 +302,13 @@ define(function (require, exports, module) {
 				},
 				getAllUser: function (success) {
 					getDataWay(url + 'getAllUser', {}, success)
-				}
+				},
+				updatePartUser: function (userData, userLoginName, success) {
+					getDataWay(url + 'updatePartUser', {
+						userData,
+						userLoginName
+					}, 'POST', success)
+				},
 			},
 			roleManage: {
 				getAllRole: function (success) {

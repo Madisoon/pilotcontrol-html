@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="../spm_modules/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../static/common/css/header.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" type="image/x-icon" href="../static/img/webicon.ico">
     <script src="../static/common/js/iconfont.js"></script>
     <script src="../spm_modules/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../spm_modules/layer/layer.js"></script>
     <script src="../spm_modules/seajs-3.0.0/dist/sea.js"></script>
     <title>舆情导控平台</title>
     <style>
@@ -190,6 +192,10 @@
             color: rgb(0, 0, 0);
         }
 
+        #person-info-dialog {
+            width: 99%;
+        }
+
     </style>
 </head>
 <body>
@@ -202,7 +208,7 @@
     </div>
 
 
-    <div class="person-setting-fixed" style="display: none">
+    <div class="person-setting-fixed">
         <div class="gn-title">公告</div>
         <div class="notice">
             <ul class="list-w-title">
@@ -264,7 +270,7 @@
                 </div>
             </div>
             <div class="person-setting">
-                <span>Google</span>
+                <span id="user-name"></span>
                 <svg class="icon icon-red" aria-hidden="true">
                     <use xlink:href="#icon-control-arr-copy"></use>
                 </svg>
@@ -276,21 +282,60 @@
         <div class="left-nav">
             <ul class="parent-first-menu">
                 <!--1,2级菜单-->
-                <li class="menu-item">
+                <!--<li class="menu-item">
                     <a href="../static/module/result/guidanceresult.html" class="first-a active" target="contextIframe">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-choicenessfill"></use>
                         </svg>
                         <span>&nbsp;首页</span>
                     </a>
-                </li>
+                </li>-->
             </ul>
         </div>
         <div class="right-context">
-            <iframe id="iframe-show" src="../static/module/result/guidanceresult.html" name="contextIframe"
+            <iframe id="iframe-show" src="" name="contextIframe"
                     scrolling="yes"
                     frameborder="0"
                     style="width:100%; height:100%;"></iframe>
+        </div>
+    </div>
+    <div id="person-info-dialog" class="al-ui-dialog" style="display: none">
+        <div class="dialog-context">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">账号:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control user-name" placeholder="账号" disabled="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control user-nick-name" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机号:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control user-phone" placeholder="手机号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">密码:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control user-password" placeholder="密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">确认密码:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control password-sure" placeholder="确认密码">
+                    </div>
+                </div>
+            </form>
+            <div class="absolute-dialog-action">
+                <button type="button" class="btn btn-primary " id="button-preserve">确认提交</button>
+            </div>
         </div>
     </div>
 </div>

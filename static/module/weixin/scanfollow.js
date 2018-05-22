@@ -119,8 +119,9 @@ define(function (require, exports, module) {
 		$('#upload-weixin-image').ajaxSubmit({
 			success: function (data) {
 				imageUrl = data
+				layer.msg('上传成功!', {icon: 1, time: 1000})
 			}, error: function (e) {
-				layer.msg('上传失败!', {icon: 5, time: 1000})
+				layer.msg('上传失败!', {icon: 2, time: 1000})
 			}
 		})
 	}

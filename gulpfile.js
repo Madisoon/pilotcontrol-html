@@ -1,88 +1,89 @@
 /**
  * Created by Msater Zg on 2017/1/6.
  */
-var gulp = require('gulp');
-var scss = require('gulp-scss');
-var uglify = require('gulp-uglify');
-var htmlmin = require('gulp-htmlmin');
-var cssmin = require('gulp-clean-css');
-var autoprefixer = require('gulp-autoprefixer');
-var imagemin = require('gulp-imagemin');
-var babel = require("gulp-babel");
-var concatJs = require('gulp-concat');
-
+var gulp = require('gulp')
+var scss = require('gulp-scss')
+var uglify = require('gulp-uglify')
+var htmlmin = require('gulp-htmlmin')
+var cssmin = require('gulp-clean-css')
+var autoprefixer = require('gulp-autoprefixer')
+var imagemin = require('gulp-imagemin')
+var babel = require('gulp-babel')
+var concatJs = require('gulp-concat')
 
 // 压缩所有 static html
 gulp.task('minifyHtml', function () {
-    var options = {
-        removeComments: true,//清除HTML注释
-        collapseWhitespace: true,//压缩HTML
-        collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
-        removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
-        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
-        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
-        minifyJS: true,//压缩页面JS
-        minifyCSS: true//压缩页面CSS
-    };
-    gulp.src(['static/**/*.html'])
-        .pipe(htmlmin(options))
-        .pipe(gulp.dest('htmlcompress/static'));
-});
+	var options = {
+		removeComments: true,//清除HTML注释
+		collapseWhitespace: true,//压缩HTML
+		collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+		removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+		removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+		removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+		minifyJS: true,//压缩页面JS
+		minifyCSS: true//压缩页面CSS
+	}
+	gulp.src(['static/**/*.html'])
+		.pipe(htmlmin(options))
+		.pipe(gulp.dest('htmlcompress/static'))
+})
 
 // 将es6 js转成 es5
-gulp.task("babelEs6", function () {
-    return gulp.src(['static/**/*.js'])// ES6 源码存放的路径
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('dist/')); //转换成 ES5 存放的路径
-});
-
+gulp.task('babelEs6', function () {
+	return gulp.src(['static/**/*.js'])// ES6 源码存放的路径
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(uglify({
+			//mangle: true,//类型：Boolean 默认：true 是否修改变量名
+			mangle: {except: ['require', 'exports', 'module', '$']}//排除混淆关键字
+		}))
+		.pipe(gulp.dest('htmlcompress/static'))
+})
 
 //压缩js的方法
 gulp.task('minifyJs', function () {
-    gulp.src(['static/**/*.js'])
-        .pipe(uglify({
-            //mangle: true,//类型：Boolean 默认：true 是否修改变量名
-            mangle: {except: ['require', 'exports', 'module', '$']}//排除混淆关键字
-        }))
-        .pipe(gulp.dest('htmlcompress/static'));
-});
+	gulp.src(['static/**/*.js'])
+		.pipe(uglify({
+			//mangle: true,//类型：Boolean 默认：true 是否修改变量名
+			mangle: {except: ['require', 'exports', 'module', '$']}//排除混淆关键字
+		}))
+		.pipe(gulp.dest('htmlcompress/static'))
+})
 // 合并js的方法
 gulp.task('testConcat', function () {
-    gulp.src('src/js/*.js')
-        .pipe(concatJs('all.js'))//合并后的文件名
-        .pipe(gulp.dest('dist/js')); // 保存的路径
-});
+	gulp.src('src/js/*.js')
+		.pipe(concatJs('all.js'))//合并后的文件名
+		.pipe(gulp.dest('dist/js')) // 保存的路径
+})
 // 压缩css
 gulp.task('minifyCss', function () {
-    gulp.src(['static/**/*.css'])
-        .pipe(cssmin())
-        .pipe(gulp.dest('htmlcompress/static'));
-});
+	gulp.src(['static/**/*.css'])
+		.pipe(cssmin())
+		.pipe(gulp.dest('htmlcompress/static'))
+})
 // 将scss转成css
 gulp.task('transFormScss', function () {
-    gulp.src(['static/header.scss'])
-        .pipe(scss())
-        .pipe(gulp.dest('htmlcompress/static'));
-});
+	gulp.src(['static/header.scss'])
+		.pipe(scss())
+		.pipe(gulp.dest('htmlcompress/static'))
+})
 
 // 压缩img
 gulp.task('minifyImage', function () {
-    gulp.src('static/img/*.{png,jpg,gif,ico}')
-        .pipe(imagemin({
-            optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
-            progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
-            interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
-            multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化
-        }))
-        .pipe(gulp.dest('htmlcompress/static/img'));
-});
-
+	gulp.src('static/img/*.{png,jpg,gif,ico}')
+		.pipe(imagemin({
+			optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
+			progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+			interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
+			multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化
+		}))
+		.pipe(gulp.dest('htmlcompress/static/img'))
+})
 
 gulp.task('finishTask', ['minifyHtml', 'minifyJs', 'minifyCss', 'minifyImage'], function () {
-    console.log("执行完成");
-});
+	console.log('执行完成')
+})
 
 /*// 转为css
 

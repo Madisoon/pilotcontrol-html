@@ -275,6 +275,7 @@ define(function (require, exports, module) {
 			user_mark: $('.form-control.user_mark').val(),
 			user_role: $('.form-control.user_role').val(),
 		}
+		console.log(userData);
 		return [userData, configData.join(','), corpusData.join(',')]
 	}
 

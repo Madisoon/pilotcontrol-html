@@ -534,7 +534,6 @@ define(function (require, exports, module) {
 			contentObject.channel = $(this).attr('data-channel')
 			systemContext.push(contentObject)
 		})
-		console.log(systemContext)
 		let guidanceContext = {
 			config_id: configId,
 			task_url: taskUrl,
@@ -551,8 +550,7 @@ define(function (require, exports, module) {
 
 	$('#reserve-task-button').click(() => {
 		let [taskContext, taskInfo, remarkContent] = getFormValue()
-		if (!taskInfo.task_title ||
-			!taskInfo.task_url ||
+		if (!taskInfo.task_url ||
 			!taskInfo.interval_time ||
 			!taskInfo.task_number ||
 			!taskInfo.task_integration) {
@@ -604,7 +602,7 @@ define(function (require, exports, module) {
 			// 全部填写完成之后
 			api.system.userManage.getSysUser(userLoginName, (rep) => {
 				if (parseInt(rep.user_mark) > parseInt(taskInfo.task_integration)) {
-					api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), JSON.stringify(remarkContent), daokongTypeOrder, (rep) => {
+					api.result.taskManage.insertTask(JSON.stringify(taskInfo), taskContext.join(','), JSON.stringify(remarkContent), '1', (rep) => {
 						let realMark = $('#user-real-mark', window.parent.document).text()
 						realMark = parseInt(realMark) - parseInt(taskInfo.task_integration)
 						$('#user-real-mark', window.parent.document).text(realMark)

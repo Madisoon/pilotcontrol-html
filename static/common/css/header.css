@@ -91,6 +91,9 @@ table {
     background-color: #696969;
     color: white; }
 
+textarea {
+  resize: none !important; }
+
 .form-control.active {
   background-color: #FF4040; }
 
@@ -279,6 +282,7 @@ table {
       width: 13%;
       height: 100%;
       font-size: 13px;
+      overflow-y: auto;
       color: rgba(255, 255, 255, 0.6);
       background-color: #2a3542; }
       .index-html .pilotControl-html-nav .left-nav .parent-first-menu {

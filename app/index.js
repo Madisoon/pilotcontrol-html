@@ -9,7 +9,7 @@ define(function (require, exports, module) {
 	if (sysInfo === null || sysInfo === '') {
 		window.location.href = './login.html'
 	}
-
+	$('#user-name').text(sysInfo.user.user_loginname)
 	SYSTEM = {
 		user: sysInfo.user,
 		model: sysInfo.module,
@@ -88,9 +88,49 @@ define(function (require, exports, module) {
 	})
 	$('.child-second-menu a').click(function () {
 		$('.child-second-menu a').css('color', 'rgba(255, 255, 255, 0.6)')
+		$('#iframe-show').prop('src', $(this).prop('href'));
 		$(this).css('color', '#FF6C60')
 	})
+	$('.child-second-menu a:first').trigger('click')
 	$('.menu-item > ul').click(function (event) {
 		event.stopPropagation()
 	})
+	$('#personal-setting').click(() => {
+		layer.open({
+			title: '个人信息展示',
+			type: 1,
+			area: ['45%', '60%'], //宽高
+			content: $('#person-info-dialog')
+		})
+		$('.form-control.user-name').val(sysUser.user_loginname)
+		$('.form-control.user-nick-name').val(sysUser.user_name)
+		$('.form-control.user-phone').val(sysUser.user_phone)
+		$('.form-control.user-password').val('')
+		$('.form-control.password-sure').val('')
+	})
+
+	$('#button-preserve').click(() => {
+		let userInfo = {
+			user_name: $('.form-control.user-nick-name').val(),
+			user_phone: $('.form-control.user-phone').val(),
+		}
+		let passWord = $('.form-control.user-password').val()
+		let passWordSure = $('.form-control.password-sure').val()
+		if (passWord !== '' || passWordSure !== '') {
+			if (passWord === passWordSure) {
+				userInfo.user_password = passWord
+				updateUser(userInfo)
+			} else {
+				layer.msg('密码不一致', {
+					time: 1500
+				})
+			}
+		} else {
+			updateUser(userInfo)
+		}
+	})
+
+	let updateUser = (userInfo, userLoginName) => {
+		layer.closeAll()
+	}
 })

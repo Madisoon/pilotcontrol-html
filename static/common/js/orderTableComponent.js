@@ -95,8 +95,8 @@ define(function (require, exports, module) {
 		dom.push('</div>')
 		dom.push('</div>')
 		dom.push('</form>')
-		dom.push('<div class="absolute-dialog-action">')
-		/*dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')*/
+		/*dom.push('<div class="absolute-dialog-action">')
+		/!*dom.push('  <button type="button" class="btn btn-success" id="order-info-cancel">取消</button>')*!/
 
 		if (row.task_check_status === '1' || row.task_check_status === '3') {
 			dom.push('  <button type="button" class="btn btn-primary" id="order-info-start" disabled="true">开始</button>')
@@ -113,7 +113,7 @@ define(function (require, exports, module) {
 				dom.push('  <button type="button" class="btn btn-danger" id="order-info-stop" disabled="true">停止</button>')
 			}
 		}
-		dom.push('</div>')
+		dom.push('</div>')*/
 		dom.push('</div>')
 		$('#order-info-dialog').remove()
 		$('.twitter-html-function').append(dom.join(''))
@@ -206,7 +206,7 @@ define(function (require, exports, module) {
 							break
 					}
 				}
-			}, {
+			}/*, {
 				field: 'task_status',
 				searchable: true,
 				title: '状态',
@@ -224,7 +224,7 @@ define(function (require, exports, module) {
 							break
 					}
 				}
-			}, {
+			}*/, {
 				field: 'manpower_contents',
 				searchable: true,
 				title: '信息反馈',
@@ -232,14 +232,19 @@ define(function (require, exports, module) {
 					if (value === '' || value === undefined) {
 						return ''
 					} else {
-						let fileArray = value.split(',')
-						let dom = []
-						for (item of fileArray) {
-							// 获取到了图片的地址
-							dom.push('<a target="_blank" href="118.178.237.219:8080/dummyPath/' + item + '"><span class="label label-success span-file">' +
-								'<span data-toggle="tooltip" data-placement="left" title="点击下载文件!" class="glyphicon glyphicon-download-alt"></span></span></a>')
+						let bool = value.indexOf('.')
+						if (bool > 0) {
+							let fileArray = value.split(',')
+							let dom = []
+							for (item of fileArray) {
+								// 获取到了图片的地址
+								dom.push('<a target="_blank" href="http://121.199.4.149:8011/' + item + '"><span class="label label-success span-file">' +
+									'<span data-toggle="tooltip" data-placement="left" title="点击下载文件!" class="glyphicon glyphicon-download-alt"></span></span></a>')
+							}
+							return dom.join('')
+						} else {
+							return value
 						}
-						return dom.join('')
 					}
 				}
 			}],

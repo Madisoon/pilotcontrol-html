@@ -52,6 +52,18 @@ define(function (require, exports, module) {
 					return value.substring(0, 16)
 				}
 			}, {
+				field: 'task_end_time',
+				title: '审核时间',
+				width: 120,
+				formatter: (value, row, index) => {
+					console.log(value)
+					if (value === '' || value === undefined) {
+						return '******'
+					} else {
+						return value.substring(0, 16)
+					}
+				}
+			}, {
 				field: 'task_start_mark',
 				searchable: true,
 				title: '损耗积分',
@@ -61,7 +73,7 @@ define(function (require, exports, module) {
 				searchable: true,
 				title: '实际扣分',
 				width: 60
-			}, {
+			}/*, {
 				field: 'task_status',
 				searchable: true,
 				title: '状态',
@@ -79,7 +91,7 @@ define(function (require, exports, module) {
 							break
 					}
 				}
-			}, {
+			}*/, {
 				field: 'task_check_status',
 				searchable: true,
 				title: '操作',
@@ -92,16 +104,9 @@ define(function (require, exports, module) {
 					} else if (value === '3') {
 						returnValue = '******'
 					} else {
-						returnValue = /*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-default info-content">详细内容</span> ' +*/
-							/*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-primary get-content">接受</span> ' +*/
-							/*'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-success feedback-content">反馈</span> ' +*/
+						returnValue =
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-info refuse-content">拒绝</span> ' +
 							'<span data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-warning finish-content">完成</span> '
-						if (value === '2') {
-							returnValue += '<span  data-check-status = "0"  data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-danger pause-content">开始</span>'
-						} else {
-							returnValue += '<span data-check-status = "2" data-id="' + row.id + '" data-order-number="' + row.id + '" class="label icon-cursor label-danger pause-content">暂停</span>'
-						}
 					}
 					return returnValue
 				}

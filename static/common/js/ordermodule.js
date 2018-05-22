@@ -99,6 +99,7 @@ define(function (require, exports, module) {
 				let newOrderData = Object.assign(orderData_, orderData)
 				let orderDom = []
 				api.button.buttonManage.getButtonByName(newOrderData.className, (rep) => {
+					console.log(rep);
 					let buttonData = rep.data
 					orderDom.push('<div id="add-single-order-dialog" class="al-ui-dialog">')
 					orderDom.push('<div class="dialog-context">')
@@ -169,15 +170,6 @@ define(function (require, exports, module) {
 						orderDom.push('<label class="radio-inline">')
 						orderDom.push('<input type="radio" name="inlineRadioOptions" value="1" checked="true"> 指定内容')
 						orderDom.push('</label>')
-						orderDom.push('<label class="radio-inline">')
-						orderDom.push('<input type="radio" name="inlineRadioOptions" value="2"> 自动内容')
-						orderDom.push('</label>')
-						orderDom.push('<label class="radio-inline">')
-						orderDom.push('<input type="radio" name="inlineRadioOptions" value="2"> 关键词')
-						orderDom.push('</label>')
-						orderDom.push('<label class="radio-inline">')
-						orderDom.push('<input type="radio" name="inlineRadioOptions" value="2"> 关闭内容')
-						orderDom.push('</label>')
 						orderDom.push('<textarea class="form-control al-order-context" rows="3" placeholder="一行代表一条评论"></textarea>')
 						orderDom.push('</div>')
 						orderDom.push('</div>')
@@ -247,39 +239,6 @@ define(function (require, exports, module) {
 					})
 				})
 			},
-			/*			getOrderForm: function () {
-							let orderUrl = $('.form-control.al-order-url').val()
-							let orderContext = $('.form-control.al-order-context').val()
-							let orderSupplement = $('.form-control.al-order-supplement').val()
-							let markName = []
-							let markOrderNumber = []
-							let markNumber = []
-							$('.custom-mark-content .form-group').each(function () {
-								markName.push($(this).find('.al-order-number').attr('data-name'))
-								markOrderNumber.push($(this).find('.al-order-number').val())
-								markNumber.push($(this).find('.al-single-number').attr('data-mark'))
-							})
-							let executionMode = $('.mode-execution:checked').val()
-
-							if (executionMode === 1) {
-								// 自动执行
-							} else {
-								// 手动执行
-							}
-							let orderData = {
-								task_url: orderUrl,
-								task_name: markName.join(','),
-								task_number: markOrderNumber.join(','),
-								task_mark: markNumber.join(','),
-								/!*task_context: orderContext,*!/
-								task_execution: executionMode,
-								task_execution_context: executionMode,
-								task_type: '1',
-								task_create: '1',
-								task_supplement: orderSupplement,
-							}
-							return orderData
-						}*/
 		}
 	}())
 	return {
